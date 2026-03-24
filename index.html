@@ -2,6 +2,8 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Neon Defense - Clean Signal 15.5</title>
     <style>
         :root { 
@@ -9,9 +11,37 @@
             --neon-green: #00ff66; --neon-red: #ff0033; --neon-orange: #ff9900;
             --bg-dark: #020205; --gold: #ffeb3b;
         }
-        body { margin: 0; background: var(--bg-dark); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; display: flex; overflow: hidden; }
+        body { margin: 0; background: var(--bg-dark); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
         
-        #top-bar { position: absolute; top: 10px; left: 10px; display: flex; gap: 8px; z-index: 1000; }
+        .floating-panel {
+            position: absolute;
+            background: rgba(5, 5, 15, 0.85);
+            border: 1px solid var(--neon-cyan);
+            padding: 15px;
+            border-radius: 4px;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+            pointer-events: auto;
+        }
+
+        #top-left { top: 20px; left: 20px; min-width: 150px; }
+        #top-left h2 { margin: 0 0 2px 0; font-size: 1.2rem; color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); letter-spacing: 1px; }
+        .version-label { font-size: 0.65rem; color: var(--neon-magenta); letter-spacing: 2px; margin-bottom: 10px; opacity: 0.8; }
+
+        #top-right { top: 20px; right: 20px; display: flex; flex-direction: column; align-items: stretch; gap: 8px; border: none; background: transparent; box-shadow: none; padding: 0; width: 160px; }
+        #legend-btn { width: 100%; font-size: 1.1rem; padding: 12px 0; box-shadow: 0 0 10px rgba(0,243,255,0.3); text-align: center; }
+        .sys-buttons { display: flex; gap: 5px; width: 100%; }
+        .sys-buttons .btn-mini { flex: 1; padding: 4px 0; text-align: center; min-width: 0; }
+
+        #bottom-center { bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; }
+        #build-menu { bottom: 20px; left: 20px; width: 220px; display: none; }
+        #selection-panel { bottom: 20px; right: 20px; width: 200px; display: none; }
+
+        .btn-main { background: rgba(0, 243, 255, 0.1); border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 10px 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
+        .btn-main:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); }
+        .btn-main:disabled { border-color: #555; color: #555; background: transparent; cursor: not-allowed; box-shadow: none; }
+
         .btn-mini { 
             padding: 4px 10px; font-size: 0.7rem; border: 1px solid var(--neon-cyan); 
             background: rgba(0, 243, 255, 0.05); color: var(--neon-cyan); cursor: pointer; 
@@ -20,38 +50,55 @@
         .btn-mini:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 10px var(--neon-cyan); }
         .btn-mini.muted { border-color: #666; color: #666; }
 
-        #ui { width: 280px; padding: 20px; background: rgba(5, 5, 15, 0.98); border-right: 1px solid var(--neon-cyan); height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; gap: 15px; z-index: 500; }
-        h2 { color: var(--neon-cyan); margin: 35px 0 10px 0; font-size: 1.2rem; text-align: center; text-shadow: 0 0 8px var(--neon-cyan); letter-spacing: 1px; }
-        
-        .stat-group { border: 1px solid rgba(0, 243, 255, 0.2); padding: 10px; background: rgba(0, 243, 255, 0.02); }
-        .stat { font-size: 0.8rem; margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .stat { font-size: 0.9rem; margin-bottom: 4px; display: flex; justify-content: space-between; }
         .stat b { color: var(--neon-cyan); }
 
-        #build-menu, #selection-panel { display: none; border: 1px solid var(--neon-cyan); padding: 10px; background: rgba(0, 243, 255, 0.05); }
         .tower-option { border: 1px solid #444; padding: 10px; margin-bottom: 6px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; }
         .tower-option:hover { border-color: var(--neon-green); background: rgba(0, 255, 100, 0.1); }
         .tower-option b { color: var(--gold); }
 
         #legend-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 500px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
         #gameover-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-red); padding: 30px; display: none; z-index: 2000; text-align: center; width: 300px; }
-        #error-overlay { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); background: var(--neon-red); color: white; padding: 8px 15px; font-weight: bold; display: none; z-index: 3000; font-size: 0.75rem; border-radius: 4px; }
+        #error-overlay { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); background: var(--neon-red); color: white; padding: 8px 15px; font-weight: bold; display: none; z-index: 3000; font-size: 0.75rem; border-radius: 4px; pointer-events: none; }
         
-        canvas { flex-grow: 1; cursor: crosshair; }
+        canvas { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; cursor: crosshair; }
 
         /* TABELLE LEGENDA */
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.75rem; color: #ccc; }
         th { text-align: left; color: var(--neon-cyan); border-bottom: 1px solid #333; padding: 5px; text-transform: uppercase; font-size: 0.65rem; }
         td { padding: 8px 5px; border-bottom: 1px solid #222; }
         .row-label { color: white; font-weight: bold; }
+
+        @media (max-width: 767px) {
+            #top-left { top: 10px; left: 10px; padding: 10px; min-width: 120px; }
+            #top-left h2 { font-size: 1rem; margin-bottom: 0px; }
+            .version-label { font-size: 0.55rem; margin-bottom: 5px; }
+            #top-right { top: 10px; right: 10px; width: 130px; gap: 5px; }
+            #legend-btn { font-size: 0.85rem; padding: 8px 0; }
+            .sys-buttons .btn-mini { font-size: 0.6rem; padding: 2px 0; height: 24px; }
+            #bottom-center { bottom: 10px; width: 90%; padding: 10px; box-sizing: border-box; }
+            #build-menu { bottom: 100px; left: 10px; width: 200px; }
+            #selection-panel { bottom: 100px; right: 10px; width: 180px; }
+            #legend-modal { width: 90%; padding: 15px; }
+        }
     </style>
 </head>
 <body>
 
-<div id="top-bar">
-    <button class="btn-mini" id="free-mode-btn" style="border-color:var(--neon-magenta); color:var(--neon-magenta);">Free: OFF</button>
-    <button class="btn-mini" id="restart-btn">Reset</button>
-    <button class="btn-mini" id="legend-btn">Database</button>
-    <button class="btn-mini" id="audio-toggle">🔊</button>
+<div id="top-left" class="floating-panel">
+    <h2>NEON DEFENSE</h2>
+    <div class="version-label">ALPHA 1.0</div>
+    <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
+    <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
+</div>
+
+<div id="top-right" class="floating-panel">
+    <button class="btn-main" id="legend-btn">DATABASE</button>
+    <div class="sys-buttons">
+        <button class="btn-mini" id="free-mode-btn" style="border-color:var(--neon-magenta); color:var(--neon-magenta);">Free</button>
+        <button class="btn-mini" id="restart-btn">Reset</button>
+        <button class="btn-mini" id="audio-toggle">🔊</button>
+    </div>
 </div>
 
 <!-- LEGENDA A TABELLA -->
@@ -65,8 +112,8 @@
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Fast unit</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffffff"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Armored</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Sniper Drop</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>2C</td><td>Boss minion</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>100</td><td>0.7</td><td>-</td><td>Generator</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Boss minion</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>100</td><td>0.8</td><td>5C</td><td>Generator</td></tr>
     </table>
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Lvl 1)</h4>
@@ -89,36 +136,27 @@
 </div>
 
 <div id="error-overlay">ORDINE NEGATO: BLOCCO ROTTA</div>
-<div id="notify-overlay" style="display:none; position:absolute; top:20%; left:50%; transform:translate(-50%,-50%); background:rgba(0,255,0,0.15); border:1px solid var(--neon-green); padding:15px 30px; color:var(--neon-green); font-weight:bold; z-index:20; text-align:center; text-shadow: 0 0 5px var(--neon-green); border-radius: 4px; pointer-events:none;"></div>
+<div id="notify-overlay" style="display:none; position:absolute; top:20%; left:50%; transform:translate(-50%,-50%); background:rgba(0,255,0,0.15); border:1px solid var(--neon-green); padding:15px 30px; color:var(--neon-green); font-weight:bold; z-index:2000; text-align:center; text-shadow: 0 0 5px var(--neon-green); border-radius: 4px; pointer-events:none;"></div>
 
-<div id="ui">
-    <h2>NEON DEFENSE</h2>
-    <div class="stat-group">
-        <div class="stat">CREDITI: <b id="credits">15</b></div>
-        <div class="stat">VITE: <b id="lives">10</b></div>
-        <div class="stat">POTENZA: <b id="mult-val">x1.00</b></div>
-    </div>
+<div id="build-menu" class="floating-panel">
+    <h4 style="margin:0 0 10px 0; color:var(--neon-green); font-size: 0.75rem; text-transform: uppercase;">Costruzione</h4>
+    <div class="tower-option" onclick="tryBuild('laser')"><b>LASER TURRET</b><br>Dmg: 4 | 5 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: ∞</span></div>
+    <div class="tower-option" onclick="tryBuild('sniper')"><b>SNIPER CANNON</b><br>Dmg: 8 | 15 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: <span id="sniper-count">0/0</span></span></div>
+    <div class="tower-option" onclick="tryBuild('flamer')"><b>FLAMER</b><br>Dmg: 2 (AoE) | 25 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: <span id="flamer-count">0/0</span></span></div>
+    <button class="btn-mini" style="width:100%; margin-top:5px; border-color:#555; color:#555;" onclick="closeMenus()">Annulla</button>
+</div>
 
-    <div id="build-menu">
-        <h4 style="margin:0 0 10px 0; color:var(--neon-green); font-size: 0.75rem; text-transform: uppercase;">Costruzione</h4>
-        <div class="tower-option" onclick="tryBuild('laser')"><b>LASER TURRET</b><br>Dmg: 4 | 5 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: ∞</span></div>
-        <div class="tower-option" onclick="tryBuild('sniper')"><b>SNIPER CANNON</b><br>Dmg: 8 | 15 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: <span id="sniper-count">0/0</span></span></div>
-        <div class="tower-option" onclick="tryBuild('flamer')"><b>FLAMER</b><br>Dmg: 2 (AoE) | 25 C <br><span style="color:var(--neon-orange); font-size:0.65rem;">Disponibilità: <span id="flamer-count">0/0</span></span></div>
-        <button class="btn-mini" style="width:100%; margin-top:5px; border-color:#555; color:#555;" onclick="closeMenus()">Annulla</button>
-    </div>
+<div id="selection-panel" class="floating-panel">
+    <h4 style="margin:0 0 10px 0; color:var(--neon-cyan); font-size: 0.75rem; text-transform: uppercase;">Unità Selezionata</h4>
+    <div class="stat">Danno: <span id="sel-dmg">4</span></div>
+    <div class="stat">Livello: <span id="sel-lv">1</span></div>
+    <button class="btn-mini" style="width:100%; margin-top:8px; border-color:var(--neon-green); color:var(--neon-green);" id="btn-upgrade">MIGLIORA</button>
+    <button class="btn-mini" style="width:100%; margin-top:5px; border-color:var(--neon-red); color:var(--neon-red)" id="btn-sell">VENDI</button>
+</div>
 
-    <div id="selection-panel">
-        <h4 style="margin:0 0 10px 0; color:var(--neon-cyan); font-size: 0.75rem; text-transform: uppercase;">Unità Selezionata</h4>
-        <div class="stat">Danno: <span id="sel-dmg">4</span></div>
-        <div class="stat">Livello: <span id="sel-lv">1</span></div>
-        <button class="btn-mini" style="width:100%; margin-top:8px; border-color:var(--neon-green); color:var(--neon-green);" id="btn-upgrade">MIGLIORA</button>
-        <button class="btn-mini" style="width:100%; margin-top:5px; border-color:var(--neon-red); color:var(--neon-red)" id="btn-sell">VENDI</button>
-    </div>
-
-    <div id="wave-preview" class="stat-group">
-        <div id="wave-info" style="font-size: 0.65rem; color: #aaa;">Analisi...</div>
-    </div>
-    <button class="btn-main" id="btn-start">AVVIA ONDATA 1</button>
+<div id="bottom-center" class="floating-panel">
+    <div id="wave-info" style="font-size: 0.75rem; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Analisi...</div>
+    <button class="btn-main" id="btn-start" style="width: 100%;">AVVIA ONDATA 1</button>
 </div>
 
 <canvas id="gameCanvas"></canvas>
@@ -169,6 +207,15 @@ const ctx = canvas.getContext('2d');
 const hexKey = (q, r) => `${q},${r}`;
 
 let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles;
+let globalScale = 1;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const mapWidth = MAP_RADIUS * 2 * HEX_SIZE * 1.7;
+    const mapHeight = MAP_RADIUS * 2 * HEX_SIZE * 1.7;
+    globalScale = Math.min(1, canvas.width / mapWidth, canvas.height / mapHeight);
+}
 
 function pixelToHex(x, y) {
     let q = (2/3 * x) / HEX_SIZE, r = (-1/3 * x + Math.sqrt(3)/3 * y) / HEX_SIZE;
@@ -202,33 +249,33 @@ class Enemy {
         
         let dm = getDifficultyMultiplier(currentWave);
 
-        this.hp = 10 * dm; this.speed = 1.2 * dm; this.color = "#ff00ff"; this.isMinion = type.startsWith('void');
-        if (type === 'boss') { this.hp = 100 * dm; this.speed = 0.7 * dm; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
-        else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8 * dm; this.color = "#ffeb3b"; }
-        else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8 * dm; this.color = "#ffffff"; }
-        else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8 * dm; this.color = "#ffd700"; }
-        else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8 * dm; this.color = "#000000"; }
-        else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2 * dm; this.color = "#000000"; }
+        this.hp = 10 * dm; this.speed = 1.2; this.color = "#ff00ff"; this.isMinion = type.startsWith('void');
+        if (type === 'boss') { this.hp = 100 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
+        else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8; this.color = "#ffeb3b"; }
+        else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#ffffff"; }
+        else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ffd700"; }
+        else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
+        else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
         this.maxHp = this.hp; this.escaped = false;
         const c = pixelToHex(this.px - canvas.width/2, this.py - canvas.height/2);
         this.targetHex = grid.get(hexKey(c.q, c.r)) || startHex;
         this.q = this.targetHex.q; this.r = this.targetHex.r;
     }
-    update() {
+    update(dt) {
         const tx = canvas.width/2 + this.targetHex.x, ty = canvas.height/2 + this.targetHex.y;
         const dist = Math.hypot(tx - this.px, ty - this.py);
-        if (dist < this.speed) {
+        if (dist < this.speed * dt) {
             this.px = tx; this.py = ty; this.q = this.targetHex.q; this.r = this.targetHex.r;
             if (this.targetHex.isExit) { this.escaped = true; return; }
             if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         } else {
             const a = Math.atan2(ty - this.py, tx - this.px);
-            this.px += Math.cos(a) * this.speed; this.py += Math.sin(a) * this.speed;
+            this.px += Math.cos(a) * this.speed * dt; this.py += Math.sin(a) * this.speed * dt;
             const c = pixelToHex(this.px - canvas.width/2, this.py - canvas.height/2);
             this.q = c.q; this.r = c.r;
         }
         if (this.type === 'boss') {
-            this.spawnTimer--;
+            this.spawnTimer -= dt;
             if (this.spawnTimer <= 0) {
                 enemies.push(new Enemy(this.toggle ? 'void_soldier' : 'void_scout', this.px, this.py));
                 this.toggle = !this.toggle; this.spawnTimer = 120;
@@ -261,8 +308,8 @@ class Tower {
         this.fireRate = type === 'flamer' ? 90 : (type === 'laser' ? 60 : 150);
         this.cooldown = 0; this.lastShot = null;
     }
-    update() {
-        if (this.cooldown > 0) this.cooldown--;
+    update(dt) {
+        if (this.cooldown > 0) this.cooldown -= dt;
         if (this.cooldown <= 0 && enemies.length > 0) {
             if (this.type === 'flamer') {
                 const targets = enemies.filter(en => getHexDist(this, en) <= this.range);
@@ -280,6 +327,9 @@ class Tower {
                     playSFX(this.type === 'sniper' ? 180 : 500, this.level === 3 ? 'sawtooth' : 'square');
                 }
             }
+        }
+        if (this.lastShot && this.lastShot.time > 0) {
+            this.lastShot.time -= dt;
         }
     }
     draw(cX, cY, isSelected) {
@@ -335,7 +385,6 @@ class Tower {
                 }
                 ctx.stroke();
             }
-            this.lastShot.time--;
         } ctx.restore();
     }
 }
@@ -349,7 +398,7 @@ class Particle {
         this.life = Math.random() * 20 + 20; this.maxLife = this.life;
         this.size = Math.random() * 3 + 2;
     }
-    update() { this.x += this.vx; this.y += this.vy; this.life--; }
+    update(dt) { this.x += this.vx * dt; this.y += this.vy * dt; this.life -= dt; }
     draw() {
         ctx.save(); ctx.globalAlpha = Math.max(0, this.life / this.maxLife);
         ctx.fillStyle = this.color; ctx.shadowBlur = 10; ctx.shadowColor = this.color;
@@ -399,11 +448,8 @@ function updateUI() {
     document.getElementById('credits').innerText = isFreeMode ? "∞" : credits;
     document.getElementById('lives').innerText = Math.max(0, lives);
     
-    let dm = getDifficultyMultiplier(currentWave);
-    document.getElementById('mult-val').innerText = `x${dm.toFixed(2)}`;
-    
     const wt = (currentWave-1) % 3 + 1;
-    document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave}<br><b>UNITÀ:</b> ${currentWave % 10 === 0 ? 'BOSS' : (wt===1?'SOLDIER':(wt===2?'SCOUT':'TANK'))}`;
+    document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${currentWave % 10 === 0 ? 'BOSS' : (wt===1?'SOLDIER':(wt===2?'SCOUT':'TANK'))}`;
     
     const sniperCount = towers.filter(t => t.type === 'sniper').length;
     document.getElementById('sniper-count').innerText = isFreeMode ? "∞/∞" : `${MAX_SNIPER - sniperCount}/${MAX_SNIPER}`;
@@ -427,6 +473,7 @@ function updateUI() {
 }
 
 function tryBuild(type) {
+    if (window.Telegram?.WebApp?.HapticFeedback) window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
     if (!pendingHex || (!isFreeMode && credits < COSTS[type])) return;
     if (!isFreeMode && type === 'sniper' && towers.filter(t => t.type === 'sniper').length >= MAX_SNIPER) {
         const err = document.getElementById('error-overlay');
@@ -453,13 +500,42 @@ function tryBuild(type) {
 
 function closeMenus() { pendingHex = null; selectedTower = null; updateUI(); }
 
-function loop() {
+let lastTime = performance.now();
+function loop(timestamp) {
+    if (!timestamp) timestamp = performance.now();
+    let dt = (timestamp - lastTime) / (1000 / 60);
+    lastTime = timestamp;
+    dt = Math.min(dt, 3); // Cap dt to avoid huge jumps if tab is inactive
+
     const cX = canvas.width/2, cY = canvas.height/2;
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    if (isGameOver) { ctx.globalAlpha = 0.3 + 0.2*Math.sin(Date.now()/500); ctx.fillStyle="black"; ctx.fillRect(0,0,canvas.width,canvas.height); drawMap(cX, cY); ctx.globalAlpha=1; requestAnimationFrame(loop); return; }
+    
+    // Cyberpunk Background
+    const bgGrad = ctx.createRadialGradient(cX, cY, 0, cX, cY, Math.max(canvas.width, canvas.height));
+    bgGrad.addColorStop(0, "#0a0a1a");
+    bgGrad.addColorStop(1, "#020205");
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    
+    // Subtle grid background
+    ctx.save();
+    ctx.strokeStyle = "rgba(0, 243, 255, 0.03)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    const step = 40;
+    for(let i=cX%step; i<canvas.width; i+=step) { ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); }
+    for(let i=cY%step; i<canvas.height; i+=step) { ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); }
+    ctx.stroke();
+    ctx.restore();
+    
+    ctx.save();
+    ctx.translate(cX, cY);
+    ctx.scale(globalScale, globalScale);
+    ctx.translate(-cX, -cY);
+
+    if (isGameOver) { ctx.globalAlpha = 0.3 + 0.2*Math.sin(Date.now()/500); ctx.fillStyle="black"; ctx.fillRect(0,0,canvas.width,canvas.height); drawMap(cX, cY); ctx.globalAlpha=1; ctx.restore(); requestAnimationFrame(loop); return; }
     drawMap(cX, cY);
     if (gameStarted) {
-        spawnTimer++; const wt = (currentWave-1)%3+1;
+        spawnTimer += dt; const wt = (currentWave-1)%3+1;
         if (currentWave % 10 === 0) {
             if (spawnedInWave < 1) { enemies.push(new Enemy('boss')); spawnedInWave = 1; }
             if (killsInWave >= 1 && enemies.length === 0) { 
@@ -490,7 +566,7 @@ function loop() {
         }
     }
     for (let i = enemies.length-1; i >= 0; i--) {
-        enemies[i].update(); enemies[i].draw();
+        enemies[i].update(dt); enemies[i].draw();
         if (enemies[i].hp <= 0) { 
             spawnExplosion(enemies[i].px, enemies[i].py, enemies[i].color);
             if (enemies[i].type === 'carrier') {
@@ -503,7 +579,10 @@ function loop() {
                 setTimeout(() => playSFX(600, 'sine', 0.1), 100);
                 setTimeout(() => playSFX(800, 'sine', 0.3), 200);
             }
-            credits += (enemies[i].isMinion ? 2 : 1); 
+            if (!isFreeMode) {
+                if (enemies[i].type === 'boss') credits += 5;
+                else if (!enemies[i].isMinion) credits += 1;
+            }
             if(!enemies[i].isMinion) killsInWave++; 
             enemies.splice(i,1); updateUI(); 
         }
@@ -520,11 +599,13 @@ function loop() {
             }
         }
     }
-    towers.forEach(t => { t.update(); t.draw(cX, cY, t === selectedTower); });
+    towers.forEach(t => { t.update(dt); t.draw(cX, cY, t === selectedTower); });
     for (let i = particles.length - 1; i >= 0; i--) {
-        particles[i].update(); particles[i].draw();
+        particles[i].update(dt); particles[i].draw();
         if (particles[i].life <= 0) particles.splice(i, 1);
     }
+    
+    ctx.restore();
     requestAnimationFrame(loop);
 }
 
@@ -532,17 +613,52 @@ function drawMap(cX, cY) {
     grid.forEach(h => {
         ctx.save();
         ctx.beginPath(); for(let i=0; i<6; i++) { const a = Math.PI/3*i; ctx.lineTo(cX+h.x+HEX_SIZE*Math.cos(a), cY+h.y+HEX_SIZE*Math.sin(a)); } ctx.closePath();
-        if (h.isEntrance) ctx.fillStyle = "rgba(0, 255, 100, 0.3)"; else if (h.isExit) ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
-        else if (h.isNaturalObstacle) ctx.fillStyle = "rgba(100, 50, 0, 0.4)"; else ctx.fillStyle = "rgba(0, 243, 255, 0.05)";
-        ctx.strokeStyle = "rgba(0, 243, 255, 0.2)"; ctx.fill(); ctx.stroke(); ctx.restore();
+        
+        if (h.isEntrance) {
+            ctx.fillStyle = "rgba(0, 255, 100, 0.15)";
+            ctx.strokeStyle = "rgba(0, 255, 100, 0.8)";
+            ctx.shadowBlur = 15; ctx.shadowColor = "#00ff66";
+        } else if (h.isExit) {
+            ctx.fillStyle = "rgba(255, 0, 50, 0.15)";
+            ctx.strokeStyle = "rgba(255, 0, 50, 0.8)";
+            ctx.shadowBlur = 15; ctx.shadowColor = "#ff0033";
+        } else if (h.isNaturalObstacle) {
+            ctx.fillStyle = "rgba(255, 0, 255, 0.05)";
+            ctx.strokeStyle = "rgba(255, 0, 255, 0.4)";
+            ctx.shadowBlur = 10; ctx.shadowColor = "#ff00ff";
+        } else if (h.isWall) {
+            ctx.fillStyle = "rgba(0, 243, 255, 0.1)";
+            ctx.strokeStyle = "rgba(0, 243, 255, 0.5)";
+            ctx.shadowBlur = 10; ctx.shadowColor = "#00aaff";
+        } else {
+            ctx.fillStyle = "rgba(0, 243, 255, 0.02)";
+            ctx.strokeStyle = "rgba(0, 243, 255, 0.15)";
+        }
+        
+        ctx.fill(); ctx.stroke(); ctx.restore();
     });
-    if (pendingHex) { ctx.save(); ctx.beginPath(); ctx.strokeStyle = "#00ff66"; ctx.lineWidth = 4; for(let i=0; i<6; i++) { const a = Math.PI/3*i; ctx.lineTo(cX+pendingHex.x+HEX_SIZE*Math.cos(a), cY+pendingHex.y+HEX_SIZE*Math.sin(a)); } ctx.closePath(); ctx.stroke(); ctx.restore(); }
+    if (pendingHex) { 
+        ctx.save(); ctx.beginPath(); 
+        ctx.strokeStyle = "#00ff66"; ctx.lineWidth = 3; 
+        ctx.shadowBlur = 20; ctx.shadowColor = "#00ff66";
+        ctx.fillStyle = "rgba(0, 255, 100, 0.2)";
+        for(let i=0; i<6; i++) { const a = Math.PI/3*i; ctx.lineTo(cX+pendingHex.x+HEX_SIZE*Math.cos(a), cY+pendingHex.y+HEX_SIZE*Math.sin(a)); } 
+        ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); 
+    }
 }
 
 /** EVENTS **/
-canvas.addEventListener('mousedown', (e) => {
+function handleCanvasInput(e) {
     ensureAudio(); if (isGameOver) return;
-    const rect = canvas.getBoundingClientRect(), c = pixelToHex(e.clientX-rect.left-canvas.width/2, e.clientY-rect.top-canvas.height/2);
+    const rect = canvas.getBoundingClientRect();
+    let clientX = e.clientX, clientY = e.clientY;
+    if (e.type === 'touchstart') {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    }
+    const mx = (clientX - rect.left - canvas.width/2) / globalScale;
+    const my = (clientY - rect.top - canvas.height/2) / globalScale;
+    const c = pixelToHex(mx, my);
     const h = grid.get(hexKey(c.q, c.r)); 
     if (!h) { selectedTower = null; pendingHex = null; updateUI(); return; }
     const t = towers.find(tw => tw.q === h.q && tw.r === h.r);
@@ -550,7 +666,11 @@ canvas.addEventListener('mousedown', (e) => {
     else if (!h.isWall && !h.isNaturalObstacle && !h.isEntrance && !h.isExit) { pendingHex = h; selectedTower = null; }
     else { selectedTower = null; pendingHex = null; }
     updateUI();
-});
+    if (window.Telegram?.WebApp?.HapticFeedback) window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+}
+
+canvas.addEventListener('mousedown', handleCanvasInput);
+canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleCanvasInput(e); }, {passive: false});
 
 document.getElementById('btn-start').onclick = () => { ensureAudio(); gameStarted = true; killsInWave = 0; spawnedInWave = 0; spawnTimer = 0; updateUI(); };
 document.getElementById('restart-btn').onclick = () => initGame();
@@ -582,8 +702,16 @@ document.getElementById('free-mode-btn').onclick = function() {
 };
 document.getElementById('btn-sell').onclick = () => { if (selectedTower) { credits += Math.floor(selectedTower.totalSpent * 0.5); grid.get(hexKey(selectedTower.q, selectedTower.r)).isWall = false; towers = towers.filter(t => t !== selectedTower); selectedTower = null; calculatePath(); updateUI(); } };
 
-window.onload = () => { canvas.width = window.innerWidth - 280; canvas.height = window.innerHeight; initGame(); loop(); };
-window.onresize = () => { canvas.width = window.innerWidth - 280; canvas.height = window.innerHeight; };
+window.onload = () => { 
+    if (window.Telegram?.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+        window.Telegram.WebApp.setHeaderColor('#020205');
+        window.Telegram.WebApp.setBackgroundColor('#020205');
+    }
+    resizeCanvas(); initGame(); loop(); 
+};
+window.onresize = () => { resizeCanvas(); };
 </script>
 </body>
 </html>
