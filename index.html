@@ -105,6 +105,7 @@
         <button class="btn-mini muted" id="free-mode-btn">FREE</button>
         <button class="btn-mini" id="restart-btn">Reset</button>
         <button class="btn-mini" id="audio-toggle">🔊</button>
+        <button class="btn-mini" id="vibration-toggle">📳</button>
     </div>
 </div>
 
@@ -221,11 +222,12 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
 <script>
 /** AUDIO ENGINE **/
 let audioCtx = null, masterGain = null, isMuted = false, step = 0;
+let isVibrationEnabled = true;
 let isFreeMode = false;
 const sequence = [55, 55, 65.41, 65.41, 49, 49, 51.91, 51.91];
 
 function triggerVibration(type) {
-    if (!navigator.vibrate) return;
+    if (!navigator.vibrate || !isVibrationEnabled) return;
     try {
         if (type === 'light') navigator.vibrate(15);
         else if (type === 'medium') navigator.vibrate(30);
@@ -964,6 +966,11 @@ document.getElementById('audio-toggle').onclick = function() {
     this.innerText = isMuted ? "🔇" : "🔊"; 
     this.classList.toggle('muted', isMuted);
     if (masterGain) masterGain.gain.value = isMuted ? 0 : 0.06;
+};
+document.getElementById('vibration-toggle').onclick = function() {
+    isVibrationEnabled = !isVibrationEnabled;
+    this.innerText = isVibrationEnabled ? "📳" : "📴";
+    this.classList.toggle('muted', !isVibrationEnabled);
 };
 document.getElementById('btn-upgrade').onclick = () => { 
     if (!selectedTower) return;
