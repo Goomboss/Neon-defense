@@ -39,7 +39,8 @@
         #selection-panel { bottom: 20px; right: 20px; width: 200px; display: none; }
 
         .btn-main { background: rgba(0, 243, 255, 0.1); border: 1px solid var(--neon-cyan); color: var(--neon-cyan); padding: 10px 20px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
-        .btn-main:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); }
+        @media (hover: hover) { .btn-main:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); } }
+        .btn-main:active { background: var(--neon-cyan); color: black; box-shadow: 0 0 15px var(--neon-cyan); }
         .btn-main:disabled { border-color: #555; color: #555; background: transparent; cursor: not-allowed; box-shadow: none; }
 
         .btn-mini { 
@@ -47,14 +48,16 @@
             background: rgba(0, 243, 255, 0.05); color: var(--neon-cyan); cursor: pointer; 
             text-transform: uppercase; font-weight: bold; height: 30px; transition: 0.2s;
         }
-        .btn-mini:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 10px var(--neon-cyan); }
-        .btn-mini.muted { border-color: #666; color: #666; }
+        @media (hover: hover) { .btn-mini:hover { background: var(--neon-cyan); color: black; box-shadow: 0 0 10px var(--neon-cyan); } }
+        .btn-mini:active { background: var(--neon-cyan); color: black; box-shadow: 0 0 10px var(--neon-cyan); }
+        .btn-mini.muted { border-color: #666; color: #666; background: rgba(255, 255, 255, 0.05); box-shadow: none; }
 
         .stat { font-size: 0.9rem; margin-bottom: 4px; display: flex; justify-content: space-between; }
         .stat b { color: var(--neon-cyan); }
 
         .tower-option { border: 1px solid #444; padding: 10px; margin-bottom: 6px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; }
-        .tower-option:hover { border-color: var(--neon-green); background: rgba(0, 255, 100, 0.1); }
+        @media (hover: hover) { .tower-option:hover { border-color: var(--neon-green); background: rgba(0, 255, 100, 0.1); } }
+        .tower-option:active { border-color: var(--neon-green); background: rgba(0, 255, 100, 0.1); }
         .tower-option b { color: var(--gold); }
 
         #legend-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 500px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
@@ -87,7 +90,7 @@
 
 <div id="top-left" class="floating-panel">
     <h2>NEON DEFENSE</h2>
-    <div class="version-label">ALPHA 1.0</div>
+    <div class="version-label">ALPHA 1.0.1</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -95,7 +98,7 @@
 <div id="top-right" class="floating-panel">
     <button class="btn-main" id="legend-btn">DATABASE</button>
     <div class="sys-buttons">
-        <button class="btn-mini" id="free-mode-btn" style="border-color:var(--neon-magenta); color:var(--neon-magenta);">Free</button>
+        <button class="btn-mini muted" id="free-mode-btn">FREE</button>
         <button class="btn-mini" id="restart-btn">Reset</button>
         <button class="btn-mini" id="audio-toggle">🔊</button>
     </div>
@@ -111,7 +114,7 @@
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>10</td><td>1.2</td><td>1C</td><td>Standard</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Fast unit</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffffff"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Armored</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Sniper Drop</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Fornisce Drop</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Boss minion</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>100</td><td>0.8</td><td>5C</td><td>Generator</td></tr>
     </table>
@@ -198,7 +201,15 @@ function playSFX(freq, type = 'square', duration = 0.1) {
 }
 
 /** GAME ENGINE **/
-const HEX_SIZE = 42, MAP_RADIUS = 4, KILLS_PER_WAVE = 15;
+const HEX_SIZE = 42, MAP_RADIUS = 4;
+function getWaveTotal(wave) {
+    let w = wave % 10;
+    if (w === 0) return 1;
+    if (w === 7) return 20;
+    if (w === 8) return 25;
+    if (w === 9) return 25;
+    return 15;
+}
 const COSTS = { laser: 5, sniper: 15, flamer: 25 };
 let MAX_SNIPER = 0, MAX_FLAMER = 0;
 const grid = new Map();
@@ -206,7 +217,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const hexKey = (q, r) => `${q},${r}`;
 
-let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles;
+let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts;
 let globalScale = 1;
 
 function resizeCanvas() {
@@ -406,6 +417,24 @@ class Particle {
         ctx.restore();
     }
 }
+class FloatingText {
+    constructor(x, y, text, color) {
+        this.x = x; this.y = y; this.text = text; this.color = color;
+        this.life = 60; this.maxLife = 60;
+    }
+    update() { this.y -= 0.5; this.life--; }
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.life / this.maxLife;
+        ctx.fillStyle = this.color;
+        ctx.font = "bold 16px 'Courier New'";
+        ctx.textAlign = "center";
+        ctx.shadowBlur = 5; ctx.shadowColor = this.color;
+        ctx.fillText(this.text, this.x, this.y);
+        ctx.restore();
+    }
+}
+
 function spawnExplosion(x, y, color) {
     const count = Math.floor(Math.random() * 4) + 5;
     for (let i = 0; i < count; i++) particles.push(new Particle(x, y, color));
@@ -428,7 +457,7 @@ function calculatePath() {
 
 function initGame() {
     credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false;
-    enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; particles = [];
+    enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; particles = []; floatingTexts = [];
     MAX_SNIPER = 0; MAX_FLAMER = 0;
     document.getElementById('gameover-modal').style.display = 'none';
     let valid = false;
@@ -449,7 +478,11 @@ function updateUI() {
     document.getElementById('lives').innerText = Math.max(0, lives);
     
     const wt = (currentWave-1) % 3 + 1;
-    document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${currentWave % 10 === 0 ? 'BOSS' : (wt===1?'SOLDIER':(wt===2?'SCOUT':'TANK'))}`;
+    let w = currentWave % 10;
+    let waveTypeStr = w === 0 ? 'BOSS' : (wt===1?'SOLDIER':(wt===2?'SCOUT':'TANK'));
+    if (w === 7) waveTypeStr = 'MIXED (SOLD/SCOUT)';
+    if (w === 9) waveTypeStr = 'MIXED (CARR/TANK/SOLD)';
+    document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${waveTypeStr}`;
     
     const sniperCount = towers.filter(t => t.type === 'sniper').length;
     document.getElementById('sniper-count').innerText = isFreeMode ? "∞/∞" : `${MAX_SNIPER - sniperCount}/${MAX_SNIPER}`;
@@ -553,16 +586,36 @@ function loop(timestamp) {
                 }
             }
         } else {
-            let iv = wt===1?60:(wt===2?30:72);
-            if (spawnTimer >= iv && spawnedInWave < KILLS_PER_WAVE) { 
-                if ((currentWave === 3 || currentWave === 6 || currentWave === 9) && spawnedInWave === 0) {
-                    enemies.push(new Enemy('carrier'));
-                } else {
-                    enemies.push(new Enemy(wt===1?'soldier':(wt===2?'scout':'tank'))); 
+            let totalEnemies = getWaveTotal(currentWave);
+            let enemyToSpawn = null;
+            let w = currentWave % 10;
+            
+            if (w === 7) {
+                if (spawnTimer >= 45 && spawnedInWave < totalEnemies) {
+                    enemyToSpawn = spawnedInWave % 2 === 0 ? 'soldier' : 'scout';
                 }
+            } else if (w === 9) {
+                if (spawnedInWave < 5 && spawnTimer >= 72) enemyToSpawn = 'tank';
+                else if (spawnedInWave >= 5 && spawnedInWave < 12 && spawnTimer >= 60) enemyToSpawn = 'soldier';
+                else if (spawnedInWave === 12 && spawnTimer >= 72) enemyToSpawn = 'carrier';
+                else if (spawnedInWave >= 13 && spawnedInWave < 18 && spawnTimer >= 72) enemyToSpawn = 'tank';
+                else if (spawnedInWave >= 18 && spawnedInWave < 25 && spawnTimer >= 60) enemyToSpawn = 'soldier';
+            } else {
+                let iv = wt===1?60:(wt===2?30:72);
+                if (spawnTimer >= iv && spawnedInWave < totalEnemies) { 
+                    if ((w === 3 || w === 6) && spawnedInWave === 0) {
+                        enemyToSpawn = 'carrier';
+                    } else {
+                        enemyToSpawn = wt===1?'soldier':(wt===2?'scout':'tank'); 
+                    }
+                }
+            }
+
+            if (enemyToSpawn) {
+                enemies.push(new Enemy(enemyToSpawn));
                 spawnedInWave++; spawnTimer=0; 
             }
-            if (killsInWave >= KILLS_PER_WAVE && enemies.length === 0) { gameStarted = false; currentWave++; updateUI(); }
+            if (killsInWave >= totalEnemies && enemies.length === 0) { gameStarted = false; currentWave++; updateUI(); }
         }
     }
     for (let i = enemies.length-1; i >= 0; i--) {
@@ -570,9 +623,15 @@ function loop(timestamp) {
         if (enemies[i].hp <= 0) { 
             spawnExplosion(enemies[i].px, enemies[i].py, enemies[i].color);
             if (enemies[i].type === 'carrier') {
-                MAX_SNIPER++;
                 const notif = document.getElementById('notify-overlay');
-                notif.innerHTML = "NUOVA TORRETTA SBLOCCATA:<br><span style='color:#fff'>SNIPER CANNON</span>";
+                let w = currentWave % 10;
+                if (w === 3 || w === 9) {
+                    MAX_SNIPER++;
+                    notif.innerHTML = "NUOVA TORRETTA SBLOCCATA:<br><span style='color:#fff'>SNIPER CANNON</span>";
+                } else if (w === 6) {
+                    MAX_FLAMER++;
+                    notif.innerHTML = "NUOVA TORRETTA SBLOCCATA:<br><span style='color:#fff'>FLAMER</span>";
+                }
                 notif.style.display = 'block';
                 setTimeout(() => notif.style.display = 'none', 3000);
                 playSFX(400, 'sine', 0.1);
@@ -587,7 +646,11 @@ function loop(timestamp) {
             enemies.splice(i,1); updateUI(); 
         }
         else if (enemies[i].escaped) { 
-            lives--; if(!enemies[i].isMinion) killsInWave++; enemies.splice(i,1); playSFX(70, 'sawtooth', 0.4); updateUI();
+            let dmg = enemies[i].type === 'boss' ? 5 : 1;
+            lives -= dmg;
+            floatingTexts.push(new FloatingText(enemies[i].px, enemies[i].py, `-${dmg}`, 'var(--neon-red)'));
+            if(!enemies[i].isMinion) killsInWave++; 
+            enemies.splice(i,1); playSFX(70, 'sawtooth', 0.4); updateUI();
             if (lives <= 0) { 
                 isGameOver = true; 
                 document.getElementById('gameover-title').innerText = "SISTEMA OFFLINE";
@@ -603,6 +666,10 @@ function loop(timestamp) {
     for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update(dt); particles[i].draw();
         if (particles[i].life <= 0) particles.splice(i, 1);
+    }
+    for (let i = floatingTexts.length - 1; i >= 0; i--) {
+        floatingTexts[i].update(); floatingTexts[i].draw();
+        if (floatingTexts[i].life <= 0) floatingTexts.splice(i, 1);
     }
     
     ctx.restore();
@@ -695,9 +762,7 @@ document.getElementById('btn-upgrade').onclick = () => {
 };
 document.getElementById('free-mode-btn').onclick = function() {
     isFreeMode = !isFreeMode;
-    this.innerText = `Free: ${isFreeMode ? 'ON' : 'OFF'}`;
-    this.style.color = isFreeMode ? 'var(--neon-green)' : 'var(--neon-magenta)';
-    this.style.borderColor = isFreeMode ? 'var(--neon-green)' : 'var(--neon-magenta)';
+    this.classList.toggle('muted', !isFreeMode);
     updateUI();
 };
 document.getElementById('btn-sell').onclick = () => { if (selectedTower) { credits += Math.floor(selectedTower.totalSpent * 0.5); grid.get(hexKey(selectedTower.q, selectedTower.r)).isWall = false; towers = towers.filter(t => t !== selectedTower); selectedTower = null; calculatePath(); updateUI(); } };
