@@ -145,7 +145,7 @@
     <button class="btn-main" id="legend-btn">DATABASE</button>
     <div class="sys-buttons">
         <button class="btn-mini muted" id="free-mode-btn">FREE</button>
-        <button class="btn-mini" id="restart-btn">Reset</button>
+        <button class="btn-mini" id="restart-btn">♻️</button>
         <button class="btn-mini" id="audio-toggle">🔊</button>
         <button class="btn-mini" id="vibration-toggle">📳</button>
     </div>
@@ -168,7 +168,7 @@
     <table>
         <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>40</td><td>0.8</td><td>1C</td><td>Attira fuoco</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>1</td><td>2.2</td><td>1C</td><td>Sciame (x4)</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>2</td><td>2.2</td><td>1C</td><td>Sciame (x4)</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffcc"/><line x1="1" y1="6" x2="11" y2="6" stroke="#000" stroke-width="2"/></svg>Air</td><td>15</td><td>1.2</td><td>1C</td><td>Vola sui muri</td></tr>
     </table>
 
@@ -484,7 +484,7 @@ class Enemy {
         
         let dm = getDifficultyMultiplier(currentWave);
 
-        this.hp = 10 * dm; this.speed = 1.2; this.color = "#ff00ff"; this.isMinion = type.startsWith('void');
+        this.hp = 10 * dm; this.speed = 1.2; this.color = "#00ffff"; this.isMinion = type.startsWith('void');
         if (type === 'boss') { this.hp = 100 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
         else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8; this.color = "#ffeb3b"; }
         else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#4caf50"; }
@@ -492,7 +492,7 @@ class Enemy {
         else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ccff00"; }
         else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
         else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
-        else if (type === 'fleet') { this.hp = 1 * dm; this.speed = 2.2; this.color = "#ff9800"; }
+        else if (type === 'fleet') { this.hp = 2 * dm; this.speed = 2.2; this.color = "#ff9800"; }
         else if (type === 'air_soldier') { this.hp = 15 * dm; this.speed = 1.2; this.color = "#00ffcc"; }
         this.maxHp = this.hp; this.escaped = false;
         const c = pixelToHex(this.px - canvas.width/2, this.py - canvas.height/2);
@@ -658,7 +658,7 @@ class Tower {
     }
     draw(cX, cY, isSelected) {
         ctx.save();
-        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#999999", "#ffffff"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : ["#7b1fa2", "#9c27b0", "#d500f9"]));
+        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : ["#7b1fa2", "#9c27b0", "#d500f9"]));
         ctx.fillStyle = colors[this.level-1]; ctx.shadowBlur = 10; ctx.shadowColor = ctx.fillStyle;
         ctx.beginPath();
         if (this.type === 'sniper') { for(let i=0;i<4;i++){const a=(Math.PI/2)*i; ctx.lineTo(cX+this.x+18*Math.cos(a),cY+this.y+18*Math.sin(a));} ctx.closePath(); }
