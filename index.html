@@ -61,6 +61,7 @@
         .tower-option b { color: var(--gold); }
 
         #legend-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 500px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
+        #info-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 400px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
         #gameover-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-red); padding: 30px; display: none; z-index: 2000; text-align: center; width: 300px; }
         #error-overlay { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); background: var(--neon-red); color: white; padding: 8px 15px; font-weight: bold; display: none; z-index: 3000; font-size: 0.75rem; border-radius: 4px; pointer-events: none; }
         
@@ -82,15 +83,18 @@
             #bottom-center { bottom: 10px; width: 90%; padding: 10px; box-sizing: border-box; }
             #build-menu { bottom: 100px; left: 10px; width: 200px; }
             #selection-panel { bottom: 100px; right: 10px; width: 180px; }
-            #legend-modal { width: 90%; padding: 15px; }
+            #legend-modal, #info-modal { width: 90%; padding: 15px; }
         }
     </style>
 </head>
 <body>
 
 <div id="top-left" class="floating-panel">
-    <h2>NEON DEFENSE</h2>
-    <div class="version-label">ALPHA 1.0.1</div>
+    <h2 style="display:flex; align-items:center; gap:8px;">
+        NEON DEFENSE 
+        <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
+    </h2>
+    <div class="version-label">ALPHA 1.1 - NEMICI ELITE</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -113,9 +117,22 @@
         <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>10</td><td>1.2</td><td>1C</td><td>Standard</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Fast unit</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffffff"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Armored</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Fornisce Drop</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Armored</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Boss minion</td></tr>
+    </table>
+
+    <h4 style="color:#ff003c; margin: 15px 0 5px 0;">UNITÀ OSTILI (Elite)</h4>
+    <table>
+        <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>40</td><td>0.8</td><td>1C</td><td>Attira fuoco</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>1</td><td>2.2</td><td>1C</td><td>Sciame (x4)</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffcc"/><line x1="1" y1="6" x2="11" y2="6" stroke="#000" stroke-width="2"/></svg>Air</td><td>15</td><td>1.2</td><td>1C</td><td>Vola sui muri</td></tr>
+    </table>
+
+    <h4 style="color:#ffcc00; margin: 15px 0 5px 0;">UNITÀ OSTILI (Unique)</h4>
+    <table>
+        <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Fornisce Drop</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>100</td><td>0.8</td><td>5C</td><td>Generator</td></tr>
     </table>
 
@@ -129,6 +146,27 @@
     <p style="font-size:0.7rem; color:#777; margin-top:10px;">* Promozione L2: +50% Danno. L3: Danno 2x e Fire-mode avanzato.</p>
     
     <button class="btn-mini" style="width:100%; margin-top:20px" id="close-legend">RITORNA AL COMBATTIMENTO</button>
+</div>
+
+<!-- INFO MODAL -->
+<div id="info-modal">
+    <h3 style="color:var(--neon-cyan); margin-top:0; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">NEON DEFENSE - INFO</h3>
+    
+    <h4 style="color:var(--neon-magenta); margin: 15px 0 5px 0;">TUTORIAL RAPIDO</h4>
+    <ul style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px; padding-left:20px;">
+        <li style="margin-bottom:5px;"><strong>Obiettivo:</strong> Difendi il nucleo (esagono rosso) dai nemici che arrivano dallo spawn (esagono verde).</li>
+        <li style="margin-bottom:5px;"><strong>Costruzione:</strong> Tocca un esagono vuoto per aprire il menu di costruzione. Le torrette bloccano il passaggio terrestre, ma i nemici volanti (Air) le sorvolano!</li>
+        <li style="margin-bottom:5px;"><strong>Risorse:</strong> Sconfiggi i nemici per ottenere Crediti (C). Usa i crediti per costruire o potenziare le torrette.</li>
+        <li style="margin-bottom:5px;"><strong>Potenziamenti:</strong> Tocca una torretta esistente per potenziarla o venderla.</li>
+    </ul>
+
+    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">VERSIONE ATTUALE</h4>
+    <p style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px;">
+        <strong>Alpha 1.1 - Nemici Elite</strong><br>
+        In questa versione sono stati introdotti nuovi nemici Elite (Decoy, Fleet, Air) con abilità speciali. Il bilanciamento è stato rivisto per offrire una sfida più tattica.
+    </p>
+    
+    <button class="btn-main" style="width:100%; margin-top:20px;" id="close-info">CHIUDI</button>
 </div>
 
 <div id="gameover-modal">
@@ -165,10 +203,36 @@
 <canvas id="gameCanvas"></canvas>
 
 <script>
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    const errDiv = document.createElement('div');
+    errDiv.style.position = 'absolute';
+    errDiv.style.top = '10px';
+    errDiv.style.left = '10px';
+    errDiv.style.color = 'red';
+    errDiv.style.zIndex = '9999';
+    errDiv.style.background = 'black';
+    errDiv.style.padding = '10px';
+    errDiv.innerText = 'Error: ' + msg + '\nLine: ' + lineNo + '\nCol: ' + columnNo + '\nStack: ' + (error ? error.stack : '');
+    document.body.appendChild(errDiv);
+    return false;
+};
+</script>
+
+<script>
 /** AUDIO ENGINE **/
 let audioCtx = null, masterGain = null, isMuted = false, step = 0;
 let isFreeMode = false;
 const sequence = [55, 55, 65.41, 65.41, 49, 49, 51.91, 51.91];
+
+function triggerVibration(type) {
+    if (!navigator.vibrate) return;
+    try {
+        if (type === 'light') navigator.vibrate(15);
+        else if (type === 'medium') navigator.vibrate(30);
+        else if (type === 'heavy') navigator.vibrate(50);
+        else if (type === 'error') navigator.vibrate([30, 50, 30]);
+    } catch (e) {}
+}
 
 function ensureAudio() {
     if (!audioCtx) {
@@ -203,6 +267,9 @@ function playSFX(freq, type = 'square', duration = 0.1) {
 /** GAME ENGINE **/
 const HEX_SIZE = 42, MAP_RADIUS = 4;
 function getWaveTotal(wave) {
+    if (wave === 11) return 35;
+    if (wave === 12) return 35;
+    if (wave === 13) return 20;
     let w = wave % 10;
     if (w === 0) return 1;
     if (w === 7) return 20;
@@ -210,6 +277,40 @@ function getWaveTotal(wave) {
     if (w === 9) return 25;
     return 15;
 }
+
+function getWaveComposition(wave) {
+    let w = wave % 10;
+    const wt = (wave - 1) % 3 + 1;
+    if (wave === 11) return [{ type: 'soldier', count: 35 }];
+    if (wave === 12) return [{ type: 'scout', count: 35 }];
+    if (wave === 13) return [{ type: 'soldier', count: 10 }, { type: 'decoy_tank', count: 1 }, { type: 'tank', count: 9 }];
+    if (w === 0) return [{ type: 'boss', count: 1 }];
+    if (w === 7) return [{ type: 'soldier', count: 10 }, { type: 'scout', count: 10 }];
+    if (w === 8) {
+        let type = wt===1?'soldier':(wt===2?'scout':'tank');
+        return [{ type: type, count: 25 }];
+    }
+    if (w === 9) return [{ type: 'tank', count: 10 }, { type: 'soldier', count: 14 }, { type: 'carrier', count: 1 }];
+    
+    let type = wt===1?'soldier':(wt===2?'scout':'tank');
+    if (w === 3 || w === 6) {
+        return [{ type: 'carrier', count: 1 }, { type: type, count: 14 }];
+    }
+    return [{ type: type, count: 15 }];
+}
+
+function getEnemySVG(type) {
+    if (type === 'soldier') return `<svg width="12" height="12" style="vertical-align:middle;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>`;
+    if (type === 'scout') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>`;
+    if (type === 'tank') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>`;
+    if (type === 'carrier') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>`;
+    if (type === 'boss') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>`;
+    if (type === 'decoy_tank') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>`;
+    if (type === 'fleet') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>`;
+    if (type === 'air_soldier') return `<svg width="12" height="12" style="vertical-align:middle;"><circle cx="6" cy="6" r="5" fill="#00ffcc"/><line x1="1" y1="6" x2="11" y2="6" stroke="#000" stroke-width="2"/></svg>`;
+    return '';
+}
+
 const COSTS = { laser: 5, sniper: 15, flamer: 25 };
 let MAX_SNIPER = 0, MAX_FLAMER = 0;
 const grid = new Map();
@@ -217,7 +318,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const hexKey = (q, r) => `${q},${r}`;
 
-let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts;
+let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats;
 let globalScale = 1;
 
 function resizeCanvas() {
@@ -263,13 +364,18 @@ class Enemy {
         this.hp = 10 * dm; this.speed = 1.2; this.color = "#ff00ff"; this.isMinion = type.startsWith('void');
         if (type === 'boss') { this.hp = 100 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
         else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8; this.color = "#ffeb3b"; }
-        else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#ffffff"; }
-        else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ffd700"; }
+        else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#4caf50"; }
+        else if (type === 'decoy_tank') { this.hp = 40 * dm; this.speed = 0.8; this.color = "#1b5e20"; }
+        else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ccff00"; }
         else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
         else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
+        else if (type === 'fleet') { this.hp = 1 * dm; this.speed = 2.2; this.color = "#ff9800"; }
+        else if (type === 'air_soldier') { this.hp = 15 * dm; this.speed = 1.2; this.color = "#00ffcc"; }
         this.maxHp = this.hp; this.escaped = false;
         const c = pixelToHex(this.px - canvas.width/2, this.py - canvas.height/2);
         this.targetHex = grid.get(hexKey(c.q, c.r)) || startHex;
+        if (this.type === 'air_soldier' && this.targetHex.nextInAirPath) this.targetHex = this.targetHex.nextInAirPath;
+        else if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         this.q = this.targetHex.q; this.r = this.targetHex.r;
     }
     update(dt) {
@@ -278,7 +384,11 @@ class Enemy {
         if (dist < this.speed * dt) {
             this.px = tx; this.py = ty; this.q = this.targetHex.q; this.r = this.targetHex.r;
             if (this.targetHex.isExit) { this.escaped = true; return; }
-            if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
+            if (this.type === 'air_soldier') {
+                if (this.targetHex.nextInAirPath) this.targetHex = this.targetHex.nextInAirPath;
+            } else {
+                if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
+            }
         } else {
             const a = Math.atan2(ty - this.py, tx - this.px);
             this.px += Math.cos(a) * this.speed * dt; this.py += Math.sin(a) * this.speed * dt;
@@ -295,15 +405,51 @@ class Enemy {
     }
     draw() {
         ctx.save();
+        if (window.globalDecoyExists && this.type !== 'decoy_tank') {
+            ctx.globalAlpha = 0.3;
+        }
         ctx.fillStyle = this.color; ctx.shadowBlur = 10; ctx.shadowColor = this.isMinion ? "#ff00ff" : this.color;
-        if (this.isMinion || this.type === 'boss') { ctx.strokeStyle = "#ff00ff"; ctx.lineWidth = 2; }
+        if (this.isMinion || this.type === 'boss' || this.type === 'decoy_tank') { ctx.strokeStyle = (this.type === 'decoy_tank' ? "#4caf50" : "#ff00ff"); ctx.lineWidth = 2; }
         ctx.beginPath();
-        if (this.type.includes('scout')) { ctx.moveTo(this.px, this.py-12); ctx.lineTo(this.px+10, this.py+8); ctx.lineTo(this.px-10, this.py+8); ctx.closePath(); }
-        else if (this.type === 'tank') { for(let i=0;i<5;i++){const a=(Math.PI*2/5)*i-Math.PI/2; ctx.lineTo(this.px+12*Math.cos(a),this.py+12*Math.sin(a));} ctx.closePath(); }
+        if (this.type.includes('scout') || this.type === 'fleet') { 
+            const s = this.type === 'fleet' ? 8 : 12;
+            ctx.moveTo(this.px, this.py-s); ctx.lineTo(this.px+s*0.8, this.py+s*0.7); ctx.lineTo(this.px-s*0.8, this.py+s*0.7); ctx.closePath(); 
+        }
+        else if (this.type === 'air_soldier') {
+            ctx.arc(this.px, this.py, 10, 0, Math.PI*2);
+            ctx.moveTo(this.px-12, this.py); ctx.lineTo(this.px+12, this.py);
+        }
+        else if (this.type === 'tank' || this.type === 'decoy_tank') { 
+            const s = this.type === 'decoy_tank' ? 16 : 12;
+            for(let i=0;i<5;i++){const a=(Math.PI*2/5)*i-Math.PI/2; ctx.lineTo(this.px+s*Math.cos(a),this.py+s*Math.sin(a));} ctx.closePath(); 
+        }
         else if (this.type === 'carrier') { for(let i=0;i<5;i++){const a=(Math.PI*2/5)*i-Math.PI/2; ctx.lineTo(this.px+16*Math.cos(a),this.py+16*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'boss') { ctx.rect(this.px-20, this.py-20, 40, 40); }
         else { ctx.arc(this.px, this.py, 10, 0, Math.PI*2); }
-        ctx.fill(); if (this.isMinion || this.type === 'boss') ctx.stroke();
+        ctx.fill(); if (this.isMinion || this.type === 'boss' || this.type === 'decoy_tank') ctx.stroke();
+        
+        if (this.type === 'fleet') {
+            ctx.fillStyle = "#000";
+            ctx.beginPath();
+            ctx.arc(this.px, this.py + 2, 2, 0, Math.PI*2);
+            ctx.fill();
+        } else if (this.type === 'decoy_tank') {
+            ctx.beginPath();
+            ctx.arc(this.px, this.py, 4, 0, Math.PI*2);
+            ctx.strokeStyle = "#4caf50";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        } else if (this.type === 'carrier') {
+            let time = Date.now() / 150;
+            ctx.fillStyle = "#ffffff";
+            ctx.globalAlpha = 0.4 + 0.6 * Math.abs(Math.sin(time));
+            ctx.beginPath();
+            ctx.arc(this.px, this.py, 4, 0, Math.PI*2);
+            ctx.fill();
+            ctx.globalAlpha = 1.0;
+        }
+        
+        if (window.globalDecoyExists && this.type !== 'decoy_tank') ctx.globalAlpha = 0.3;
         ctx.fillStyle = "rgba(0,0,0,0.5)"; ctx.fillRect(this.px-10, this.py-25, 20, 3);
         ctx.fillStyle = "#00ff66"; ctx.fillRect(this.px-10, this.py-25, Math.max(0,(this.hp/this.maxHp)*20), 3);
         ctx.restore();
@@ -322,8 +468,16 @@ class Tower {
     update(dt) {
         if (this.cooldown > 0) this.cooldown -= dt;
         if (this.cooldown <= 0 && enemies.length > 0) {
+            const decoysInRange = window.globalDecoyExists ? enemies.filter(en => en.type === 'decoy_tank' && getHexDist(this, en) <= this.range) : [];
+            
             if (this.type === 'flamer') {
-                const targets = enemies.filter(en => getHexDist(this, en) <= this.range);
+                let targets = [];
+                if (window.globalDecoyExists) {
+                    targets = decoysInRange;
+                } else {
+                    targets = enemies.filter(en => getHexDist(this, en) <= this.range);
+                }
+                
                 if (targets.length > 0) {
                     targets.forEach(target => target.hp -= this.damage);
                     this.cooldown = this.fireRate;
@@ -331,7 +485,13 @@ class Tower {
                     playSFX(80, 'sawtooth', 0.3);
                 }
             } else {
-                const target = enemies.find(en => getHexDist(this, en) <= this.range);
+                let target = null;
+                if (window.globalDecoyExists) {
+                    target = decoysInRange.length > 0 ? decoysInRange[0] : null;
+                } else {
+                    target = enemies.find(en => getHexDist(this, en) <= this.range);
+                }
+                
                 if (target) {
                     target.hp -= this.damage; this.cooldown = this.fireRate;
                     this.lastShot = { tx: target.px, ty: target.py, time: 8 };
@@ -443,8 +603,10 @@ function spawnExplosion(x, y, color) {
 /** SYSTEM FUNCTIONS **/
 function calculatePath() {
     const exit = grid.get(hexKey(MAP_RADIUS, 0));
-    grid.forEach(h => h.nextInPath = null);
-    const queue = [exit], visited = new Set([hexKey(exit.q, exit.r)]), dirs = [[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
+    grid.forEach(h => { h.nextInPath = null; h.nextInAirPath = null; });
+    
+    // Ground Path
+    let queue = [exit], visited = new Set([hexKey(exit.q, exit.r)]), dirs = [[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
     while (queue.length > 0) {
         const curr = queue.shift();
         for (let d of dirs) {
@@ -452,11 +614,22 @@ function calculatePath() {
             if (n && !n.isWall && !n.isNaturalObstacle && !visited.has(nK)) { visited.add(nK); n.nextInPath = curr; queue.push(n); }
         }
     }
+    
+    // Air Path (ignores isWall and isNaturalObstacle)
+    queue = [exit]; visited = new Set([hexKey(exit.q, exit.r)]);
+    while (queue.length > 0) {
+        const curr = queue.shift();
+        for (let d of dirs) {
+            const nK = hexKey(curr.q + d[0], curr.r + d[1]), n = grid.get(nK);
+            if (n && !visited.has(nK)) { visited.add(nK); n.nextInAirPath = curr; queue.push(n); }
+        }
+    }
+
     const ent = grid.get(hexKey(-MAP_RADIUS, 0)); return ent && ent.nextInPath !== null;
 }
 
 function initGame() {
-    credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false;
+    credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false; bossDefeats = 0;
     enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; particles = []; floatingTexts = [];
     MAX_SNIPER = 0; MAX_FLAMER = 0;
     document.getElementById('gameover-modal').style.display = 'none';
@@ -481,6 +654,9 @@ function updateUI() {
     let w = currentWave % 10;
     let waveTypeStr = w === 0 ? 'BOSS' : (wt===1?'SOLDIER':(wt===2?'SCOUT':'TANK'));
     if (w === 7) waveTypeStr = 'MIXED (SOLD/SCOUT)';
+    if (currentWave === 11) waveTypeStr = 'SOLDIER SWARM';
+    if (currentWave === 12) waveTypeStr = 'SCOUT SWARM';
+    if (currentWave === 13) waveTypeStr = 'ELITE DECOY SQUAD';
     if (w === 9) waveTypeStr = 'MIXED (CARR/TANK/SOLD)';
     document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${waveTypeStr}`;
     
@@ -491,7 +667,13 @@ function updateUI() {
     document.getElementById('flamer-count').innerText = isFreeMode ? "∞/∞" : `${MAX_FLAMER - flamerCount}/${MAX_FLAMER}`;
     
     document.getElementById('btn-start').disabled = gameStarted;
-    document.getElementById('btn-start').innerText = `AVVIA ONDATA ${currentWave}`;
+    if (gameStarted) {
+        document.getElementById('btn-start').innerText = `AVVIA ONDATA ${currentWave}`;
+    } else {
+        let comp = getWaveComposition(currentWave);
+        let compHtml = comp.map(c => `<span style="display:flex; align-items:center; gap:4px;">${getEnemySVG(c.type)} x${c.count}</span>`).join('');
+        document.getElementById('btn-start').innerHTML = `AVVIA ONDATA ${currentWave}<br><span style="font-size:0.75rem; font-weight:normal; color:#ddd; display:flex; justify-content:center; gap:10px; margin-top:4px;">${compHtml}</span>`;
+    }
     document.getElementById('build-menu').style.display = pendingHex ? 'block' : 'none';
     const panel = document.getElementById('selection-panel');
     if (selectedTower) {
@@ -506,7 +688,7 @@ function updateUI() {
 }
 
 function tryBuild(type) {
-    if (window.Telegram?.WebApp?.HapticFeedback) window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+    triggerVibration('medium');
     if (!pendingHex || (!isFreeMode && credits < COSTS[type])) return;
     if (!isFreeMode && type === 'sniper' && towers.filter(t => t.type === 'sniper').length >= MAX_SNIPER) {
         const err = document.getElementById('error-overlay');
@@ -567,6 +749,8 @@ function loop(timestamp) {
 
     if (isGameOver) { ctx.globalAlpha = 0.3 + 0.2*Math.sin(Date.now()/500); ctx.fillStyle="black"; ctx.fillRect(0,0,canvas.width,canvas.height); drawMap(cX, cY); ctx.globalAlpha=1; ctx.restore(); requestAnimationFrame(loop); return; }
     drawMap(cX, cY);
+    window.globalDecoyExists = enemies.some(en => en.type === 'decoy_tank');
+    
     if (gameStarted) {
         spawnTimer += dt; const wt = (currentWave-1)%3+1;
         if (currentWave % 10 === 0) {
@@ -589,20 +773,32 @@ function loop(timestamp) {
             let totalEnemies = getWaveTotal(currentWave);
             let enemyToSpawn = null;
             let w = currentWave % 10;
+            let spawnMult = 1 / Math.pow(1.3, bossDefeats);
             
-            if (w === 7) {
-                if (spawnTimer >= 45 && spawnedInWave < totalEnemies) {
+            if (currentWave === 11) {
+                if (spawnTimer >= 40 * spawnMult && spawnedInWave < totalEnemies) enemyToSpawn = 'soldier';
+            } else if (currentWave === 12) {
+                if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) enemyToSpawn = 'scout';
+            } else if (currentWave === 13) {
+                if (spawnTimer >= 60 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 5) enemyToSpawn = 'soldier';
+                    else if (spawnedInWave === 5) enemyToSpawn = 'decoy_tank';
+                    else if (spawnedInWave < 11) enemyToSpawn = 'soldier';
+                    else enemyToSpawn = 'tank';
+                }
+            } else if (w === 7) {
+                if (spawnTimer >= 45 * spawnMult && spawnedInWave < totalEnemies) {
                     enemyToSpawn = spawnedInWave % 2 === 0 ? 'soldier' : 'scout';
                 }
             } else if (w === 9) {
-                if (spawnedInWave < 5 && spawnTimer >= 72) enemyToSpawn = 'tank';
-                else if (spawnedInWave >= 5 && spawnedInWave < 12 && spawnTimer >= 60) enemyToSpawn = 'soldier';
-                else if (spawnedInWave === 12 && spawnTimer >= 72) enemyToSpawn = 'carrier';
-                else if (spawnedInWave >= 13 && spawnedInWave < 18 && spawnTimer >= 72) enemyToSpawn = 'tank';
-                else if (spawnedInWave >= 18 && spawnedInWave < 25 && spawnTimer >= 60) enemyToSpawn = 'soldier';
+                if (spawnedInWave < 5 && spawnTimer >= 72 * spawnMult) enemyToSpawn = 'tank';
+                else if (spawnedInWave >= 5 && spawnedInWave < 12 && spawnTimer >= 60 * spawnMult) enemyToSpawn = 'soldier';
+                else if (spawnedInWave === 12 && spawnTimer >= 72 * spawnMult) enemyToSpawn = 'carrier';
+                else if (spawnedInWave >= 13 && spawnedInWave < 18 && spawnTimer >= 72 * spawnMult) enemyToSpawn = 'tank';
+                else if (spawnedInWave >= 18 && spawnedInWave < 25 && spawnTimer >= 60 * spawnMult) enemyToSpawn = 'soldier';
             } else {
                 let iv = wt===1?60:(wt===2?30:72);
-                if (spawnTimer >= iv && spawnedInWave < totalEnemies) { 
+                if (spawnTimer >= iv * spawnMult && spawnedInWave < totalEnemies) { 
                     if ((w === 3 || w === 6) && spawnedInWave === 0) {
                         enemyToSpawn = 'carrier';
                     } else {
@@ -612,8 +808,16 @@ function loop(timestamp) {
             }
 
             if (enemyToSpawn) {
-                enemies.push(new Enemy(enemyToSpawn));
-                spawnedInWave++; spawnTimer=0; 
+                if (enemyToSpawn === 'fleet') {
+                    for (let i = 0; i < 4; i++) {
+                        enemies.push(new Enemy('fleet', (canvas.width/2 + grid.get(hexKey(-MAP_RADIUS, 0)).x) - i*15, null));
+                        spawnedInWave++;
+                    }
+                } else {
+                    enemies.push(new Enemy(enemyToSpawn));
+                    spawnedInWave++;
+                }
+                spawnTimer=0; 
             }
             if (killsInWave >= totalEnemies && enemies.length === 0) { gameStarted = false; currentWave++; updateUI(); }
         }
@@ -637,6 +841,15 @@ function loop(timestamp) {
                 playSFX(400, 'sine', 0.1);
                 setTimeout(() => playSFX(600, 'sine', 0.1), 100);
                 setTimeout(() => playSFX(800, 'sine', 0.3), 200);
+            }
+            if (enemies[i].type === 'boss') {
+                bossDefeats++;
+                const notif = document.getElementById('notify-overlay');
+                notif.innerHTML = `FORZE NEMICHE RIORGANIZZATE!<br><span style="font-size:1rem; color:#ff003c;">SPAWN RATE +30%</span>`;
+                notif.style.display = 'block';
+                setTimeout(() => notif.style.display = 'none', 4000);
+                playSFX(200, 'sawtooth', 0.3);
+                setTimeout(() => playSFX(150, 'sawtooth', 0.3), 200);
             }
             if (!isFreeMode) {
                 if (enemies[i].type === 'boss') credits += 5;
@@ -733,7 +946,7 @@ function handleCanvasInput(e) {
     else if (!h.isWall && !h.isNaturalObstacle && !h.isEntrance && !h.isExit) { pendingHex = h; selectedTower = null; }
     else { selectedTower = null; pendingHex = null; }
     updateUI();
-    if (window.Telegram?.WebApp?.HapticFeedback) window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    triggerVibration('light');
 }
 
 canvas.addEventListener('mousedown', handleCanvasInput);
@@ -744,6 +957,8 @@ document.getElementById('restart-btn').onclick = () => initGame();
 document.getElementById('retry-btn').onclick = () => initGame();
 document.getElementById('legend-btn').onclick = () => document.getElementById('legend-modal').style.display = 'block';
 document.getElementById('close-legend').onclick = () => document.getElementById('legend-modal').style.display = 'none';
+document.getElementById('info-btn').onclick = () => document.getElementById('info-modal').style.display = 'block';
+document.getElementById('close-info').onclick = () => document.getElementById('info-modal').style.display = 'none';
 document.getElementById('audio-toggle').onclick = function() { 
     isMuted = !isMuted; 
     this.innerText = isMuted ? "🔇" : "🔊"; 
