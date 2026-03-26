@@ -1,0 +1,58 @@
+Neon Defense - Schedule Ondate (1-50)
+
+Legenda:
+- wt = (wave - 1) % 3 + 1
+- Tipo base: wt=1 -> Soldier, wt=2 -> Scout, wt=3 -> Tank
+
+Ondata | Composizione
+-------|-------------
+1 | Soldier x15
+2 | Scout x15
+3 | Carrier x1 (3C, drop Sniper), Soldier x10, Tank x5
+4 | Soldier x20
+5 | Scout x10, Fleet x20
+6 | Carrier x1 (3C, drop Flamer), Tank x20
+7 | Soldier x10, Scout x10
+8 | Tank x25
+9 | Tank x10, Soldier x14, Carrier x1 (3C, drop Sniper)
+10 | Boss x1
+11 | Soldier x35
+12 | Scout x35
+13 | Soldier x10, Decoy Tank x1, Tank x9
+14 | Fleet x40, Carrier x1 (3C, drop Zapper)
+15 | Tank x20, Scout x20
+16 | Soldier x20, Decoy Tank x2, Tank x5
+17 | Tank x40, Carrier x2 (3C cad., drop Flamer, Sniper)
+18 | Soldier x30, Scout x30
+19 | Tank x10, Decoy Tank x1, Tank x5, Fleet x30
+20 | Boss x1
+21 | Air Soldier x5, Soldier x50
+22 | Carrier x1 (3C, drop Zapper), Scout x70
+23 | Soldier x60
+24 | Air Soldier x10, Scout x20, Fleet x20, Tank x10
+25 | Splitter x3
+26 | Carrier x1 (3C, drop Flamer), Tank x14
+27 | Soldier x10, Scout x10
+28 | Scout x25
+29 | Tank x10, Soldier x14, Carrier x1 (3C, drop Sniper)
+30 | Boss x1
+31 | Soldier x15
+32 | Scout x15
+33 | Carrier x1 (3C, drop Sniper), Tank x14
+34 | Soldier x15
+35 | Scout x15
+36 | Carrier x1 (3C, drop Flamer), Tank x14
+37 | Soldier x10, Scout x10
+38 | Tank x25
+39 | Tank x10, Soldier x14, Carrier x1 (3C, drop Sniper)
+40 | Boss x1
+41 | Soldier x15
+42 | Scout x15
+43 | Carrier x1 (3C, drop Sniper), Tank x14
+44 | Soldier x15
+45 | Scout x15
+46 | Carrier x1 (3C, drop Flamer), Tank x14
+47 | Soldier x10, Scout x10
+48 | Soldier x25
+49 | Tank x10, Soldier x14, Carrier x1 (3C, drop Sniper)
+50 | Boss x1

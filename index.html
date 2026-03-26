@@ -136,7 +136,7 @@
         NEON DEFENSE 
         <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
     </h2>
-    <div class="version-label">ALPHA 1.2 - ZAP</div>
+    <div class="version-label">ALPHA 1.3 - NEW WAVES</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -167,15 +167,15 @@
     <h4 style="color:#ff003c; margin: 15px 0 5px 0;">UNITÀ OSTILI (Elite)</h4>
     <table>
         <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>40</td><td>0.8</td><td>1C</td><td>Attira fuoco</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>2</td><td>2.2</td><td>1C</td><td>Sciame (x4)</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffcc"/><line x1="1" y1="6" x2="11" y2="6" stroke="#000" stroke-width="2"/></svg>Air</td><td>15</td><td>1.2</td><td>1C</td><td>Vola sui muri</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>40</td><td>0.8</td><td>5C</td><td>Attira fuoco</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>2</td><td>2.2</td><td>0C</td><td>Sciame (x4)</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#800080"/></svg>Air</td><td>10</td><td>0.8</td><td>2C</td><td>Vola sui muri</td></tr>
     </table>
 
     <h4 style="color:#ffcc00; margin: 15px 0 5px 0;">UNITÀ OSTILI (Unique)</h4>
     <table>
         <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>1C</td><td>Fornisce Drop</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>3C</td><td>Fornisce Drop</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>100</td><td>0.8</td><td>5C</td><td>Generator</td></tr>
     </table>
 
@@ -213,8 +213,8 @@
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">VERSIONE ATTUALE</h4>
     <p style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px;">
-        <strong>Alpha 1.2 - ZAP</strong><br>
-        In questo aggiornamento sono state aggiunte le nuove torrette Zapper e Flamer, sbloccabili distruggendo i Carrier. Sono state inoltre introdotte nuove ondate avanzate (14-17) con formazioni miste, e il menu di costruzione è stato ridisegnato con tooltip informativi.
+        <strong>Alpha 1.3 - NEW WAVES</strong><br>
+        In questo aggiornamento sono state riviste le ondate e i reward dei nemici. I Fleet non danno più crediti, i Decoy ne danno 5, i Carrier 3 e gli Air Soldier 2. Le ondate 18, 19, 21 e 22 sono state aggiornate con nuove sfide.
     </p>
     
     <button class="btn-main" style="width:100%; margin-top:20px;" id="close-info">CHIUDI</button>
@@ -294,6 +294,22 @@
             Dmg: 4 | Costo: 25 C<br>
             <i>Catena di fulmini.</i><br>
             <span style="color:var(--gold)">L3: 3 bersagli (9, 6, 3 Dmg).</span>
+        </div>
+    </div>
+
+    <div class="tower-option" onclick="tryBuild('cooler')">
+        <div class="tower-option-icon">
+            <svg width="20" height="20"><polygon points="2,2 18,2 10,18" fill="#0066cc" stroke="#fff" stroke-width="1.5"/></svg>
+        </div>
+        <div class="tower-option-info">
+            <span class="tower-option-name">COOLER</span>
+            <span class="tower-option-avail" id="cooler-count">0/0</span>
+        </div>
+        <div class="tower-tooltip">
+            <b style="color:var(--neon-cyan)">COOLER</b><br>
+            Dmg: 0 | Costo: 15 C<br>
+            <i>Rallenta i nemici (20% per 2s).</i><br>
+            <span style="color:var(--gold)">L3: Rallenta (40% per 3s).</span>
         </div>
     </div>
 
@@ -381,31 +397,31 @@ function playSFX(freq, type = 'square', duration = 0.1) {
 /** GAME ENGINE **/
 const HEX_SIZE = 42, MAP_RADIUS = 4;
 function getWaveTotal(wave) {
-    if (wave === 11) return 35;
-    if (wave === 12) return 35;
-    if (wave === 13) return 20;
-    if (wave === 14) return 53;
-    if (wave === 15) return 40;
-    if (wave === 16) return 27;
-    if (wave === 17) return 42;
-    let w = wave % 10;
-    if (w === 0) return 1;
-    if (w === 7) return 20;
-    if (w === 8) return 25;
-    if (w === 9) return 25;
-    return 15;
+    const comp = getWaveComposition(wave);
+    return comp.reduce((sum, group) => sum + group.count, 0);
 }
 
 function getWaveComposition(wave) {
     let w = wave % 10;
     const wt = (wave - 1) % 3 + 1;
+    if (wave === 3) return [{ type: 'carrier', count: 1 }, { type: 'soldier', count: 10 }, { type: 'tank', count: 5 }];
+    if (wave === 4) return [{ type: 'soldier', count: 20 }];
+    if (wave === 5) return [{ type: 'scout', count: 10 }, { type: 'fleet', count: 20 }];
+    if (wave === 6) return [{ type: 'carrier', count: 1 }, { type: 'tank', count: 20 }];
     if (wave === 11) return [{ type: 'soldier', count: 35 }];
     if (wave === 12) return [{ type: 'scout', count: 35 }];
     if (wave === 13) return [{ type: 'soldier', count: 10 }, { type: 'decoy_tank', count: 1 }, { type: 'tank', count: 9 }];
-    if (wave === 14) return [{ type: 'fleet', count: 52 }, { type: 'carrier', count: 1 }];
+    if (wave === 14) return [{ type: 'fleet', count: 40 }, { type: 'carrier', count: 1 }];
     if (wave === 15) return [{ type: 'tank', count: 20 }, { type: 'scout', count: 20 }];
     if (wave === 16) return [{ type: 'soldier', count: 20 }, { type: 'decoy_tank', count: 2 }, { type: 'tank', count: 5 }];
     if (wave === 17) return [{ type: 'tank', count: 40 }, { type: 'carrier', count: 2 }];
+    if (wave === 18) return [{ type: 'soldier', count: 30 }, { type: 'scout', count: 30 }];
+    if (wave === 19) return [{ type: 'tank', count: 10 }, { type: 'decoy_tank', count: 1 }, { type: 'tank', count: 5 }, { type: 'fleet', count: 30 }];
+    if (wave === 21) return [{ type: 'air_soldier', count: 5 }, { type: 'soldier', count: 50 }];
+    if (wave === 22) return [{ type: 'carrier', count: 1 }, { type: 'scout', count: 70 }];
+    if (wave === 23) return [{ type: 'soldier', count: 60 }];
+    if (wave === 24) return [{ type: 'air_soldier', count: 10 }, { type: 'scout', count: 20 }, { type: 'fleet', count: 20 }, { type: 'tank', count: 10 }];
+    if (wave === 25) return [{ type: 'splitter', count: 3 }];
     if (w === 0) return [{ type: 'boss', count: 1 }];
     if (w === 7) return [{ type: 'soldier', count: 10 }, { type: 'scout', count: 10 }];
     if (w === 8) {
@@ -429,12 +445,14 @@ function getEnemySVG(type) {
     if (type === 'boss') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>`;
     if (type === 'decoy_tank') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>`;
     if (type === 'fleet') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>`;
-    if (type === 'air_soldier') return `<svg width="12" height="12" style="vertical-align:middle;"><circle cx="6" cy="6" r="5" fill="#00ffcc"/><line x1="1" y1="6" x2="11" y2="6" stroke="#000" stroke-width="2"/></svg>`;
+    if (type === 'air_soldier') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,10 1,10" fill="#800080"/></svg>`;
+    if (type === 'splitter') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>`;
+    if (type === 'split') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="3" y="3" width="6" height="6" fill="#ff0000"/></svg>`;
     return '';
 }
 
-const COSTS = { laser: 5, sniper: 15, flamer: 25, zapper: 25 };
-let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0;
+const COSTS = { laser: 5, sniper: 15, flamer: 25, zapper: 25, cooler: 15 };
+let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0, MAX_COOLER = 0;
 const grid = new Map();
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -477,8 +495,10 @@ function getDifficultyMultiplier(wave) {
 class Enemy {
     constructor(type, x = null, y = null, drop = null) {
         const startHex = grid.get(hexKey(-MAP_RADIUS, 0));
-        this.px = x !== null ? x : (canvas.width/2 + startHex.x);
-        this.py = y !== null ? y : (canvas.height/2 + startHex.y);
+        let initialPx = x !== null ? x : (canvas.width/2 + startHex.x);
+        let initialPy = y !== null ? y : (canvas.height/2 + startHex.y);
+        this.relX = initialPx - canvas.width/2;
+        this.relY = initialPy - canvas.height/2;
         this.type = type;
         this.drop = drop;
         
@@ -488,20 +508,35 @@ class Enemy {
         if (type === 'boss') { this.hp = 100 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
         else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8; this.color = "#ffeb3b"; }
         else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#4caf50"; }
-        else if (type === 'decoy_tank') { this.hp = 40 * dm; this.speed = 0.8; this.color = "#1b5e20"; }
+        else if (type === 'decoy_tank') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#1b5e20"; }
         else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ccff00"; }
         else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
         else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
         else if (type === 'fleet') { this.hp = 2 * dm; this.speed = 2.2; this.color = "#ff9800"; }
-        else if (type === 'air_soldier') { this.hp = 15 * dm; this.speed = 1.2; this.color = "#00ffcc"; }
+        else if (type === 'air_soldier') { this.hp = 10 * dm; this.speed = 0.8; this.color = "#800080"; }
+        else if (type === 'splitter') { this.hp = 40 * dm; this.speed = 0.6; this.color = "#ff0000"; }
+        else if (type === 'split') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#ff0000"; }
+        this.baseSpeed = this.speed;
+        this.slowEffect = { multiplier: 1, duration: 0 };
         this.maxHp = this.hp; this.escaped = false;
-        const c = pixelToHex(this.px - canvas.width/2, this.py - canvas.height/2);
+        const c = pixelToHex(this.relX, this.relY);
         this.targetHex = grid.get(hexKey(c.q, c.r)) || startHex;
         if (this.type === 'air_soldier' && this.targetHex.nextInAirPath) this.targetHex = this.targetHex.nextInAirPath;
         else if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         this.q = this.targetHex.q; this.r = this.targetHex.r;
     }
+    get px() { return canvas.width/2 + this.relX; }
+    set px(val) { this.relX = val - canvas.width/2; }
+    get py() { return canvas.height/2 + this.relY; }
+    set py(val) { this.relY = val - canvas.height/2; }
+    
     update(dt) {
+        if (this.slowEffect.duration > 0) {
+            this.slowEffect.duration -= dt;
+            this.speed = this.baseSpeed * this.slowEffect.multiplier;
+        } else {
+            this.speed = this.baseSpeed;
+        }
         const tx = canvas.width/2 + this.targetHex.x, ty = canvas.height/2 + this.targetHex.y;
         const dist = Math.hypot(tx - this.px, ty - this.py);
         if (dist < this.speed * dt) {
@@ -539,8 +574,10 @@ class Enemy {
             ctx.moveTo(this.px, this.py-s); ctx.lineTo(this.px+s*0.8, this.py+s*0.7); ctx.lineTo(this.px-s*0.8, this.py+s*0.7); ctx.closePath(); 
         }
         else if (this.type === 'air_soldier') {
-            ctx.arc(this.px, this.py, 10, 0, Math.PI*2);
-            ctx.moveTo(this.px-12, this.py); ctx.lineTo(this.px+12, this.py);
+            const s = 16;
+            ctx.beginPath();
+            ctx.moveTo(this.px, this.py-s); ctx.lineTo(this.px+s*0.8, this.py+s*0.7); ctx.lineTo(this.px-s*0.8, this.py+s*0.7); ctx.closePath();
+            ctx.fill();
         }
         else if (this.type === 'tank' || this.type === 'decoy_tank') { 
             const s = this.type === 'decoy_tank' ? 16 : 12;
@@ -548,6 +585,8 @@ class Enemy {
         }
         else if (this.type === 'carrier') { for(let i=0;i<5;i++){const a=(Math.PI*2/5)*i-Math.PI/2; ctx.lineTo(this.px+16*Math.cos(a),this.py+16*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'boss') { ctx.rect(this.px-20, this.py-20, 40, 40); }
+        else if (this.type === 'splitter') { ctx.rect(this.px-14, this.py-14, 28, 28); }
+        else if (this.type === 'split') { ctx.rect(this.px-8, this.py-8, 16, 16); }
         else { ctx.arc(this.px, this.py, 10, 0, Math.PI*2); }
         ctx.fill(); if (this.isMinion || this.type === 'boss' || this.type === 'decoy_tank') ctx.stroke();
         
@@ -583,10 +622,10 @@ class Tower {
     constructor(hex, type) {
         this.q = hex.q; this.r = hex.r; this.x = hex.x; this.y = hex.y;
         this.type = type; this.level = 1; this.totalSpent = COSTS[type];
-        this.damage = type === 'flamer' ? 2 : (type === 'laser' ? 4 : (type === 'zapper' ? 4 : 8));
+        this.damage = type === 'flamer' ? 2 : (type === 'laser' ? 4 : (type === 'zapper' ? 4 : (type === 'cooler' ? 0 : 8)));
         this.range = type === 'sniper' ? 3.2 : (type === 'zapper' ? 2.2 : 1.2);
-        this.fireRate = type === 'flamer' ? 90 : (type === 'laser' ? 60 : (type === 'zapper' ? 120 : 150));
-        this.cooldown = 0; this.lastShot = null;
+        this.fireRate = type === 'flamer' ? 90 : (type === 'laser' ? 60 : (type === 'zapper' ? 120 : (type === 'cooler' ? 150 : 150)));
+        this.cooldown = 0; this.lastShot = null; this.hasFired = false;
     }
     update(dt) {
         if (this.cooldown > 0) this.cooldown -= dt;
@@ -602,6 +641,7 @@ class Tower {
                 }
                 
                 if (targets.length > 0) {
+                    if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     targets.forEach(target => target.hp -= this.damage);
                     this.cooldown = this.fireRate;
                     this.lastShot = { time: 15, aoe: true };
@@ -616,6 +656,7 @@ class Tower {
                 }
                 
                 if (target) {
+                    if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     target.hp -= this.damage; this.cooldown = this.fireRate;
                     
                     let chainTarget = null;
@@ -634,8 +675,39 @@ class Tower {
                         }
                     }
                     
-                    this.lastShot = { tx: target.px, ty: target.py, chainTx: chainTarget ? chainTarget.px : null, chainTy: chainTarget ? chainTarget.py : null, chainTx2: chainTarget2 ? chainTarget2.px : null, chainTy2: chainTarget2 ? chainTarget2.py : null, time: 10 };
+                    this.lastShot = { 
+                        relTx: target.relX, relTy: target.relY, 
+                        chainRelTx: chainTarget ? chainTarget.relX : null, chainRelTy: chainTarget ? chainTarget.relY : null, 
+                        chainRelTx2: chainTarget2 ? chainTarget2.relX : null, chainRelTy2: chainTarget2 ? chainTarget2.relY : null, 
+                        get tx() { return canvas.width/2 + this.relTx; },
+                        get ty() { return canvas.height/2 + this.relTy; },
+                        get chainTx() { return this.chainRelTx !== null ? canvas.width/2 + this.chainRelTx : null; },
+                        get chainTy() { return this.chainRelTy !== null ? canvas.height/2 + this.chainRelTy : null; },
+                        get chainTx2() { return this.chainRelTx2 !== null ? canvas.width/2 + this.chainRelTx2 : null; },
+                        get chainTy2() { return this.chainRelTy2 !== null ? canvas.height/2 + this.chainRelTy2 : null; },
+                        time: 10 
+                    };
                     playSFX(300, 'sawtooth', 0.2);
+                }
+            } else if (this.type === 'cooler') {
+                let targets = [];
+                if (window.globalDecoyExists) {
+                    targets = decoysInRange;
+                } else {
+                    targets = enemies.filter(en => getHexDist(this, en) <= this.range);
+                }
+                
+                if (targets.length > 0) {
+                    if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
+                    targets.forEach(target => {
+                        target.slowEffect = {
+                            multiplier: this.level === 3 ? 0.6 : 0.8,
+                            duration: this.level === 3 ? 180 : 120
+                        };
+                    });
+                    this.cooldown = this.fireRate;
+                    this.lastShot = { time: 20, aoe: true };
+                    playSFX(150, 'sine', 0.3);
                 }
             } else {
                 let target = null;
@@ -646,8 +718,14 @@ class Tower {
                 }
                 
                 if (target) {
+                    if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     target.hp -= this.damage; this.cooldown = this.fireRate;
-                    this.lastShot = { tx: target.px, ty: target.py, time: (this.type === 'sniper' && this.level === 3) ? 30 : 8 };
+                    this.lastShot = { 
+                        relTx: target.relX, relTy: target.relY, 
+                        get tx() { return canvas.width/2 + this.relTx; },
+                        get ty() { return canvas.height/2 + this.relTy; },
+                        time: (this.type === 'sniper' && this.level === 3) ? 30 : 8 
+                    };
                     playSFX(this.type === 'sniper' ? 180 : 500, this.level === 3 ? 'sawtooth' : 'square');
                 }
             }
@@ -658,11 +736,12 @@ class Tower {
     }
     draw(cX, cY, isSelected) {
         ctx.save();
-        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : ["#7b1fa2", "#9c27b0", "#d500f9"]));
+        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : (this.type === 'cooler' ? ["#0066cc", "#0099ff", "#00ffff"] : ["#7b1fa2", "#9c27b0", "#d500f9"])));
         ctx.fillStyle = colors[this.level-1]; ctx.shadowBlur = 10; ctx.shadowColor = ctx.fillStyle;
         ctx.beginPath();
         if (this.type === 'sniper') { for(let i=0;i<4;i++){const a=(Math.PI/2)*i; ctx.lineTo(cX+this.x+18*Math.cos(a),cY+this.y+18*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'flamer') { for(let i=0;i<3;i++){const a=(Math.PI*2/3)*i-Math.PI/2; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
+        else if (this.type === 'cooler') { for(let i=0;i<3;i++){const a=(Math.PI*2/3)*i+Math.PI/2; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'zapper') { for(let i=0;i<6;i++){const a=(Math.PI/3)*i; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
         else { ctx.arc(cX+this.x, cY+this.y, 16, 0, Math.PI*2); }
         ctx.fill();
@@ -691,6 +770,12 @@ class Tower {
                     ctx.arc(cX+this.x, cY+this.y, radius, 0, Math.PI*2);
                     ctx.fill();
                 }
+            } else if (this.type === 'cooler') {
+                const radius = HEX_SIZE * 1.5 * (1 - this.lastShot.time/20) + 20;
+                ctx.fillStyle = `rgba(0, 153, 255, ${this.lastShot.time / 20 * 0.5})`;
+                ctx.shadowColor = "#0099ff";
+                ctx.arc(cX+this.x, cY+this.y, radius, 0, Math.PI*2);
+                ctx.fill();
             } else if (this.type === 'zapper') {
                 ctx.strokeStyle = this.level === 3 ? "#ffff00" : "#00ffff"; 
                 ctx.shadowColor = this.level === 3 ? "#ffff00" : "#00ffff"; 
@@ -755,13 +840,20 @@ class Tower {
 
 class Particle {
     constructor(x, y, color) {
-        this.x = x; this.y = y; this.color = color;
+        this.relX = x - canvas.width/2;
+        this.relY = y - canvas.height/2;
+        this.color = color;
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 3 + 1;
         this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed;
         this.life = Math.random() * 20 + 20; this.maxLife = this.life;
         this.size = Math.random() * 3 + 2;
     }
+    get x() { return canvas.width/2 + this.relX; }
+    set x(val) { this.relX = val - canvas.width/2; }
+    get y() { return canvas.height/2 + this.relY; }
+    set y(val) { this.relY = val - canvas.height/2; }
+    
     update(dt) { this.x += this.vx * dt; this.y += this.vy * dt; this.life -= dt; }
     draw() {
         ctx.save(); ctx.globalAlpha = Math.max(0, this.life / this.maxLife);
@@ -772,9 +864,16 @@ class Particle {
 }
 class FloatingText {
     constructor(x, y, text, color) {
-        this.x = x; this.y = y; this.text = text; this.color = color;
+        this.relX = x - canvas.width/2;
+        this.relY = y - canvas.height/2;
+        this.text = text; this.color = color;
         this.life = 60; this.maxLife = 60;
     }
+    get x() { return canvas.width/2 + this.relX; }
+    set x(val) { this.relX = val - canvas.width/2; }
+    get y() { return canvas.height/2 + this.relY; }
+    set y(val) { this.relY = val - canvas.height/2; }
+    
     update() { this.y -= 0.5; this.life--; }
     draw() {
         ctx.save();
@@ -824,7 +923,7 @@ function calculatePath() {
 function initGame() {
     credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false; bossDefeats = 0;
     enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; particles = []; floatingTexts = [];
-    MAX_SNIPER = 0; MAX_FLAMER = 0; MAX_ZAPPER = 0;
+    MAX_SNIPER = 0; MAX_FLAMER = 0; MAX_ZAPPER = 0; MAX_COOLER = 0;
     document.getElementById('gameover-modal').style.display = 'none';
     let valid = false;
     while(!valid) {
@@ -866,6 +965,9 @@ function updateUI() {
     const zapperCount = towers.filter(t => t.type === 'zapper').length;
     document.getElementById('zapper-count').innerText = isFreeMode ? "∞/∞" : `${MAX_ZAPPER - zapperCount}/${MAX_ZAPPER}`;
     
+    const coolerCount = towers.filter(t => t.type === 'cooler').length;
+    document.getElementById('cooler-count').innerText = isFreeMode ? "∞/∞" : `${MAX_COOLER - coolerCount}/${MAX_COOLER}`;
+    
     document.getElementById('btn-start').disabled = gameStarted;
     if (gameStarted) {
         document.getElementById('btn-start').innerText = `AVVIA ONDATA ${currentWave}`;
@@ -878,7 +980,9 @@ function updateUI() {
     const panel = document.getElementById('selection-panel');
     if (selectedTower) {
         panel.style.display = 'block'; document.getElementById('sel-dmg').innerText = selectedTower.damage; document.getElementById('sel-lv').innerText = selectedTower.level;
-        document.getElementById('btn-sell').innerText = `VENDI (${Math.floor(selectedTower.totalSpent*0.5)} C)`;
+        let sellPrice = selectedTower.hasFired ? Math.floor(selectedTower.totalSpent * 0.5) : selectedTower.totalSpent;
+        let sellText = selectedTower.hasFired ? `VENDI (${sellPrice} C)` : `VENDI ♻️ (${sellPrice} C)`;
+        document.getElementById('btn-sell').innerText = sellText;
         const baseCost = COSTS[selectedTower.type];
         const nextCost = selectedTower.level === 1 ? baseCost * 2 : Math.floor(baseCost * 5);
         const upBtn = document.getElementById('btn-upgrade');
@@ -905,6 +1009,12 @@ function tryBuild(type) {
     if (!isFreeMode && type === 'zapper' && towers.filter(t => t.type === 'zapper').length >= MAX_ZAPPER) {
         const err = document.getElementById('error-overlay');
         err.innerText = `ORDINE NEGATO: MAX ${MAX_ZAPPER} ZAPPER`;
+        err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 1500);
+        return;
+    }
+    if (!isFreeMode && type === 'cooler' && towers.filter(t => t.type === 'cooler').length >= MAX_COOLER) {
+        const err = document.getElementById('error-overlay');
+        err.innerText = `ORDINE NEGATO: MAX ${MAX_COOLER} COOLER`;
         err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 1500);
         return;
     }
@@ -961,7 +1071,15 @@ function loop(timestamp) {
         spawnTimer += dt; const wt = (currentWave-1)%3+1;
         if (currentWave % 10 === 0) {
             if (spawnedInWave < 1) { enemies.push(new Enemy('boss')); spawnedInWave = 1; }
-            if (killsInWave >= 1 && enemies.length === 0) { 
+            if (spawnedInWave >= 1 && enemies.length === 0) { 
+                bossDefeats++;
+                const notif = document.getElementById('notify-overlay');
+                notif.innerHTML = `FORZE NEMICHE RIORGANIZZATE!<br><span style="font-size:1rem; color:#ff003c;">SPAWN RATE +30%</span>`;
+                notif.style.display = 'block';
+                setTimeout(() => notif.style.display = 'none', 4000);
+                playSFX(200, 'sawtooth', 0.3);
+                setTimeout(() => playSFX(150, 'sawtooth', 0.3), 200);
+
                 gameStarted = false; 
                 if (currentWave === 50) {
                     isGameOver = true;
@@ -981,7 +1099,25 @@ function loop(timestamp) {
             let w = currentWave % 10;
             let spawnMult = 1 / Math.pow(1.3, bossDefeats);
             
-            if (currentWave === 11) {
+            if (currentWave === 3) {
+                if (spawnTimer >= 60 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave === 0) enemyToSpawn = 'carrier';
+                    else if (spawnedInWave < 11) enemyToSpawn = 'soldier';
+                    else enemyToSpawn = 'tank';
+                }
+            } else if (currentWave === 4) {
+                if (spawnTimer >= 60 * spawnMult && spawnedInWave < totalEnemies) enemyToSpawn = 'soldier';
+            } else if (currentWave === 5) {
+                if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 10) enemyToSpawn = 'scout';
+                    else enemyToSpawn = 'fleet';
+                }
+            } else if (currentWave === 6) {
+                if (spawnTimer >= 72 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave === 0) enemyToSpawn = 'carrier';
+                    else enemyToSpawn = 'tank';
+                }
+            } else if (currentWave === 11) {
                 if (spawnTimer >= 40 * spawnMult && spawnedInWave < totalEnemies) enemyToSpawn = 'soldier';
             } else if (currentWave === 12) {
                 if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) enemyToSpawn = 'scout';
@@ -994,8 +1130,8 @@ function loop(timestamp) {
                 }
             } else if (currentWave === 14) {
                 if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) {
-                    if (spawnedInWave < 20) enemyToSpawn = 'fleet';
-                    else if (spawnedInWave === 20) enemyToSpawn = 'carrier';
+                    if (spawnedInWave < 40) enemyToSpawn = 'fleet';
+                    else if (spawnedInWave === 40) enemyToSpawn = 'carrier';
                     else enemyToSpawn = 'fleet';
                 }
             } else if (currentWave === 15) {
@@ -1016,6 +1152,43 @@ function loop(timestamp) {
                     if (spawnedInWave === 0) enemyToSpawn = 'carrier';
                     else if (spawnedInWave < 41) enemyToSpawn = 'tank';
                     else enemyToSpawn = 'carrier';
+                }
+            } else if (currentWave === 18) {
+                if (spawnTimer >= 45 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 30) enemyToSpawn = 'soldier';
+                    else enemyToSpawn = 'scout';
+                }
+            } else if (currentWave === 19) {
+                if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 10) enemyToSpawn = 'tank';
+                    else if (spawnedInWave === 10) enemyToSpawn = 'decoy_tank';
+                    else if (spawnedInWave < 16) enemyToSpawn = 'tank';
+                    else enemyToSpawn = 'fleet';
+                }
+            } else if (currentWave === 21) {
+                if (spawnTimer >= 60 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 5) enemyToSpawn = 'air_soldier';
+                    else enemyToSpawn = 'soldier';
+                }
+            } else if (currentWave === 22) {
+                if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave === 0) enemyToSpawn = 'carrier';
+                    else enemyToSpawn = 'scout';
+                }
+            } else if (currentWave === 23) {
+                if (spawnTimer >= 45 * spawnMult && spawnedInWave < totalEnemies) {
+                    enemyToSpawn = 'soldier';
+                }
+            } else if (currentWave === 24) {
+                if (spawnTimer >= 30 * spawnMult && spawnedInWave < totalEnemies) {
+                    if (spawnedInWave < 10) enemyToSpawn = 'air_soldier';
+                    else if (spawnedInWave < 30) enemyToSpawn = 'scout';
+                    else if (spawnedInWave < 50) enemyToSpawn = 'fleet';
+                    else enemyToSpawn = 'tank';
+                }
+            } else if (currentWave === 25) {
+                if (spawnTimer >= 60 * spawnMult && spawnedInWave < totalEnemies) {
+                    enemyToSpawn = 'splitter';
                 }
             } else if (w === 7) {
                 if (spawnTimer >= 45 * spawnMult && spawnedInWave < totalEnemies) {
@@ -1040,14 +1213,20 @@ function loop(timestamp) {
 
             if (enemyToSpawn) {
                 let dropToSpawn = null;
-                if (currentWave === 14 && enemyToSpawn === 'carrier') dropToSpawn = 'zapper';
-                if (currentWave === 17 && enemyToSpawn === 'carrier') {
-                    if (spawnedInWave === 0) dropToSpawn = 'flamer';
-                    else dropToSpawn = 'sniper';
+                if (enemyToSpawn === 'carrier') {
+                    if (currentWave === 14 || currentWave === 22) dropToSpawn = 'zapper';
+                    else if (currentWave === 17) {
+                        dropToSpawn = spawnedInWave === 0 ? 'flamer' : 'sniper';
+                    } else if (currentWave % 10 === 6) {
+                        dropToSpawn = 'flamer';
+                    } else {
+                        dropToSpawn = 'sniper';
+                    }
                 }
 
                 if (enemyToSpawn === 'fleet') {
-                    for (let i = 0; i < 4; i++) {
+                    let toSpawn = Math.min(4, totalEnemies - spawnedInWave);
+                    for (let i = 0; i < toSpawn; i++) {
                         enemies.push(new Enemy('fleet', (canvas.width/2 + grid.get(hexKey(-MAP_RADIUS, 0)).x) - i*15, null));
                         spawnedInWave++;
                     }
@@ -1057,7 +1236,9 @@ function loop(timestamp) {
                 }
                 spawnTimer=0; 
             }
-            if (killsInWave >= totalEnemies && enemies.length === 0) { gameStarted = false; currentWave++; updateUI(); }
+            if (spawnedInWave >= totalEnemies && enemies.length === 0) { 
+                gameStarted = false; currentWave++; updateUI(); 
+            }
         }
     }
     for (let i = enemies.length-1; i >= 0; i--) {
@@ -1094,18 +1275,19 @@ function loop(timestamp) {
                 setTimeout(() => playSFX(800, 'sine', 0.3), 200);
                 updateUI();
             }
-            if (enemies[i].type === 'boss') {
-                bossDefeats++;
-                const notif = document.getElementById('notify-overlay');
-                notif.innerHTML = `FORZE NEMICHE RIORGANIZZATE!<br><span style="font-size:1rem; color:#ff003c;">SPAWN RATE +30%</span>`;
-                notif.style.display = 'block';
-                setTimeout(() => notif.style.display = 'none', 4000);
-                playSFX(200, 'sawtooth', 0.3);
-                setTimeout(() => playSFX(150, 'sawtooth', 0.3), 200);
-            }
             if (!isFreeMode) {
-                if (enemies[i].type === 'boss') credits += 5;
-                else if (!enemies[i].isMinion) credits += 1;
+                let reward = 1;
+                if (enemies[i].type === 'boss' || enemies[i].type === 'decoy_tank') reward = 5;
+                else if (enemies[i].type === 'carrier') reward = 3;
+                else if (enemies[i].type === 'air_soldier') reward = 2;
+                else if (enemies[i].type === 'fleet' || enemies[i].isMinion || enemies[i].type === 'splitter') reward = 0;
+                else if (enemies[i].type === 'split') reward = 1;
+                
+                credits += reward;
+            }
+            if (enemies[i].type === 'splitter') {
+                enemies.push(new Enemy('split', enemies[i].px - 10, enemies[i].py));
+                enemies.push(new Enemy('split', enemies[i].px + 10, enemies[i].py));
             }
             if(!enemies[i].isMinion) killsInWave++; 
             enemies.splice(i,1); updateUI(); 
@@ -1252,7 +1434,7 @@ document.getElementById('free-mode-btn').onclick = function() {
     this.classList.toggle('muted', !isFreeMode);
     updateUI();
 };
-document.getElementById('btn-sell').onclick = () => { if (selectedTower) { credits += Math.floor(selectedTower.totalSpent * 0.5); grid.get(hexKey(selectedTower.q, selectedTower.r)).isWall = false; towers = towers.filter(t => t !== selectedTower); selectedTower = null; calculatePath(); updateUI(); } };
+document.getElementById('btn-sell').onclick = () => { if (selectedTower) { let sellPrice = selectedTower.hasFired ? Math.floor(selectedTower.totalSpent * 0.5) : selectedTower.totalSpent; credits += sellPrice; grid.get(hexKey(selectedTower.q, selectedTower.r)).isWall = false; towers = towers.filter(t => t !== selectedTower); selectedTower = null; calculatePath(); updateUI(); } };
 
 window.onload = () => { 
     if (window.Telegram?.WebApp) {
