@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Neon Defense - Alpha 1.4 Proto/Perfect</title>
+    <title>Neon Defense - Alpha 1.5 Singularity</title>
     <style>
         :root { 
             --neon-blue: #0033aa; --neon-cyan: #00aaff; --neon-magenta: #ff00ff; 
@@ -147,7 +147,7 @@
         NEON DEFENSE 
         <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
     </h2>
-    <div class="version-label">ALPHA 1.4 - PROTO/PERFECT</div>
+    <div class="version-label">ALPHA 1.5 - SINGULARITY</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -163,62 +163,67 @@
 
 <!-- LEGENDA A TABELLA -->
 <div id="legend-modal">
-    <h3 style="color:var(--neon-cyan); margin-top:0; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">MANUALE TATTICO</h3>
+    <h3 style="color:var(--neon-cyan); margin-top:0; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">DATABASE TATTICO</h3>
     
     <h4 style="color:var(--neon-magenta); margin: 15px 0 5px 0;">UNITÀ OSTILI (Base)</h4>
-    <table>
-        <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>10</td><td>1.2</td><td>1C</td><td>Standard</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Fast unit</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Armored</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Boss minion</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="3" y="3" width="6" height="6" fill="#ff0000"/></svg>Split</td><td>16</td><td>1.2</td><td>0C</td><td>Minion</td></tr>
+    <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>10</td><td>1.2</td><td>1C</td><td>Fanteria standard</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Unità veloce</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Corazzato lento</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Minion del Boss</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="3" y="3" width="6" height="6" fill="#ff0000"/></svg>Split</td><td>16</td><td>1.2</td><td>1C</td><td>Minion generato</td></tr>
     </table>
 
     <h4 style="color:#ff003c; margin: 15px 0 5px 0;">UNITÀ OSTILI (Elite)</h4>
-    <table>
-        <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>25</td><td>0.8</td><td>5C</td><td>Attira fuoco</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>Fleet</td><td>2</td><td>2.2</td><td>0C</td><td>Sciame (x4)</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#800080"/></svg>Air</td><td>10</td><td>0.8</td><td>2C</td><td>Vola sui muri</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>Splitter</td><td>32</td><td>0.6</td><td>0C</td><td>Si divide</td></tr>
+    <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>25</td><td>0.8</td><td>5C</td><td>Attira il fuoco</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ff9800"/></svg>Fleet</td><td>2</td><td>2.2</td><td>0C</td><td>Sciame (x4)</td></tr>
+        <tr><td class="row-label"><svg width="16" height="16" style="vertical-align:middle; margin-right:4px;"><polygon points="8,1 15,14 1,14" fill="#800080"/></svg>Delivery</td><td>15</td><td>0.8</td><td>2C</td><td>Rilascia 4 Scout</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>Splitter</td><td>32</td><td>0.6</td><td>0C</td><td>Si divide in 2 Split</td></tr>
     </table>
 
     <h4 style="color:#ffcc00; margin: 15px 0 5px 0;">UNITÀ OSTILI (Unique)</h4>
-    <table>
-        <tr><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>3C</td><td>Fornisce Drop</td></tr>
+    <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>3C</td><td>Fornisce Drop Torrette</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Golden</td><td>30</td><td>0.8</td><td>1C</td><td>Drop Segreto</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>80</td><td>0.8</td><td>5C</td><td>Generator</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>80</td><td>0.8</td><td>5C</td><td>Genera Void Minions</td></tr>
     </table>
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Standard)</h4>
-    <table>
-        <tr><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#0033cc" stroke="#fff" stroke-width="1"/></svg>Laser</td><td>4</td><td>1.2</td><td>1.0s</td><td>5C</td><td>Rapid fire</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,6 6,11 1,6" fill="#7b1fa2" stroke="#fff" stroke-width="1"/></svg>Sniper</td><td>8</td><td>3.2</td><td>2.5s</td><td>15C</td><td>Heavy blast</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,11 1,11" fill="#cc5500" stroke="#fff" stroke-width="1"/></svg>Flamer</td><td>2</td><td>1.2</td><td>1.5s</td><td>25C</td><td>Area of Effect</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,3 11,9 6,11 1,9 1,3" fill="#555555" stroke="#fff" stroke-width="1"/></svg>Zapper</td><td>4</td><td>2.2</td><td>2.0s</td><td>25C</td><td>Chain Lightning</td></tr>
+    <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #333;"><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
+        <tr><td class="row-label"><span style="color:#0088ff">Laser</span></td><td>4</td><td>1.2</td><td>1.0s</td><td>5C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fuoco rapido a bersaglio singolo. Lvl 2 (10C): 6 Dmg. Lvl 3 (15C): 12 Dmg.</i></td></tr>
+        
+        <tr><td class="row-label"><span style="color:#9c27b0">Sniper</span></td><td>8</td><td>3.2</td><td>2.5s</td><td>10C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Lento ma letale a lungo raggio. Lvl 2 (20C): 12 Dmg. Lvl 3 (30C): 36 Dmg.</i></td></tr>
+        
+        <tr><td class="row-label"><span style="color:#ff7700">Flamer</span></td><td>2</td><td>1.2</td><td>1.5s</td><td>15C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area a corto raggio. Lvl 2 (30C): 3 Dmg. Lvl 3 (45C): Rate 0.5s.</i></td></tr>
+        
+        <tr><td class="row-label"><span style="color:#777777">Zapper</span></td><td>4</td><td>2.2</td><td>2.0s</td><td>15C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fulmine a catena. Lvl 2 (30C): 6 Dmg. Lvl 3 (45C): Catena su 3 bersagli (9, 6, 3 Dmg).</i></td></tr>
     </table>
 
     <h4 style="color:var(--neon-cyan); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Secret)</h4>
-    <table>
-        <tr><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#0066cc" stroke="#fff" stroke-width="1"/></svg>Cooler</td><td>1</td><td>1.2</td><td>1.5s</td><td>0C</td><td>Slow Effect</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,6 6,11 1,6" fill="#00ff00" stroke="#fff" stroke-width="1"/></svg>Inoculator</td><td>0</td><td>2.2</td><td>3.0s</td><td>0C</td><td>Corrosion</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="3,1 9,1 11,3 11,9 9,11 3,11 1,9 1,3" fill="#ff0000" stroke="#fff" stroke-width="1"/></svg>Nuker</td><td>25</td><td>10.2</td><td>4.0s</td><td>0C</td><td>Extreme Dmg</td></tr>
+    <div style="font-size:0.75rem; color:#aaa; margin-bottom:10px;"><i>Le torrette segrete possono essere potenziate una sola volta (Lvl 2) al costo specifico indicato. È possibile costruire una sola torretta per tipo.</i></div>
+    <table style="width:100%; text-align:left; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #333;"><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
+        <tr><td class="row-label"><span style="color:#0099ff">Cooler</span></td><td>1</td><td>1.2</td><td>1.5s</td><td>0C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Rallenta i nemici del 20% per 3s. Lvl 2 (50C): 2 Dmg, Rng 2.2, Rallenta del 35% per 3s.</i></td></tr>
+        
+        <tr><td class="row-label"><span style="color:#00cc00">Inocul.</span></td><td>0</td><td>2.2</td><td>3.0s</td><td>0C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Corrode i nemici (1 Dmg/s). Lvl 2 (75C): Corrode (2 Dmg/s) e rallenta del 15%.</i></td></tr>
+        
+        <tr><td class="row-label"><span style="color:#ff0000">Nuker</span></td><td>25</td><td>10.2</td><td>8.0s</td><td>0C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area estremo (globale). Lvl 2 (100C): 75 Dmg.</i></td></tr>
+
+        <tr><td class="row-label"><span style="color:#ffffff; text-shadow: 0 0 5px #fff;">Singul.</span></td><td>-</td><td>-</td><td>-</td><td>0C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 2 (150C): Buff globale +40% Rate e +50% Dmg.</i></td></tr>
     </table>
-    <div style="font-size:0.7rem; color:#777; margin-top:10px; line-height: 1.4;">
-        <b>UPGRADE L2:</b> +50% Danno (Standard).<br>
-        <b>UPGRADE L3 (Perfected):</b><br>
-        - <b>Laser:</b> Danno raddoppiato (12 Dmg).<br>
-        - <b>Sniper:</b> Danno estremo (36 Dmg).<br>
-        - <b>Flamer:</b> Rateo di fuoco aumentato (0.5s).<br>
-        - <b>Zapper:</b> Catena su 3 bersagli (9, 6, 3 Dmg).<br>
-        - <b>Cooler P.:</b> 2 Dmg, 2.2 Range.<br>
-        - <b>Nuker P.:</b> 75 Dmg, 10.2 Range.<br>
-        - <b>Inoculator P.:</b> 2.2 Range, 2 HP/s + 15% Slow.
-    </div>
     
     <button class="btn-mini" style="width:100%; margin-top:20px" id="close-legend">RITORNA AL COMBATTIMENTO</button>
 </div>
@@ -240,8 +245,8 @@
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">VERSIONE ATTUALE</h4>
     <p style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px;">
-        <strong>Alpha 1.4 - PROTO/PERFECT</strong><br>
-        Implementata la traccia visiva del percorso nemico sulla griglia. Introdotte nuove Armi Segrete sperimentali (scoprile tramite gli upgrade finali). Riconfigurate integralmente le ondate (1-50) e bilanciati i parametri vitali di tutte le unità nemiche per un'esperienza tattica ottimizzata.
+        <strong>Alpha 1.5 - SINGULARITY</strong><br>
+        Configurate tutte le ondate del gioco (1-50), revisionati i costi di costruzione e potenziamento delle torrette per un bilanciamento ottimale, e aggiunti nuovi elementi segreti avanzati. Implementata la traccia visiva del percorso nemico sulla griglia e bilanciati i parametri vitali di tutte le unità nemiche.
     </p>
     
     <button class="btn-main" style="width:100%; margin-top:20px;" id="close-info">CHIUDI</button>
@@ -281,7 +286,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">LASER TURRET</b><br>
-            Dmg: 4 | Costo: 5 C<br>
+            Dmg: 4 | Costo: 5 C | L2: 10 C | L3: 15 C<br>
             <i>Fuoco rapido.</i><br>
             <span style="color:var(--gold)">L3: Danno raddoppiato (12).</span>
         </div>
@@ -297,7 +302,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">SNIPER CANNON</b><br>
-            Dmg: 8 | Costo: 15 C<br>
+            Dmg: 8 | Costo: 10 C | L2: 20 C | L3: 30 C<br>
             <i>Lungo raggio, lento.</i><br>
             <span style="color:var(--gold)">L3: Danno estremo (36).</span>
         </div>
@@ -313,7 +318,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">FLAMER</b><br>
-            Dmg: 2 | Costo: 25 C<br>
+            Dmg: 2 | Costo: 15 C | L2: 30 C | L3: 45 C<br>
             <i>Danno ad area.</i><br>
             <span style="color:var(--gold)">L3: Fuoco continuo (0.5s).</span>
         </div>
@@ -329,7 +334,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">ZAPPER</b><br>
-            Dmg: 4 | Costo: 25 C<br>
+            Dmg: 4 | Costo: 15 C | L2: 30 C | L3: 45 C<br>
             <i>Catena di fulmini.</i><br>
             <span style="color:var(--gold)">L3: 3 bersagli (9, 6, 3 Dmg).</span>
         </div>
@@ -346,7 +351,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">COOLER</b><br>
-            Dmg: 1 | Costo: 0 C<br>
+            Dmg: 1 | Costo: 0 C | Upgrade: 50 C<br>
             <i>Rallenta i nemici (20% per 3s).</i><br>
             <span style="color:var(--gold)">L2: Rallenta (35% per 3s).</span>
         </div>
@@ -362,7 +367,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">INOCULATOR</b><br>
-            Dmg: 0 | Costo: 0 C<br>
+            Dmg: 0 | Costo: 0 C | Upgrade: 75 C<br>
             <i>Applica corrosione (1 HP/s).</i><br>
             <span style="color:var(--gold)">L2: Corrosione (2 HP/s) + 15% Slow.</span>
         </div>
@@ -380,9 +385,27 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">NUKER</b><br>
-            Dmg: 25 | Costo: 0 C<br>
+            Dmg: 25 | Costo: 0 C | Upgrade: 100 C<br>
             <i>Danno estremo, raggio infinito.</i><br>
             <span style="color:var(--gold)">L2: Danno critico (75).</span>
+        </div>
+    </div>
+
+    <div class="tower-option" id="singularity-option" onclick="tryBuild('singularity')">
+        <div class="tower-option-icon">
+            <svg width="20" height="20">
+                <polygon points="10,1 14.5,2.2 17.8,5.5 19,10 17.8,14.5 14.5,17.8 10,19 5.5,17.8 2.2,14.5 1,10 2.2,5.5 5.5,2.2" fill="#000000" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+        </div>
+        <div class="tower-option-info">
+            <span class="tower-option-name">SINGULARITY</span>
+            <span class="tower-option-avail" id="singularity-count">0/0</span>
+        </div>
+        <div class="tower-tooltip">
+            <b style="color:var(--neon-cyan)">SINGULARITY</b><br>
+            Dmg: 0 | Costo: 0 C | Upgrade: 150 C<br>
+            <i>+40% Fire Rate a tutte le torrette.</i><br>
+            <span style="color:var(--gold)">L2: +80% Fire Rate, +50% Danno Globale.</span>
         </div>
     </div>
 
@@ -477,43 +500,74 @@ function getWaveTotal(wave) {
 
 function getWaveComposition(wave) {
     switch (wave) {
+        // TIER 1: BASICS (1-10)
         case 1: return [{ type: 'soldier', count: 15 }];
-        case 2: return [{ type: 'soldier', count: 20 }];
-        case 3: return [{ type: 'carrier', count: 1 }, { type: 'soldier', count: 20 }];
-        case 4: return [{ type: 'scout', count: 20 }];
+        case 2: return [{ type: 'soldier', count: 20 }, { type: 'scout', count: 5 }];
+        case 3: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'soldier', count: 15 }];
+        case 4: return [{ type: 'scout', count: 25 }];
         case 5: return [{ type: 'tank', count: 10 }];
-        case 6: return [{ type: 'carrier', count: 1 }, { type: 'tank', count: 10 }, { type: 'soldier', count: 5 }];
-        case 7: return [{ type: 'tank', count: 20 }];
-        case 8: return [{ type: 'soldier', count: 5 }, { type: 'decoy_tank', count: 1 }, { type: 'soldier', count: 10 }, { type: 'carrier', count: 1 }];
-        case 9: return [{ type: 'tank', count: 5 }, { type: 'scout', count: 30 }];
+        case 6: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'tank', count: 5 }, { type: 'soldier', count: 10 }];
+        case 7: return [{ type: 'scout', count: 30 }, { type: 'tank', count: 5 }];
+        case 8: return [{ type: 'decoy_tank', count: 1 }, { type: 'soldier', count: 20 }];
+        case 9: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'scout', count: 40 }];
         case 10: return [{ type: 'boss', count: 1 }];
-        case 11: return [{ type: 'soldier', count: 20 }, { type: 'fleet', count: 20 }];
-        case 12: return [{ type: 'scout', count: 30 }, { type: 'tank', count: 15 }];
-        case 13: return [{ type: 'carrier', count: 1 }, { type: 'splitter', count: 1 }];
-        case 14: return [{ type: 'decoy_tank', count: 1 }, { type: 'soldier', count: 40 }];
-        case 15: return [{ type: 'splitter', count: 1 }, { type: 'scout', count: 40 }, { type: 'golden_carrier', count: 1 }];
-        case 16: return [{ type: 'soldier', count: 20 }, { type: 'decoy_tank', count: 1 }, { type: 'tank', count: 20 }];
-        case 17: return [{ type: 'carrier', count: 1 }, { type: 'tank', count: 35 }];
-        case 18: return [{ type: 'decoy_tank', count: 1 }, { type: 'scout', count: 30 }, { type: 'fleet', count: 30 }];
-        case 19: return [{ type: 'tank', count: 10 }, { type: 'fleet', count: 10 }, { type: 'tank', count: 10 }, { type: 'fleet', count: 10 }, { type: 'tank', count: 10 }];
+
+        // TIER 2: SWARMS & SPLITS (11-20)
+        case 11: return [{ type: 'fleet', count: 30 }];
+        case 12: return [{ type: 'soldier', count: 40 }, { type: 'fleet', count: 20 }];
+        case 13: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'splitter', count: 2 }];
+        case 14: return [{ type: 'delivery', count: 5 }, { type: 'scout', count: 30 }];
+        case 15: return [{ type: 'golden_carrier', count: 1 }, { type: 'splitter', count: 3 }];
+        case 16: return [{ type: 'decoy_tank', count: 2 }, { type: 'tank', count: 20 }];
+        case 17: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'fleet', count: 50 }];
+        case 18: return [{ type: 'delivery', count: 10 }, { type: 'soldier', count: 30 }];
+        case 19: return [{ type: 'splitter', count: 5 }, { type: 'scout', count: 40 }];
         case 20: return [{ type: 'boss', count: 1 }];
-        case 21: return [{ type: 'air_soldier', count: 5 }, { type: 'soldier', count: 50 }, { type: 'carrier', count: 1 }];
-        case 22: return [{ type: 'decoy_tank', count: 1 }, { type: 'scout', count: 70 }];
-        case 23: return [{ type: 'carrier', count: 1 }, { type: 'soldier', count: 60 }];
-        case 24: return [{ type: 'air_soldier', count: 10 }, { type: 'tank', count: 20 }, { type: 'scout', count: 20 }];
-        case 25: return [{ type: 'splitter', count: 2 }, { type: 'tank', count: 30 }, { type: 'golden_carrier', count: 1 }];
-        case 26: return [{ type: 'tank', count: 60 }];
-        case 27: return [{ type: 'decoy_tank', count: 1 }, { type: 'fleet', count: 80 }, { type: 'carrier', count: 1 }];
-        case 28: return [{ type: 'fleet', count: 100 }, { type: 'scout', count: 50 }, { type: 'soldier', count: 30 }];
-        case 29: return [{ type: 'carrier', count: 2 }, { type: 'air_soldier', count: 15 }, { type: 'tank', count: 50 }];
+
+        // TIER 3: HEAVY ASSAULT (21-30)
+        case 21: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'tank', count: 40 }];
+        case 22: return [{ type: 'fleet', count: 100 }, { type: 'decoy_tank', count: 1 }];
+        case 23: return [{ type: 'delivery', count: 15 }, { type: 'soldier', count: 50 }];
+        case 24: return [{ type: 'splitter', count: 8 }, { type: 'tank', count: 20 }];
+        case 25: return [{ type: 'golden_carrier', count: 1 }, { type: 'decoy_tank', count: 3 }];
+        case 26: return [{ type: 'scout', count: 100 }];
+        case 27: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'delivery', count: 20 }];
+        case 28: return [{ type: 'fleet', count: 150 }, { type: 'splitter', count: 5 }];
+        case 29: return [{ type: 'tank', count: 60 }, { type: 'decoy_tank', count: 2 }];
         case 30: return [{ type: 'boss', count: 1 }];
-        case 31: return [{ type: 'scout', count: 100 }];
-        case 32: return [{ type: 'soldier', count: 100 }];
-        case 35: return [{ type: 'split', count: 12 }, { type: 'splitter', count: 3 }, { type: 'golden_carrier', count: 1 }];
+
+        // TIER 4: CHAOS (31-40)
+        case 31: return [{ type: 'soldier', count: 150 }];
+        case 32: return [{ type: 'scout', count: 150 }];
+        case 33: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'delivery', count: 25 }];
+        case 34: return [{ type: 'splitter', count: 15 }];
+        case 35: return [{ type: 'golden_carrier', count: 1 }, { type: 'fleet', count: 200 }];
+        case 36: return [{ type: 'decoy_tank', count: 5 }, { type: 'tank', count: 80 }];
+        case 37: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'soldier', count: 200 }];
+        case 38: return [{ type: 'delivery', count: 30 }, { type: 'scout', count: 100 }];
+        case 39: return [{ type: 'splitter', count: 20 }, { type: 'fleet', count: 100 }];
+        case 40: return [{ type: 'boss', count: 2 }];
+
+        // TIER 5: SINGULARITY (41-50)
+        case 41: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'tank', count: 100 }];
+        case 42: return [{ type: 'fleet', count: 300 }, { type: 'decoy_tank', count: 3 }];
+        case 43: return [{ type: 'delivery', count: 40 }, { type: 'splitter', count: 10 }];
+        case 44: return [{ type: 'scout', count: 250 }, { type: 'soldier', count: 200 }];
+        case 45: return [{ type: 'golden_carrier', count: 1 }, { type: 'boss', count: 1 }];
+        case 46: return [{ type: 'decoy_tank', count: 10 }, { type: 'tank', count: 120 }];
+        case 47: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'fleet', count: 400 }];
+        case 48: return [{ type: 'delivery', count: 50 }, { type: 'splitter', count: 15 }];
+        case 49: return [
+            { type: 'soldier', count: 100 }, { type: 'scout', count: 100 }, 
+            { type: 'tank', count: 100 }, { type: 'fleet', count: 100 }, 
+            { type: 'splitter', count: 10 }
+        ];
+        case 50: return [
+            { type: 'boss', count: 3 }, { type: 'decoy_tank', count: 5 }, 
+            { type: 'splitter', count: 10 }, { type: 'delivery', count: 10 }
+        ];
         default:
-            if (wave % 10 === 0) return [{ type: 'boss', count: 1 }];
-            if (wave >= 33 && wave <= 50) return [{ type: 'soldier', count: 100 }];
-            return [{ type: 'soldier', count: 10 + wave * 2 }]; // Fallback
+            return [{ type: 'soldier', count: 10 + wave * 5 }];
     }
 }
 
@@ -525,23 +579,24 @@ function getEnemySVG(type) {
     if (type === 'boss') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>`;
     if (type === 'decoy_tank') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>`;
     if (type === 'fleet') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,2 10,9 2,9" fill="#ff9800"/><circle cx="6" cy="7" r="1.5" fill="#000"/></svg>`;
-    if (type === 'air_soldier') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,10 1,10" fill="#800080"/></svg>`;
+    if (type === 'delivery') return `<svg width="16" height="16" style="vertical-align:middle;"><polygon points="8,1 15,14 1,14" fill="#800080"/></svg>`;
     if (type === 'splitter') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>`;
     if (type === 'split') return `<svg width="12" height="12" style="vertical-align:middle;"><rect x="3" y="3" width="6" height="6" fill="#ff0000"/></svg>`;
     if (type === 'golden_carrier') return `<svg width="12" height="12" style="vertical-align:middle;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>`;
     return '';
 }
 
-const COSTS = { laser: 5, sniper: 15, flamer: 25, zapper: 25, cooler: 0, inoculator: 0, nuker: 0 };
-let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0, MAX_COOLER = 0, MAX_INOCULATOR = 0, MAX_NUKER = 0;
+const COSTS = { laser: 5, sniper: 10, flamer: 15, zapper: 15, cooler: 0, inoculator: 0, nuker: 0, singularity: 0 };
+const SECRET_UPGRADE_COSTS = { cooler: 50, inoculator: 75, nuker: 100, singularity: 150 };
+let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0, MAX_COOLER = 0, MAX_INOCULATOR = 0, MAX_NUKER = 0, MAX_SINGULARITY = 0;
 const grid = new Map();
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const hexKey = (q, r) => `${q},${r}`;
 
-let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats;
+let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats, projectiles;
 let freeModeSpawnTimer = 0;
-const ALL_ENEMIES = ['soldier', 'scout', 'tank', 'carrier', 'boss', 'decoy_tank', 'fleet', 'air_soldier', 'splitter', 'split', 'golden_carrier', 'void_scout', 'void_soldier'];
+const ALL_ENEMIES = ['soldier', 'scout', 'tank', 'carrier', 'boss', 'decoy_tank', 'fleet', 'delivery', 'splitter', 'split', 'golden_carrier', 'void_scout', 'void_soldier'];
 let globalScale = 1;
 
 function resizeCanvas() {
@@ -597,7 +652,7 @@ class Enemy {
         else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
         else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
         else if (type === 'fleet') { this.hp = 2 * dm; this.speed = 2.2; this.color = "#ff9800"; }
-        else if (type === 'air_soldier') { this.hp = 10 * dm; this.speed = 0.8; this.color = "#800080"; }
+        else if (type === 'delivery') { this.hp = 15 * dm; this.speed = 0.8; this.color = "#800080"; }
         else if (type === 'splitter') { this.hp = 32 * dm; this.speed = 0.6; this.color = "#ff0000"; }
         else if (type === 'split') { this.hp = 16 * dm; this.speed = 1.2; this.color = "#ff0000"; }
         this.baseSpeed = this.speed;
@@ -607,8 +662,7 @@ class Enemy {
         this.maxHp = this.hp; this.escaped = false;
         const c = pixelToHex(this.relX, this.relY);
         this.targetHex = grid.get(hexKey(c.q, c.r)) || startHex;
-        if (this.type === 'air_soldier' && this.targetHex.nextInAirPath) this.targetHex = this.targetHex.nextInAirPath;
-        else if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
+        if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         this.q = this.targetHex.q; this.r = this.targetHex.r;
     }
     get px() { return canvas.width/2 + this.relX; }
@@ -641,11 +695,7 @@ class Enemy {
         if (dist < this.speed * dt) {
             this.px = tx; this.py = ty; this.q = this.targetHex.q; this.r = this.targetHex.r;
             if (this.targetHex.isExit) { this.escaped = true; return; }
-            if (this.type === 'air_soldier') {
-                if (this.targetHex.nextInAirPath) this.targetHex = this.targetHex.nextInAirPath;
-            } else {
-                if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
-            }
+            if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         } else {
             const a = Math.atan2(ty - this.py, tx - this.px);
             this.px += Math.cos(a) * this.speed * dt; this.py += Math.sin(a) * this.speed * dt;
@@ -677,8 +727,8 @@ class Enemy {
             const s = this.type === 'fleet' ? 8 : 12;
             ctx.moveTo(this.px, this.py-s); ctx.lineTo(this.px+s*0.8, this.py+s*0.7); ctx.lineTo(this.px-s*0.8, this.py+s*0.7); ctx.closePath(); 
         }
-        else if (this.type === 'air_soldier') {
-            const s = 16;
+        else if (this.type === 'delivery') {
+            const s = 20;
             ctx.beginPath();
             ctx.moveTo(this.px, this.py-s); ctx.lineTo(this.px+s*0.8, this.py+s*0.7); ctx.lineTo(this.px-s*0.8, this.py+s*0.7); ctx.closePath();
             ctx.fill();
@@ -753,12 +803,49 @@ class Tower {
     constructor(hex, type) {
         this.q = hex.q; this.r = hex.r; this.x = hex.x; this.y = hex.y;
         this.type = type; this.level = 1; this.totalSpent = COSTS[type];
-        this.damage = type === 'flamer' ? 2 : (type === 'laser' ? 4 : (type === 'zapper' ? 4 : (type === 'cooler' ? 1 : (type === 'nuker' ? 25 : (type === 'inoculator' ? 0 : 8)))));
-        this.range = type === 'sniper' ? 3.2 : (type === 'zapper' ? 2.2 : (type === 'nuker' ? 10.2 : (type === 'cooler' ? 1.2 : (type === 'inoculator' ? 2.2 : 1.2))));
-        this.fireRate = type === 'flamer' ? 90 : (type === 'laser' ? 60 : (type === 'zapper' ? 120 : (type === 'cooler' ? 90 : (type === 'nuker' ? 240 : (type === 'inoculator' ? 180 : 150)))));
-        this.cooldown = 0; this.lastShot = null; this.hasFired = false;
+        const stats = {
+            laser: { dmg: 4, rng: 1.2, fr: 60 },
+            sniper: { dmg: 8, rng: 3.2, fr: 150 },
+            flamer: { dmg: 2, rng: 1.2, fr: 90 },
+            zapper: { dmg: 4, rng: 2.2, fr: 120 },
+            cooler: { dmg: 1, rng: 1.2, fr: 90 },
+            inoculator: { dmg: 0, rng: 2.2, fr: 180 },
+            nuker: { dmg: 25, rng: 10.2, fr: 480 },
+            singularity: { dmg: 0, rng: 0, fr: 0 }
+        };
+        const s = stats[type] || stats.laser;
+        this.damage = s.dmg;
+        this.range = s.rng;
+        this.fireRate = s.fr;
+        this.cooldown = 0; this.lastShot = null; this.hasFired = (type === 'singularity');
+        this.calcTimer = 0;
     }
     update(dt) {
+        if (this.type === 'singularity') {
+            this.calcTimer += dt;
+            if (this.calcTimer >= 10) { // Spawn every 10 frames approx
+                this.calcTimer = 0;
+                const bit = Math.random() > 0.5 ? "1" : "0";
+                const offsetX = (Math.random() - 0.5) * 20;
+                const offsetY = (Math.random() - 0.5) * 20;
+                floatingTexts.push(new FloatingText(canvas.width/2 + this.x + offsetX, canvas.height/2 + this.y + offsetY, bit, "#00ff66", 16));
+            }
+            return;
+        }
+        
+        let fireRateMult = 1;
+        let damageMult = 1;
+        const singularities = towers.filter(t => t.type === 'singularity');
+        if (singularities.length > 0) {
+            const maxLevel = Math.max(...singularities.map(t => t.level));
+            if (maxLevel === 2) {
+                fireRateMult = 1.8;
+                damageMult = 1.5;
+            } else {
+                fireRateMult = 1.4;
+            }
+        }
+
         if (this.cooldown > 0) this.cooldown -= dt;
         if (this.cooldown <= 0 && enemies.length > 0) {
             const decoysInRange = window.globalDecoyExists ? enemies.filter(en => en.type === 'decoy_tank' && getHexDist(this, en) <= this.range) : [];
@@ -773,8 +860,8 @@ class Tower {
                 
                 if (targets.length > 0) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
-                    targets.forEach(target => target.hp -= this.damage);
-                    this.cooldown = this.fireRate;
+                    targets.forEach(target => target.hp -= (this.damage * damageMult));
+                    this.cooldown = this.fireRate / fireRateMult;
                     this.lastShot = { time: 15, aoe: true };
                     playSFX(80, 'sawtooth', 0.3);
                 }
@@ -788,20 +875,20 @@ class Tower {
                 
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
-                    target.hp -= this.damage; this.cooldown = this.fireRate;
+                    target.hp -= (this.damage * damageMult); this.cooldown = this.fireRate / fireRateMult;
                     
                     let chainTarget = null;
                     let chainTarget2 = null;
                     let possibleChainTargets = enemies.filter(en => en !== target && getHexDist(target, en) <= 1.2);
                     if (possibleChainTargets.length > 0) {
                         chainTarget = possibleChainTargets[0];
-                        chainTarget.hp -= (this.level === 3 ? 6 : this.damage / 2);
+                        chainTarget.hp -= (this.level === 3 ? 6 * damageMult : (this.damage / 2) * damageMult);
                         
                         if (this.level === 3) {
                             let possibleChainTargets2 = enemies.filter(en => en !== target && en !== chainTarget && getHexDist(chainTarget, en) <= 1.2);
                             if (possibleChainTargets2.length > 0) {
                                 chainTarget2 = possibleChainTargets2[0];
-                                chainTarget2.hp -= 3;
+                                chainTarget2.hp -= 3 * damageMult;
                             }
                         }
                     }
@@ -829,9 +916,8 @@ class Tower {
                 }
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
-                    target.hp -= this.damage; this.cooldown = this.fireRate;
-                    this.lastShot = { relTx: target.relX, relTy: target.relY, time: 20, get tx() { return canvas.width/2 + this.relTx; }, get ty() { return canvas.height/2 + this.relTy; } };
-                    playSFX(150, 'sawtooth', 0.5);
+                    this.cooldown = this.fireRate / fireRateMult;
+                    projectiles.push(new Projectile(canvas.width/2 + this.x, canvas.height/2 + this.y, target, 'nuker', this.damage * damageMult, this.level));
                 }
             } else if (this.type === 'inoculator') {
                 let target = null;
@@ -842,11 +928,8 @@ class Tower {
                 }
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
-                    target.corroded = true;
-                    target.corrosionDamage = this.level * 0.5;
-                    this.cooldown = this.fireRate;
-                    this.lastShot = { relTx: target.relX, relTy: target.relY, time: 15, get tx() { return canvas.width/2 + this.relTx; }, get ty() { return canvas.height/2 + this.relTy; } };
-                    playSFX(200, 'square', 0.4);
+                    this.cooldown = this.fireRate / fireRateMult;
+                    projectiles.push(new Projectile(canvas.width/2 + this.x, canvas.height/2 + this.y, target, 'inoculator', 0, this.level));
                 }
             } else if (this.type === 'cooler') {
                 let targets = [];
@@ -859,13 +942,13 @@ class Tower {
                 if (targets.length > 0) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     targets.forEach(target => {
-                        target.hp -= this.damage;
+                        target.hp -= (this.damage * damageMult);
                         target.slowEffect = {
                             multiplier: this.level === 2 ? 0.65 : 0.8,
                             duration: 180
                         };
                     });
-                    this.cooldown = this.fireRate;
+                    this.cooldown = this.fireRate / fireRateMult;
                     this.lastShot = { time: 20, aoe: true };
                     playSFX(150, 'sine', 0.3);
                 }
@@ -879,7 +962,7 @@ class Tower {
                 
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
-                    target.hp -= this.damage; this.cooldown = this.fireRate;
+                    target.hp -= (this.damage * damageMult); this.cooldown = this.fireRate / fireRateMult;
                     this.lastShot = { 
                         relTx: target.relX, relTy: target.relY, 
                         get tx() { return canvas.width/2 + this.relTx; },
@@ -896,8 +979,8 @@ class Tower {
     }
     draw(cX, cY, isSelected) {
         ctx.save();
-        const isSecret = this.type === 'cooler' || this.type === 'nuker' || this.type === 'inoculator';
-        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : (this.type === 'cooler' ? ["#0066cc", "#0099ff", "#00ffff"] : (this.type === 'nuker' ? ["#cc0000", "#ff0000", "#ff3333"] : (this.type === 'inoculator' ? ["#009900", "#00cc00", "#00ff00"] : ["#7b1fa2", "#9c27b0", "#d500f9"])))));
+        const isSecret = this.type === 'cooler' || this.type === 'nuker' || this.type === 'inoculator' || this.type === 'singularity';
+        const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : (this.type === 'cooler' ? ["#0066cc", "#0099ff", "#00ffff"] : (this.type === 'nuker' ? ["#cc0000", "#ff0000", "#ff3333"] : (this.type === 'inoculator' ? ["#009900", "#00cc00", "#00ff00"] : (this.type === 'singularity' ? ["#000000", "#000000", "#ffffff"] : ["#7b1fa2", "#9c27b0", "#d500f9"]))))));
         const colorIndex = isSecret && this.level === 2 ? 2 : this.level - 1;
         ctx.fillStyle = colors[colorIndex]; ctx.shadowBlur = 10; ctx.shadowColor = ctx.fillStyle;
         ctx.beginPath();
@@ -906,6 +989,7 @@ class Tower {
         else if (this.type === 'cooler') { for(let i=0;i<3;i++){const a=(Math.PI*2/3)*i+Math.PI/2; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'nuker') { for(let i=0;i<8;i++){const a=(Math.PI/4)*i; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
         else if (this.type === 'zapper') { for(let i=0;i<6;i++){const a=(Math.PI/3)*i; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
+        else if (this.type === 'singularity') { for(let i=0;i<12;i++){const a=(Math.PI/6)*i; ctx.lineTo(cX+this.x+16*Math.cos(a),cY+this.y+16*Math.sin(a));} ctx.closePath(); }
         else { ctx.arc(cX+this.x, cY+this.y, 16, 0, Math.PI*2); }
         ctx.fill();
         ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
@@ -933,18 +1017,6 @@ class Tower {
                     ctx.arc(cX+this.x, cY+this.y, radius, 0, Math.PI*2);
                     ctx.fill();
                 }
-            } else if (this.type === 'nuker') {
-                ctx.strokeStyle = `rgba(255, 0, 0, ${this.lastShot.time / 20})`;
-                ctx.shadowColor = "#ff0000";
-                ctx.lineWidth = this.level === 2 ? 15 : 8;
-                ctx.moveTo(cX+this.x, cY+this.y); ctx.lineTo(this.lastShot.tx, this.lastShot.ty);
-                ctx.stroke();
-            } else if (this.type === 'inoculator') {
-                ctx.strokeStyle = `rgba(0, 255, 0, ${this.lastShot.time / 15})`;
-                ctx.shadowColor = "#00ff00";
-                ctx.lineWidth = this.level === 3 ? 6 : 3;
-                ctx.moveTo(cX+this.x, cY+this.y); ctx.lineTo(this.lastShot.tx, this.lastShot.ty);
-                ctx.stroke();
             } else if (this.type === 'cooler') {
                 const radius = HEX_SIZE * 1.5 * (1 - this.lastShot.time/20) + 20;
                 ctx.fillStyle = `rgba(0, 153, 255, ${this.lastShot.time / 20 * 0.5})`;
@@ -1013,6 +1085,131 @@ class Tower {
     }
 }
 
+class Projectile {
+    constructor(x, y, target, type, damage, level) {
+        this.relX = x - canvas.width/2;
+        this.relY = y - canvas.height/2;
+        this.target = target;
+        this.lastRelTx = target.relX;
+        this.lastRelTy = target.relY;
+        this.type = type;
+        this.damage = damage;
+        this.level = level;
+        this.speed = type === 'nuker' ? 4 : 8;
+        this.active = true;
+    }
+    get x() { return canvas.width/2 + this.relX; }
+    set x(val) { this.relX = val - canvas.width/2; }
+    get y() { return canvas.height/2 + this.relY; }
+    set y(val) { this.relY = val - canvas.height/2; }
+    
+    update(dt) {
+        if (!this.active) return;
+        
+        if (this.target && this.target.hp > 0 && !this.target.escaped) {
+            this.lastRelTx = this.target.relX;
+            this.lastRelTy = this.target.relY;
+        } else {
+            this.target = null;
+        }
+        
+        const tx = canvas.width/2 + this.lastRelTx;
+        const ty = canvas.height/2 + this.lastRelTy;
+        const dist = Math.hypot(tx - this.x, ty - this.y);
+        
+        if (dist < this.speed * dt) {
+            this.x = tx;
+            this.y = ty;
+            this.hit();
+        } else {
+            const a = Math.atan2(ty - this.y, tx - this.x);
+            this.x += Math.cos(a) * this.speed * dt;
+            this.y += Math.sin(a) * this.speed * dt;
+        }
+    }
+    hit() {
+        this.active = false;
+        if (this.type === 'nuker') {
+            const aoeRadius = 2;
+            const hitHex = pixelToHex(this.relX, this.relY);
+            
+            enemies.forEach(en => {
+                if (en.hp > 0 && !en.escaped) {
+                    const enHex = pixelToHex(en.relX, en.relY);
+                    const dist = Math.max(Math.abs(hitHex.q - enHex.q), Math.abs(hitHex.q + hitHex.r - enHex.q - enHex.r), Math.abs(hitHex.r - enHex.r));
+                    if (dist <= aoeRadius) {
+                        en.hp -= this.damage;
+                    }
+                }
+            });
+            
+            playSFX(150, 'sawtooth', 0.5);
+            spawnExplosion(this.x, this.y, "#ff0000");
+            
+            // Visual AoE indicator
+            const aoeEffect = {
+                x: this.x, y: this.y,
+                radius: 0, maxRadius: aoeRadius * HEX_SIZE * Math.sqrt(3),
+                life: 1, maxLife: 1,
+                update: function(dt) { this.life -= dt/30; this.radius += (this.maxRadius - this.radius) * 0.2; },
+                draw: function() {
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, this.life);
+                    ctx.strokeStyle = "rgba(255, 0, 0, 0.8)";
+                    ctx.lineWidth = 3;
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = "#ff0000";
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
+                    ctx.fill();
+                    ctx.restore();
+                }
+            };
+            if (!window.aoeEffects) window.aoeEffects = [];
+            window.aoeEffects.push(aoeEffect);
+            
+        } else if (this.type === 'inoculator') {
+            if (this.target) {
+                let damageMult = 1;
+                const singularities = towers.filter(t => t.type === 'singularity');
+                if (singularities.length > 0) {
+                    const maxLevel = Math.max(...singularities.map(t => t.level));
+                    if (maxLevel === 2) damageMult = 1.5;
+                }
+                this.target.corroded = true;
+                this.target.corrosionDamage = (this.level * 0.5) * damageMult;
+            }
+            playSFX(200, 'square', 0.4);
+            for(let i=0; i<5; i++) particles.push(new Particle(this.x, this.y, "#00ff00"));
+        }
+    }
+    draw() {
+        if (!this.active) return;
+        ctx.save();
+        if (this.type === 'nuker') {
+            ctx.fillStyle = "#800020";
+            ctx.shadowColor = "#800020";
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.level === 2 ? 14 : 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#ff3333";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        } else if (this.type === 'inoculator') {
+            ctx.fillStyle = "#00ff00";
+            ctx.shadowColor = "#00ff00";
+            ctx.shadowBlur = 10;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.level === 2 ? 6 : 4, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+}
+
 class Particle {
     constructor(x, y, color) {
         this.relX = x - canvas.width/2;
@@ -1038,10 +1235,11 @@ class Particle {
     }
 }
 class FloatingText {
-    constructor(x, y, text, color) {
+    constructor(x, y, text, color, size = 16) {
         this.relX = x - canvas.width/2;
         this.relY = y - canvas.height/2;
         this.text = text; this.color = color;
+        this.size = size;
         this.life = 60; this.maxLife = 60;
     }
     get x() { return canvas.width/2 + this.relX; }
@@ -1049,12 +1247,12 @@ class FloatingText {
     get y() { return canvas.height/2 + this.relY; }
     set y(val) { this.relY = val - canvas.height/2; }
     
-    update() { this.y -= 0.5; this.life--; }
+    update(dt = 1) { this.relY -= 0.5 * dt; this.life -= dt; }
     draw() {
         ctx.save();
         ctx.globalAlpha = this.life / this.maxLife;
         ctx.fillStyle = this.color;
-        ctx.font = "bold 16px 'Courier New'";
+        ctx.font = `bold ${this.size}px 'Courier New'`;
         ctx.textAlign = "center";
         ctx.shadowBlur = 5; ctx.shadowColor = this.color;
         ctx.fillText(this.text, this.x, this.y);
@@ -1097,8 +1295,9 @@ function calculatePath() {
 
 function initGame() {
     credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false; bossDefeats = 0;
-    enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; freeModeSpawnTimer = 0; particles = []; floatingTexts = [];
-    MAX_SNIPER = 0; MAX_FLAMER = 0; MAX_ZAPPER = 0; MAX_COOLER = 0; MAX_INOCULATOR = 0; MAX_NUKER = 0;
+    enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; freeModeSpawnTimer = 0; particles = []; floatingTexts = []; projectiles = [];
+    window.aoeEffects = [];
+    MAX_SNIPER = 0; MAX_FLAMER = 0; MAX_ZAPPER = 0; MAX_COOLER = 0; MAX_INOCULATOR = 0; MAX_NUKER = 0; MAX_SINGULARITY = 0;
     document.getElementById('gameover-modal').style.display = 'none';
     let valid = false;
     while(!valid) {
@@ -1118,45 +1317,15 @@ function updateUI() {
     document.getElementById('lives').innerText = isFreeMode ? "∞" : Math.max(0, lives);
     
     let waveTypeStr = 'UNKNOWN';
-    switch (currentWave) {
-        case 1: waveTypeStr = 'SOLDIER'; break;
-        case 2: waveTypeStr = 'SOLDIER'; break;
-        case 3: waveTypeStr = 'CARRIER & SOLDIER'; break;
-        case 4: waveTypeStr = 'SCOUT'; break;
-        case 5: waveTypeStr = 'TANK'; break;
-        case 6: waveTypeStr = 'CARRIER & TANK'; break;
-        case 7: waveTypeStr = 'TANK'; break;
-        case 8: waveTypeStr = 'DECOY & CARRIER'; break;
-        case 9: waveTypeStr = 'TANK & SCOUT'; break;
-        case 10: waveTypeStr = 'BOSS'; break;
-        case 11: waveTypeStr = 'SOLDIER & FLEET'; break;
-        case 12: waveTypeStr = 'SCOUT & TANK'; break;
-        case 13: waveTypeStr = 'CARRIER & SPLITTER'; break;
-        case 14: waveTypeStr = 'DECOY & SOLDIER'; break;
-        case 15: waveTypeStr = 'SPLITTER & GOLDEN CARRIER'; break;
-        case 16: waveTypeStr = 'SOLDIER & TANK'; break;
-        case 17: waveTypeStr = 'SNIPER RECOVERY'; break;
-        case 18: waveTypeStr = 'DECOY SWARM'; break;
-        case 19: waveTypeStr = 'TANK & FLEET RELAY'; break;
-        case 20: waveTypeStr = 'COMMANDER BOSS'; break;
-        case 21: waveTypeStr = 'AIR & GROUND ZAPPER'; break;
-        case 22: waveTypeStr = 'DECOY & SCOUTS'; break;
-        case 23: waveTypeStr = 'MASSIVE SNIPER RECOVERY'; break;
-        case 24: waveTypeStr = 'MIXED ASSAULT'; break;
-        case 25: waveTypeStr = 'SPLITTER & GOLDEN CARRIER'; break;
-        case 26: waveTypeStr = 'TANK SIEGE'; break;
-        case 27: waveTypeStr = 'FLEET SWARM & CARRIER'; break;
-        case 28: waveTypeStr = 'MASSIVE MIXED SWARM'; break;
-        case 29: waveTypeStr = 'DOUBLE CARRIER & SIEGE'; break;
-        case 30: waveTypeStr = 'BOSS'; break;
-        case 31: waveTypeStr = 'SCOUT SWARM'; break;
-        case 32: waveTypeStr = 'SOLDIER SWARM'; break;
-        case 35: waveTypeStr = 'SPLITTERS & NUKER CARRIER'; break;
-        default: 
-            if (currentWave % 10 === 0) waveTypeStr = 'BOSS';
-            else if (currentWave >= 33 && currentWave <= 50) waveTypeStr = 'SOLDIER SIEGE';
-            else waveTypeStr = 'UNKNOWN';
-    }
+    if (currentWave <= 10) waveTypeStr = 'TIER 1: BASICS';
+    else if (currentWave <= 20) waveTypeStr = 'TIER 2: SWARMS & SPLITS';
+    else if (currentWave <= 30) waveTypeStr = 'TIER 3: HEAVY ASSAULT';
+    else if (currentWave <= 40) waveTypeStr = 'TIER 4: CHAOS';
+    else if (currentWave <= 50) waveTypeStr = 'TIER 5: SINGULARITY';
+    
+    if (currentWave % 10 === 0) waveTypeStr += ' (BOSS)';
+    else if ([15, 25, 35, 45].includes(currentWave)) waveTypeStr += ' (GOLDEN)';
+    
     document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${waveTypeStr}`;
     
     const sniperCount = towers.filter(t => t.type === 'sniper').length;
@@ -1171,10 +1340,12 @@ function updateUI() {
     const coolerCount = towers.filter(t => t.type === 'cooler').length;
     const inoculatorCount = towers.filter(t => t.type === 'inoculator').length;
     const nukerCount = towers.filter(t => t.type === 'nuker').length;
+    const singularityCount = towers.filter(t => t.type === 'singularity').length;
     
     document.getElementById('cooler-count').innerText = isFreeMode ? "∞/∞" : `${MAX_COOLER - coolerCount}/${MAX_COOLER}`;
     document.getElementById('inoculator-count').innerText = isFreeMode ? "∞/∞" : `${MAX_INOCULATOR - inoculatorCount}/${MAX_INOCULATOR}`;
     document.getElementById('nuker-count').innerText = isFreeMode ? "∞/∞" : `${MAX_NUKER - nukerCount}/${MAX_NUKER}`;
+    document.getElementById('singularity-count').innerText = isFreeMode ? "∞/∞" : `${MAX_SINGULARITY - singularityCount}/${MAX_SINGULARITY}`;
     
     // Visibilità dinamica opzioni costruzione
     document.getElementById('sniper-option').style.display = (MAX_SNIPER > 0 || isFreeMode) ? 'flex' : 'none';
@@ -1183,7 +1354,8 @@ function updateUI() {
     document.getElementById('cooler-option').style.display = (MAX_COOLER > 0 || isFreeMode) ? 'flex' : 'none';
     document.getElementById('inoculator-option').style.display = (MAX_INOCULATOR > 0 || isFreeMode) ? 'flex' : 'none';
     document.getElementById('nuker-option').style.display = (MAX_NUKER > 0 || isFreeMode) ? 'flex' : 'none';
-    document.getElementById('secret-tier-header').style.display = (MAX_COOLER > 0 || MAX_INOCULATOR > 0 || MAX_NUKER > 0 || isFreeMode) ? 'block' : 'none';
+    document.getElementById('singularity-option').style.display = (MAX_SINGULARITY > 0 || isFreeMode) ? 'flex' : 'none';
+    document.getElementById('secret-tier-header').style.display = (MAX_COOLER > 0 || MAX_INOCULATOR > 0 || MAX_NUKER > 0 || MAX_SINGULARITY > 0 || isFreeMode) ? 'block' : 'none';
     
     document.getElementById('btn-start').disabled = gameStarted;
     if (gameStarted) {
@@ -1197,21 +1369,27 @@ function updateUI() {
     const panel = document.getElementById('selection-panel');
     if (selectedTower) {
         panel.style.display = 'block'; 
-        document.getElementById('sel-dmg').innerText = selectedTower.damage; 
-        document.getElementById('sel-rng').innerText = selectedTower.range.toFixed(1);
+        let damageMult = 1;
+        const singularities = towers.filter(t => t.type === 'singularity');
+        if (singularities.length > 0) {
+            const maxLevel = Math.max(...singularities.map(t => t.level));
+            if (maxLevel === 2) damageMult = 1.5;
+        }
+        document.getElementById('sel-dmg').innerText = (selectedTower.damage * damageMult).toFixed(1).replace(/\.0$/, ''); 
+        document.getElementById('sel-rng').innerText = selectedTower.range.toFixed(1).replace(/\.0$/, '');
         document.getElementById('sel-lv').innerText = selectedTower.level;
         let sellPrice = selectedTower.hasFired ? Math.floor(selectedTower.totalSpent * 0.5) : selectedTower.totalSpent;
         let sellText = selectedTower.hasFired ? `VENDI (${sellPrice} C)` : `VENDI ♻️ (${sellPrice} C)`;
         document.getElementById('btn-sell').innerText = sellText;
         const baseCost = COSTS[selectedTower.type];
-        const isSecret = ['cooler', 'nuker', 'inoculator'].includes(selectedTower.type);
+        const isSecret = ['cooler', 'nuker', 'inoculator', 'singularity'].includes(selectedTower.type);
         const maxLevel = isSecret ? 2 : 3;
         
         let nextCost = 0;
         if (isSecret) {
-            nextCost = selectedTower.type === 'cooler' ? 75 : (selectedTower.type === 'inoculator' ? 75 : 150);
+            nextCost = SECRET_UPGRADE_COSTS[selectedTower.type] || 100;
         } else {
-            nextCost = selectedTower.level === 1 ? baseCost * 2 : Math.floor(baseCost * 5);
+            nextCost = selectedTower.level === 1 ? baseCost * 2 : baseCost * 3;
         }
         
         const upBtn = document.getElementById('btn-upgrade');
@@ -1261,6 +1439,12 @@ function tryBuild(type) {
     if (!isFreeMode && type === 'nuker' && towers.filter(t => t.type === 'nuker').length >= MAX_NUKER) {
         const err = document.getElementById('error-overlay');
         err.innerText = `ORDINE NEGATO: MAX ${MAX_NUKER} NUKER`;
+        err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 1500);
+        return;
+    }
+    if (!isFreeMode && type === 'singularity' && towers.filter(t => t.type === 'singularity').length >= MAX_SINGULARITY) {
+        const err = document.getElementById('error-overlay');
+        err.innerText = `ORDINE NEGATO: MAX ${MAX_SINGULARITY} SINGULARITY`;
         err.style.display = 'block'; setTimeout(() => err.style.display = 'none', 1500);
         return;
     }
@@ -1366,7 +1550,7 @@ function loop(timestamp) {
 
             if (targetGroup) {
                 let iv = 60;
-                if (targetGroup.type === 'scout' || targetGroup.type === 'fleet' || targetGroup.type === 'air_soldier') iv = 30;
+                if (targetGroup.type === 'scout' || targetGroup.type === 'fleet' || targetGroup.type === 'delivery') iv = 30;
                 else if (targetGroup.type === 'tank' || targetGroup.type === 'decoy_tank' || targetGroup.type === 'carrier' || targetGroup.type === 'golden_carrier' || targetGroup.type === 'splitter') iv = 72;
                 else if (targetGroup.type === 'boss') iv = 120;
                 
@@ -1378,13 +1562,17 @@ function loop(timestamp) {
             if (enemyToSpawn) {
                 let dropToSpawn = null;
                 if (enemyToSpawn === 'carrier') {
-                    if (currentWave === 8 || currentWave === 13 || currentWave === 29) dropToSpawn = 'flamer';
-                    else if (currentWave === 14 || currentWave === 21 || currentWave === 27) dropToSpawn = 'zapper';
-                    else if (currentWave === 17 || currentWave === 23) dropToSpawn = 'sniper';
-                    else if (currentWave % 10 === 6 && currentWave > 10) {
-                        dropToSpawn = 'flamer';
+                    if (targetGroup && targetGroup.drop) {
+                        dropToSpawn = targetGroup.drop;
                     } else {
-                        dropToSpawn = 'sniper';
+                        if (currentWave === 8 || currentWave === 13 || currentWave === 29) dropToSpawn = 'flamer';
+                        else if (currentWave === 14 || currentWave === 21 || currentWave === 27 || currentWave === 38) dropToSpawn = 'zapper';
+                        else if (currentWave === 17 || currentWave === 23 || currentWave === 33) dropToSpawn = 'sniper';
+                        else if (currentWave % 10 === 6 && currentWave > 10) {
+                            dropToSpawn = 'flamer';
+                        } else {
+                            dropToSpawn = 'sniper';
+                        }
                     }
                 }
 
@@ -1421,9 +1609,12 @@ function loop(timestamp) {
                     } else if (currentWave === 25) {
                         MAX_INOCULATOR = 1;
                         notif.innerHTML = "TECNOLOGIA SEGRETA RECUPERATA:<br><span style='color:#00ff00'>INOCULATOR SBLOCCATO</span>";
-                    } else {
+                    } else if (currentWave === 35) {
                         MAX_NUKER = 1;
                         notif.innerHTML = "TECNOLOGIA SEGRETA RECUPERATA:<br><span style='color:#ff0000'>NUKER SBLOCCATO</span>";
+                    } else if (currentWave === 45) {
+                        MAX_SINGULARITY = 1;
+                        notif.innerHTML = "TECNOLOGIA SEGRETA RECUPERATA:<br><span style='color:#000000; text-shadow: 0 0 5px #fff;'>SINGULARITY SBLOCCATO</span>";
                     }
                 } else if (enemies[i].drop) {
                     if (enemies[i].drop === 'zapper') {
@@ -1456,7 +1647,7 @@ function loop(timestamp) {
                 let reward = 1;
                 if (enemies[i].type === 'boss' || enemies[i].type === 'decoy_tank') reward = 5;
                 else if (enemies[i].type === 'carrier') reward = 3;
-                else if (enemies[i].type === 'air_soldier') reward = 2;
+                else if (enemies[i].type === 'delivery') reward = 2;
                 else if (enemies[i].type === 'fleet' || enemies[i].isMinion || enemies[i].type === 'splitter') reward = 0;
                 else if (enemies[i].type === 'split') reward = 1;
                 
@@ -1465,6 +1656,12 @@ function loop(timestamp) {
             if (enemies[i].type === 'splitter') {
                 enemies.push(new Enemy('split', enemies[i].px - 10, enemies[i].py));
                 enemies.push(new Enemy('split', enemies[i].px + 10, enemies[i].py));
+            }
+            if (enemies[i].type === 'delivery') {
+                enemies.push(new Enemy('scout', enemies[i].px - 10, enemies[i].py - 10));
+                enemies.push(new Enemy('scout', enemies[i].px + 10, enemies[i].py - 10));
+                enemies.push(new Enemy('scout', enemies[i].px - 10, enemies[i].py + 10));
+                enemies.push(new Enemy('scout', enemies[i].px + 10, enemies[i].py + 10));
             }
             if(!enemies[i].isMinion) killsInWave++; 
             enemies.splice(i,1); updateUI(); 
@@ -1487,16 +1684,26 @@ function loop(timestamp) {
         }
     }
     towers.forEach(t => { t.update(dt); t.draw(cX, cY, t === selectedTower); });
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+        projectiles[i].update(dt); projectiles[i].draw();
+        if (!projectiles[i].active) projectiles.splice(i, 1);
+    }
     for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update(dt); particles[i].draw();
         if (particles[i].life <= 0) particles.splice(i, 1);
     }
+    if (window.aoeEffects) {
+        for (let i = window.aoeEffects.length - 1; i >= 0; i--) {
+            window.aoeEffects[i].update(dt); window.aoeEffects[i].draw();
+            if (window.aoeEffects[i].life <= 0) window.aoeEffects.splice(i, 1);
+        }
+    }
+    ctx.restore();
     for (let i = floatingTexts.length - 1; i >= 0; i--) {
-        floatingTexts[i].update(); floatingTexts[i].draw();
+        floatingTexts[i].update(dt); floatingTexts[i].draw();
         if (floatingTexts[i].life <= 0) floatingTexts.splice(i, 1);
     }
     
-    ctx.restore();
     requestAnimationFrame(loop);
 }
 
@@ -1620,16 +1827,16 @@ document.getElementById('vibration-toggle').onclick = function() {
 };
 document.getElementById('btn-upgrade').onclick = () => { 
     if (!selectedTower) return;
-    const isSecret = ['cooler', 'nuker', 'inoculator'].includes(selectedTower.type);
+    const isSecret = ['cooler', 'nuker', 'inoculator', 'singularity'].includes(selectedTower.type);
     if (selectedTower.level >= (isSecret ? 2 : 3)) return;
     
     const baseCost = COSTS[selectedTower.type];
     
     let nextCost = 0;
     if (isSecret) {
-        nextCost = selectedTower.type === 'cooler' ? 75 : (selectedTower.type === 'inoculator' ? 75 : 150);
+        nextCost = SECRET_UPGRADE_COSTS[selectedTower.type] || 100;
     } else {
-        nextCost = selectedTower.level === 1 ? baseCost * 2 : Math.floor(baseCost * 5);
+        nextCost = selectedTower.level === 1 ? baseCost * 2 : baseCost * 3;
     }
     
     if (isFreeMode || credits >= nextCost) {
@@ -1646,6 +1853,8 @@ document.getElementById('btn-upgrade').onclick = () => {
             } else if (selectedTower.type === 'inoculator') {
                 selectedTower.range = 2.2;
                 // Perfected Inoculator: 2 HP/s corrosion + 15% slow
+            } else if (selectedTower.type === 'singularity') {
+                // Singularity perfected buff is handled in Tower.update()
             }
         } else if (selectedTower.level === 3) {
             if (selectedTower.type === 'sniper') {
