@@ -11,7 +11,16 @@
             --neon-green: #00ff66; --neon-red: #ff0033; --neon-orange: #ff9900;
             --bg-dark: #020205; --gold: #ffeb3b;
         }
-        body { margin: 0; background: var(--bg-dark); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            touch-action: none;
+            overscroll-behavior: none;
+        }
+        body { background: var(--bg-dark); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; user-select: none; -webkit-user-select: none; }
         
         .floating-panel {
             position: absolute;
@@ -44,7 +53,8 @@
         .btn-main:disabled { border-color: #555; color: #555; background: transparent; cursor: not-allowed; box-shadow: none; }
 
         .btn-mini { 
-            padding: 4px 10px; font-size: 0.7rem; border: 1px solid var(--neon-cyan); 
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0 10px; font-size: 0.7rem; border: 1px solid var(--neon-cyan); 
             background: rgba(0, 243, 255, 0.05); color: var(--neon-cyan); cursor: pointer; 
             text-transform: uppercase; font-weight: bold; height: 30px; transition: 0.2s;
         }
@@ -132,7 +142,7 @@
             .version-label { font-size: 0.55rem; margin-bottom: 5px; }
             #top-right { top: 10px; right: 10px; width: 130px; gap: 5px; }
             #legend-btn { font-size: 0.85rem; padding: 8px 0; }
-            .sys-buttons .btn-mini { font-size: 0.6rem; padding: 2px 0; height: 24px; }
+            .sys-buttons .btn-mini { font-size: 0.6rem; padding: 0; height: 24px; }
             #bottom-center { bottom: 10px; width: 90%; padding: 10px; box-sizing: border-box; }
             #build-menu { bottom: 100px; left: 10px; width: 200px; }
             #selection-panel { bottom: 100px; right: 10px; width: 180px; }
@@ -147,7 +157,7 @@
         NEON DEFENSE 
         <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
     </h2>
-    <div class="version-label">ALPHA 1.5 - SINGULARITY</div>
+    <div class="version-label">BETA 1.0.1</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -169,9 +179,9 @@
     <h4 style="color:var(--neon-magenta); margin: 15px 0 5px 0;">UNITÀ OSTILI (Base)</h4>
     <table style="width:100%; text-align:left; border-collapse: collapse;">
         <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>10</td><td>1.2</td><td>1C</td><td>Fanteria standard</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>5</td><td>1.8</td><td>1C</td><td>Unità veloce</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>Tank</td><td>20</td><td>0.8</td><td>1C</td><td>Corazzato lento</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#00ffff"/></svg>Soldier</td><td>12</td><td>1.2</td><td>1C</td><td>Fanteria standard</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ffeb3b"/></svg>Scout</td><td>6</td><td>1.6</td><td>1C</td><td>Unità veloce</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#4caf50"/></svg>Tank</td><td>24</td><td>0.8</td><td>1C</td><td>Corazzato lento</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Void</td><td>2x</td><td>Base</td><td>0C</td><td>Minion del Boss</td></tr>
         <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="3" y="3" width="6" height="6" fill="#ff0000"/></svg>Split</td><td>16</td><td>1.2</td><td>1C</td><td>Minion generato</td></tr>
     </table>
@@ -179,34 +189,34 @@
     <h4 style="color:#ff003c; margin: 15px 0 5px 0;">UNITÀ OSTILI (Elite)</h4>
     <table style="width:100%; text-align:left; border-collapse: collapse;">
         <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>25</td><td>0.8</td><td>5C</td><td>Attira il fuoco</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ff9800"/></svg>Fleet</td><td>2</td><td>2.2</td><td>0C</td><td>Sciame (x4)</td></tr>
-        <tr><td class="row-label"><svg width="16" height="16" style="vertical-align:middle; margin-right:4px;"><polygon points="8,1 15,14 1,14" fill="#800080"/></svg>Delivery</td><td>15</td><td>0.8</td><td>2C</td><td>Rilascia 4 Scout</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>Splitter</td><td>32</td><td>0.6</td><td>0C</td><td>Si divide in 2 Split</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#1b5e20"/><circle cx="6" cy="6" r="2" fill="none" stroke="#4caf50" stroke-width="1.5"/></svg>Decoy</td><td>24</td><td>0.8</td><td>5C</td><td>Attira il fuoco</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,10 1,10" fill="#ff9800"/></svg>Fleet</td><td>2</td><td>2.0</td><td>0C</td><td>Sciame (x4)</td></tr>
+        <tr><td class="row-label"><svg width="16" height="16" style="vertical-align:middle; margin-right:4px;"><polygon points="8,1 15,14 1,14" fill="#800080"/></svg>Delivery</td><td>16</td><td>0.8</td><td>2C</td><td>Rilascia 4 Scout</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#ff0000"/></svg>Splitter</td><td>32</td><td>0.8</td><td>0C</td><td>Si divide in 2 Split</td></tr>
     </table>
 
     <h4 style="color:#ffcc00; margin: 15px 0 5px 0;">UNITÀ OSTILI (Unique)</h4>
     <table style="width:100%; text-align:left; border-collapse: collapse;">
         <tr style="border-bottom: 1px solid #333;"><th>Tipo</th><th>HP</th><th>Spd</th><th>Rew</th><th>Nota</th></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>30</td><td>0.8</td><td>3C</td><td>Fornisce Drop Torrette</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Golden</td><td>30</td><td>0.8</td><td>1C</td><td>Drop Segreto</td></tr>
-        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>80</td><td>0.8</td><td>5C</td><td>Genera Void Minions</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ccff00"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Carrier</td><td>32</td><td>0.8</td><td>3C</td><td>Fornisce Drop Torrette</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><polygon points="6,1 11,5 9,11 3,11 1,5" fill="#ffd700"/><circle cx="6" cy="6" r="2" fill="#fff" opacity="0.8"/></svg>Golden</td><td>32</td><td>0.8</td><td>1C</td><td>Drop Segreto</td></tr>
+        <tr><td class="row-label"><svg width="12" height="12" style="vertical-align:middle; margin-right:4px;"><rect x="1" y="1" width="10" height="10" fill="#000" stroke="#ff00ff" stroke-width="1"/></svg>Boss</td><td>120</td><td>0.8</td><td>5C</td><td>Genera Void Minions</td></tr>
     </table>
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Standard)</h4>
     <table style="width:100%; text-align:left; border-collapse: collapse;">
         <tr style="border-bottom: 1px solid #333;"><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
         <tr><td class="row-label"><span style="color:#0088ff">Laser</span></td><td>4</td><td>1.2</td><td>1.0s</td><td>5C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fuoco rapido a bersaglio singolo. Lvl 2 (10C): 6 Dmg. Lvl 3 (15C): 12 Dmg.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fuoco rapido a bersaglio singolo. Lvl 2 (10C): 6 Dmg. Lvl 3 (30C): 12 Dmg.</i></td></tr>
         
         <tr><td class="row-label"><span style="color:#9c27b0">Sniper</span></td><td>8</td><td>3.2</td><td>2.5s</td><td>15C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Lento ma letale a lungo raggio. Lvl 2 (30C): 12 Dmg. Lvl 3 (45C): 36 Dmg.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Lento ma letale a lungo raggio. Lvl 2 (30C): 12 Dmg. Lvl 3 (90C): 36 Dmg.</i></td></tr>
         
         <tr><td class="row-label"><span style="color:#ff7700">Flamer</span></td><td>2</td><td>1.2</td><td>1.5s</td><td>20C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area a corto raggio. Lvl 2 (40C): 3 Dmg. Lvl 3 (60C): 2 Dmg, Rate 0.5s.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area a corto raggio. Lvl 2 (40C): 3 Dmg. Lvl 3 (120C): 2 Dmg, Rate 0.5s.</i></td></tr>
         
-        <tr><td class="row-label"><span style="color:#777777">Zapper</span></td><td>4</td><td>2.2</td><td>2.0s</td><td>25C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fulmine a catena. Lvl 2 (50C): 6 Dmg. Lvl 3 (75C): Catena su 3 bersagli (9, 6, 3 Dmg).</i></td></tr>
+        <tr><td class="row-label"><span style="color:#777777">Zapper</span></td><td>4</td><td>2.2</td><td>2.0s</td><td>20C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fulmine a catena. Lvl 2 (40C): 6 Dmg. Lvl 3 (120C): Catena su 3 bersagli (9, 6, 3 Dmg).</i></td></tr>
     </table>
 
     <h4 style="color:var(--neon-cyan); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Secret)</h4>
@@ -214,16 +224,16 @@
     <table style="width:100%; text-align:left; border-collapse: collapse;">
         <tr style="border-bottom: 1px solid #333;"><th>Modello</th><th>Dmg</th><th>Rng</th><th>Rate</th><th>Costo</th></tr>
         <tr><td class="row-label"><span style="color:#0099ff">Cooler</span></td><td>1</td><td>1.2</td><td>1.5s</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Rallenta i nemici del 20% per 3s. Lvl 2 (50C): 2 Dmg, Rng 2.2, Rallenta del 35% per 3s.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Rallenta i nemici del 20% per 3s. Lvl 2 (150C): 2 Dmg, Rng 2.2, Rallenta del 35% per 3s.</i></td></tr>
         
         <tr><td class="row-label"><span style="color:#00cc00">Inocul.</span></td><td>0</td><td>2.2</td><td>3.0s</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Corrode i nemici (1 Dmg/s). Lvl 2 (75C): Corrode (2 Dmg/s) e rallenta del 15%.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Corrode i nemici (2 Dmg/s). Lvl 2 (250C): Corrode (4 Dmg/s) e rallenta del 15%.</i></td></tr>
         
-        <tr><td class="row-label"><span style="color:#ff0000">Nuker</span></td><td>25</td><td>10.2</td><td>8.0s</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area estremo (globale). Lvl 2 (100C): 75 Dmg.</i></td></tr>
+        <tr><td class="row-label"><span style="color:#ff0000">Nuker</span></td><td>16</td><td>10.2</td><td>12.0s</td><td>0C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area estremo (globale). Lvl 2 (400C): 64 Dmg.</i></td></tr>
 
         <tr><td class="row-label"><span style="color:#ffffff; text-shadow: 0 0 5px #fff;">Singul.</span></td><td>-</td><td>-</td><td>-</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 1: +40% Rate globale. Lvl 2 (150C): +80% Rate e +50% Dmg globale.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 1: +20% Rate globale. Lvl 2 (600C): +40% Rate e +20% Dmg globale.</i></td></tr>
     </table>
     
     <button class="btn-mini" style="width:100%; margin-top:20px" id="close-legend">RITORNA AL COMBATTIMENTO</button>
@@ -233,13 +243,26 @@
 <div id="info-modal">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">
         <h3 style="color:var(--neon-cyan); margin:0;">NEON DEFENSE - INFO</h3>
-        <button class="btn-mini muted" id="free-mode-btn" style="height:24px; font-size:0.6rem;">FREE MODE</button>
+        <div style="display:flex; gap:5px;">
+            <button class="btn-mini" id="diff-easy-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-green); color:var(--neon-green);">EASY</button>
+            <button class="btn-mini" id="diff-normal-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-orange); color:var(--neon-orange);">NORMAL</button>
+            <button class="btn-mini muted" id="diff-hard-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-red); color:var(--neon-red);">HARD</button>
+            <button class="btn-mini muted" id="free-mode-btn" style="height:28px; font-size:0.6rem; margin-left:10px; border-color:var(--neon-magenta); color:var(--neon-magenta);">FREE MODE</button>
+        </div>
     </div>
     
+    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">BETA 1.0.1 - RIEPILOGO</h4>
+    <div style="font-size:0.85rem; color:#ddd; line-height:1.4; margin-top:5px; border: 1px dashed var(--neon-green); padding: 8px; border-radius: 4px;">
+        • <b>Unified Pathfinding:</b> Tutte le unità seguono ora lo stesso percorso ottimizzato.<br>
+        • <b>Code Cleanup:</b> Rimosso codice ridondante per una maggiore fluidità.<br>
+        • <b>Mobile Fix:</b> Risolti problemi di scrolling e touch-gestures su dispositivi mobili.<br>
+        • <b>Beta Release:</b> Prima versione stabile completa di tutte le meccaniche core.
+    </div>
+
     <h4 style="color:var(--neon-magenta); margin: 15px 0 5px 0;">TUTORIAL RAPIDO</h4>
     <ul style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px; padding-left:20px;">
         <li style="margin-bottom:5px;"><strong>Obiettivo:</strong> Difendi il nucleo (esagono rosso) dai nemici che arrivano dallo spawn (esagono verde).</li>
-        <li style="margin-bottom:5px;"><strong>Costruzione:</strong> Tocca un esagono vuoto per aprire il menu di costruzione. Le torrette bloccano il passaggio terrestre, ma i nemici volanti (Air) le sorvolano!</li>
+        <li style="margin-bottom:5px;"><strong>Costruzione:</strong> Tocca un esagono vuoto per aprire il menu di costruzione. Le torrette bloccano il passaggio, ma non puoi bloccare completamente la strada!</li>
         <li style="margin-bottom:5px;"><strong>Risorse:</strong> Sconfiggi i nemici per ottenere Crediti (C). Usa i crediti per costruire o potenziare le torrette.</li>
         <li style="margin-bottom:5px;"><strong>Potenziamenti:</strong> Tocca una torretta esistente per potenziarla o venderla.</li>
     </ul>
@@ -247,20 +270,57 @@
     <h4 style="color:var(--neon-orange); margin: 15px 0 5px 0;">SCALING DIFFICOLTÀ</h4>
     <div style="font-size:0.85rem; color:#ddd; line-height:1.4; margin-top:5px;">
         L'integrità strutturale (HP) dei nemici aumenta in base alla formula: <b>HP Base + (K * Ondata)%</b><br>
-        • <b>Tier 1 (1-10):</b> K = 3%<br>
-        • <b>Tier 2 (11-20):</b> K = 6%<br>
-        • <b>Tier 3 (21-30):</b> K = 9%<br>
-        • <b>Tier 4 (31-40):</b> K = 12%<br>
-        • <b>Tier 5 (41-50):</b> K = 15%<br>
-        <i>Nota: La velocità rimane costante per tipo di unità.</i>
+        <table style="width:100%; border-collapse: collapse; margin-top:10px; font-size:0.75rem; text-align:center; border: 1px solid #333;">
+            <thead>
+                <tr style="background: rgba(255,255,255,0.05); color: var(--neon-cyan);">
+                    <th style="padding:5px; border: 1px solid #333;">TIER</th>
+                    <th style="padding:5px; border: 1px solid #333;">ONDATA</th>
+                    <th style="padding:5px; border: 1px solid #333; color:var(--neon-green);">EASY</th>
+                    <th style="padding:5px; border: 1px solid #333; color:var(--neon-orange);">NORMAL</th>
+                    <th style="padding:5px; border: 1px solid #333; color:var(--neon-red);">HARD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding:5px; border: 1px solid #333;">1</td>
+                    <td style="padding:5px; border: 1px solid #333;">1-10</td>
+                    <td style="padding:5px; border: 1px solid #333;">3%</td>
+                    <td style="padding:5px; border: 1px solid #333;">4%</td>
+                    <td style="padding:5px; border: 1px solid #333;">5%</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.02);">
+                    <td style="padding:5px; border: 1px solid #333;">2</td>
+                    <td style="padding:5px; border: 1px solid #333;">11-20</td>
+                    <td style="padding:5px; border: 1px solid #333;">6%</td>
+                    <td style="padding:5px; border: 1px solid #333;">8%</td>
+                    <td style="padding:5px; border: 1px solid #333;">10%</td>
+                </tr>
+                <tr>
+                    <td style="padding:5px; border: 1px solid #333;">3</td>
+                    <td style="padding:5px; border: 1px solid #333;">21-30</td>
+                    <td style="padding:5px; border: 1px solid #333;">9%</td>
+                    <td style="padding:5px; border: 1px solid #333;">12%</td>
+                    <td style="padding:5px; border: 1px solid #333;">15%</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.02);">
+                    <td style="padding:5px; border: 1px solid #333;">4</td>
+                    <td style="padding:5px; border: 1px solid #333;">31-40</td>
+                    <td style="padding:5px; border: 1px solid #333;">12%</td>
+                    <td style="padding:5px; border: 1px solid #333;">16%</td>
+                    <td style="padding:5px; border: 1px solid #333;">20%</td>
+                </tr>
+                <tr>
+                    <td style="padding:5px; border: 1px solid #333;">5</td>
+                    <td style="padding:5px; border: 1px solid #333;">41-50</td>
+                    <td style="padding:5px; border: 1px solid #333;">15%</td>
+                    <td style="padding:5px; border: 1px solid #333;">20%</td>
+                    <td style="padding:5px; border: 1px solid #333;">25%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top:8px; font-style:italic; opacity:0.8; font-size:0.7rem;">Nota: La velocità rimane costante per tipo di unità.</div>
     </div>
 
-    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">VERSIONE ATTUALE</h4>
-    <p style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px;">
-        <strong>Alpha 1.5 - SINGULARITY</strong><br>
-        Configurate tutte le ondate del gioco (1-50), revisionati i costi di costruzione e potenziamento delle torrette per un bilanciamento ottimale, e aggiunti nuovi elementi segreti avanzati. Implementata la traccia visiva del percorso nemico sulla griglia e bilanciati i parametri vitali di tutte le unità nemiche.
-    </p>
-    
     <button class="btn-main" style="width:100%; margin-top:20px;" id="close-info">CHIUDI</button>
 </div>
 
@@ -298,7 +358,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">LASER TURRET</b><br>
-            Dmg: 4 | Costo: 5 C | L2: 10 C | L3: 15 C<br>
+            Dmg: 4 | Costo: 5 C | L2: 10 C | L3: 30 C<br>
             <i>Fuoco rapido.</i><br>
             <span style="color:var(--gold)">L3: Danno raddoppiato (12).</span>
         </div>
@@ -314,7 +374,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">SNIPER CANNON</b><br>
-            Dmg: 8 | Costo: 10 C | L2: 20 C | L3: 30 C<br>
+            Dmg: 8 | Costo: 10 C | L2: 20 C | L3: 90 C<br>
             <i>Lungo raggio, lento.</i><br>
             <span style="color:var(--gold)">L3: Danno estremo (36).</span>
         </div>
@@ -330,7 +390,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">FLAMER</b><br>
-            Dmg: 2 | Costo: 15 C | L2: 30 C | L3: 45 C<br>
+            Dmg: 2 | Costo: 15 C | L2: 30 C | L3: 120 C<br>
             <i>Danno ad area.</i><br>
             <span style="color:var(--gold)">L3: 2 Dmg, Fuoco continuo (0.5s).</span>
         </div>
@@ -346,7 +406,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">ZAPPER</b><br>
-            Dmg: 4 | Costo: 15 C | L2: 30 C | L3: 45 C<br>
+            Dmg: 4 | Costo: 15 C | L2: 30 C | L3: 150 C<br>
             <i>Catena di fulmini.</i><br>
             <span style="color:var(--gold)">L3: 3 bersagli (9, 6, 3 Dmg).</span>
         </div>
@@ -363,7 +423,7 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">COOLER</b><br>
-            Dmg: 1 | Costo: 0 C | Upgrade: 50 C<br>
+            Dmg: 1 | Costo: 0 C | Upgrade: 150 C<br>
             <i>Rallenta i nemici (20% per 3s).</i><br>
             <span style="color:var(--gold)">L2: Rallenta (35% per 3s).</span>
         </div>
@@ -379,9 +439,9 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">INOCULATOR</b><br>
-            Dmg: 0 | Costo: 0 C | Upgrade: 75 C<br>
-            <i>Applica corrosione (1 HP/s).</i><br>
-            <span style="color:var(--gold)">L2: Corrosione (2 HP/s) + 15% Slow.</span>
+            Dmg: 0 | Costo: 0 C | Upgrade: 250 C<br>
+            <i>Applica corrosione (2 HP/s).</i><br>
+            <span style="color:var(--gold)">L2: Corrosione (4 HP/s) + 15% Slow.</span>
         </div>
     </div>
 
@@ -397,9 +457,9 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">NUKER</b><br>
-            Dmg: 25 | Costo: 0 C | Upgrade: 100 C<br>
+            Dmg: 16 | Costo: 0 C | Upgrade: 400 C<br>
             <i>Danno estremo, raggio infinito.</i><br>
-            <span style="color:var(--gold)">L2: Danno critico (75).</span>
+            <span style="color:var(--gold)">L2: Danno critico (64).</span>
         </div>
     </div>
 
@@ -415,9 +475,9 @@
         </div>
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">SINGULARITY</b><br>
-            Dmg: 0 | Costo: 0 C | Upgrade: 150 C<br>
-            <i>+40% Fire Rate a tutte le torrette.</i><br>
-            <span style="color:var(--gold)">L2: +80% Fire Rate, +50% Danno Globale.</span>
+            Dmg: 0 | Costo: 0 C | Upgrade: 600 C<br>
+            <i>+20% Fire Rate a tutte le torrette.</i><br>
+            <span style="color:var(--gold)">L2: +40% Fire Rate, +20% Danno Globale.</span>
         </div>
     </div>
 
@@ -461,6 +521,7 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
 let audioCtx = null, masterGain = null, isMuted = false, step = 0;
 let isVibrationEnabled = true;
 let isFreeMode = false;
+let gameDifficulty = 'normal'; // easy, normal, hard
 const sequence = [55, 55, 65.41, 65.41, 49, 49, 51.91, 51.91];
 
 function triggerVibration(type) {
@@ -514,9 +575,9 @@ function getWaveComposition(wave) {
     switch (wave) {
         // TIER 1: BASICS (1-10)
         case 1: return [{ type: 'soldier', count: 15 }];
-        case 2: return [{ type: 'soldier', count: 20 }, { type: 'scout', count: 5 }];
+        case 2: return [{ type: 'soldier', count: 20 }];
         case 3: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'soldier', count: 15 }];
-        case 4: return [{ type: 'scout', count: 25 }];
+        case 4: return [{ type: 'scout', count: 20 }];
         case 5: return [{ type: 'tank', count: 10 }];
         case 6: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'tank', count: 5 }, { type: 'soldier', count: 10 }];
         case 7: return [{ type: 'scout', count: 30 }, { type: 'tank', count: 5 }];
@@ -598,8 +659,9 @@ function getEnemySVG(type) {
     return '';
 }
 
-const COSTS = { laser: 5, sniper: 10, flamer: 15, zapper: 15, cooler: 0, inoculator: 0, nuker: 0, singularity: 0 };
-const SECRET_UPGRADE_COSTS = { cooler: 50, inoculator: 75, nuker: 100, singularity: 150 };
+const COSTS = { laser: 5, sniper: 15, flamer: 20, zapper: 20, cooler: 0, inoculator: 0, nuker: 0, singularity: 0 };
+const SECRET_UPGRADE_COSTS = { cooler: 150, inoculator: 250, nuker: 400, singularity: 600 };
+const L3_COSTS = { laser: 30, sniper: 90, flamer: 120, zapper: 120 };
 let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0, MAX_COOLER = 0, MAX_INOCULATOR = 0, MAX_NUKER = 0, MAX_SINGULARITY = 0;
 const grid = new Map();
 const canvas = document.getElementById('gameCanvas');
@@ -630,11 +692,26 @@ function pixelToHex(x, y) {
 function getHexDist(a, b) { return (Math.abs(a.q - b.q) + Math.abs(a.q + a.r - b.q - b.r) + Math.abs(a.r - b.r)) / 2; }
 
 function getDifficultyMultiplier(wave) {
-    let k = 3;
-    if (wave >= 11 && wave <= 20) k = 6;
-    else if (wave >= 21 && wave <= 30) k = 9;
-    else if (wave >= 31 && wave <= 40) k = 12;
-    else if (wave >= 41) k = 15;
+    let k = 4; // default normal
+    if (gameDifficulty === 'easy') {
+        k = 3;
+        if (wave >= 11 && wave <= 20) k = 6;
+        else if (wave >= 21 && wave <= 30) k = 9;
+        else if (wave >= 31 && wave <= 40) k = 12;
+        else if (wave >= 41) k = 15;
+    } else if (gameDifficulty === 'normal') {
+        k = 4;
+        if (wave >= 11 && wave <= 20) k = 8;
+        else if (wave >= 21 && wave <= 30) k = 12;
+        else if (wave >= 31 && wave <= 40) k = 16;
+        else if (wave >= 41) k = 20;
+    } else if (gameDifficulty === 'hard') {
+        k = 5;
+        if (wave >= 11 && wave <= 20) k = 10;
+        else if (wave >= 21 && wave <= 30) k = 15;
+        else if (wave >= 31 && wave <= 40) k = 20;
+        else if (wave >= 41) k = 25;
+    }
     
     return 1 + (k * wave) / 100;
 }
@@ -651,18 +728,18 @@ class Enemy {
         
         let dm = getDifficultyMultiplier(currentWave);
 
-        this.hp = 10 * dm; this.speed = 1.2; this.color = "#00ffff"; this.isMinion = type.startsWith('void');
-        if (type === 'boss') { this.hp = 80 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
-        else if (type === 'scout') { this.hp = 5 * dm; this.speed = 1.8; this.color = "#ffeb3b"; }
-        else if (type === 'tank') { this.hp = 20 * dm; this.speed = 0.8; this.color = "#4caf50"; }
-        else if (type === 'decoy_tank') { this.hp = 25 * dm; this.speed = 0.8; this.color = "#1b5e20"; }
-        else if (type === 'carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ccff00"; }
-        else if (type === 'golden_carrier') { this.hp = 30 * dm; this.speed = 0.8; this.color = "#ffd700"; }
+        this.hp = 12 * dm; this.speed = 1.2; this.color = "#00ffff"; this.isMinion = type.startsWith('void');
+        if (type === 'boss') { this.hp = 120 * dm; this.speed = 0.8; this.color = "#000000"; this.spawnTimer = 120; this.toggle = false; }
+        else if (type === 'scout') { this.hp = 6 * dm; this.speed = 1.6; this.color = "#ffeb3b"; }
+        else if (type === 'tank') { this.hp = 24 * dm; this.speed = 0.8; this.color = "#4caf50"; }
+        else if (type === 'decoy_tank') { this.hp = 24 * dm; this.speed = 0.8; this.color = "#1b5e20"; }
+        else if (type === 'carrier') { this.hp = 32 * dm; this.speed = 0.8; this.color = "#ccff00"; }
+        else if (type === 'golden_carrier') { this.hp = 32 * dm; this.speed = 0.8; this.color = "#ffd700"; }
         else if (type === 'void_scout') { this.hp = 10 * dm; this.speed = 1.8; this.color = "#000000"; }
         else if (type === 'void_soldier') { this.hp = 20 * dm; this.speed = 1.2; this.color = "#000000"; }
-        else if (type === 'fleet') { this.hp = 2 * dm; this.speed = 2.2; this.color = "#ff9800"; }
-        else if (type === 'delivery') { this.hp = 15 * dm; this.speed = 0.8; this.color = "#800080"; }
-        else if (type === 'splitter') { this.hp = 32 * dm; this.speed = 0.6; this.color = "#ff0000"; }
+        else if (type === 'fleet') { this.hp = 2 * dm; this.speed = 2.0; this.color = "#ff9800"; }
+        else if (type === 'delivery') { this.hp = 16 * dm; this.speed = 0.8; this.color = "#800080"; }
+        else if (type === 'splitter') { this.hp = 32 * dm; this.speed = 0.8; this.color = "#ff0000"; }
         else if (type === 'split') { this.hp = 16 * dm; this.speed = 1.2; this.color = "#ff0000"; }
         this.baseSpeed = this.speed;
         this.slowEffect = { multiplier: 1, duration: 0 };
@@ -690,7 +767,7 @@ class Enemy {
         if (this.corroded) {
             this.corrosionTimer += dt;
             if (this.corrosionTimer >= 30) {
-                this.hp -= this.corrosionDamage || 1;
+                this.hp -= this.corrosionDamage || 2;
                 this.corrosionTimer = 0;
                 particles.push(new Particle(this.px + (Math.random()-0.5)*10, this.py + (Math.random()-0.5)*10, "#00ff00"));
             }
@@ -704,6 +781,7 @@ class Enemy {
         if (dist < this.speed * dt) {
             this.px = tx; this.py = ty; this.q = this.targetHex.q; this.r = this.targetHex.r;
             if (this.targetHex.isExit) { this.escaped = true; return; }
+            
             if (this.targetHex.nextInPath) this.targetHex = this.targetHex.nextInPath;
         } else {
             const a = Math.atan2(ty - this.py, tx - this.px);
@@ -819,7 +897,7 @@ class Tower {
             zapper: { dmg: 4, rng: 2.2, fr: 120 },
             cooler: { dmg: 1, rng: 1.2, fr: 90 },
             inoculator: { dmg: 0, rng: 2.2, fr: 180 },
-            nuker: { dmg: 25, rng: 10.2, fr: 480 },
+            nuker: { dmg: 16, rng: 10.2, fr: 720 },
             singularity: { dmg: 0, rng: 0, fr: 0 }
         };
         const s = stats[type] || stats.laser;
@@ -848,10 +926,10 @@ class Tower {
         if (singularities.length > 0) {
             const maxLevel = Math.max(...singularities.map(t => t.level));
             if (maxLevel === 2) {
-                fireRateMult = 1.8;
-                damageMult = 1.5;
-            } else {
                 fireRateMult = 1.4;
+                damageMult = 1.2;
+            } else {
+                fireRateMult = 1.2;
             }
         }
 
@@ -1185,10 +1263,10 @@ class Projectile {
                 const singularities = towers.filter(t => t.type === 'singularity');
                 if (singularities.length > 0) {
                     const maxLevel = Math.max(...singularities.map(t => t.level));
-                    if (maxLevel === 2) damageMult = 1.5;
+                    if (maxLevel === 2) damageMult = 1.2;
                 }
                 this.target.corroded = true;
-                this.target.corrosionDamage = (this.level * 0.5) * damageMult;
+                this.target.corrosionDamage = (this.level * 2) * damageMult;
             }
             playSFX(200, 'square', 0.4);
             for(let i=0; i<5; i++) particles.push(new Particle(this.x, this.y, "#00ff00"));
@@ -1277,25 +1355,14 @@ function spawnExplosion(x, y, color) {
 /** SYSTEM FUNCTIONS **/
 function calculatePath() {
     const exit = grid.get(hexKey(MAP_RADIUS, 0));
-    grid.forEach(h => { h.nextInPath = null; h.nextInAirPath = null; });
+    grid.forEach(h => { h.nextInPath = null; });
     
-    // Ground Path
     let queue = [exit], visited = new Set([hexKey(exit.q, exit.r)]), dirs = [[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
     while (queue.length > 0) {
         const curr = queue.shift();
         for (let d of dirs) {
             const nK = hexKey(curr.q + d[0], curr.r + d[1]), n = grid.get(nK);
             if (n && !n.isWall && !n.isNaturalObstacle && !visited.has(nK)) { visited.add(nK); n.nextInPath = curr; queue.push(n); }
-        }
-    }
-    
-    // Air Path (ignores isWall and isNaturalObstacle)
-    queue = [exit]; visited = new Set([hexKey(exit.q, exit.r)]);
-    while (queue.length > 0) {
-        const curr = queue.shift();
-        for (let d of dirs) {
-            const nK = hexKey(curr.q + d[0], curr.r + d[1]), n = grid.get(nK);
-            if (n && !visited.has(nK)) { visited.add(nK); n.nextInAirPath = curr; queue.push(n); }
         }
     }
 
@@ -1382,7 +1449,7 @@ function updateUI() {
         const singularities = towers.filter(t => t.type === 'singularity');
         if (singularities.length > 0) {
             const maxLevel = Math.max(...singularities.map(t => t.level));
-            if (maxLevel === 2) damageMult = 1.5;
+            if (maxLevel === 2) damageMult = 1.2;
         }
         document.getElementById('sel-dmg').innerText = (selectedTower.damage * damageMult).toFixed(1).replace(/\.0$/, ''); 
         document.getElementById('sel-rng').innerText = selectedTower.range.toFixed(1).replace(/\.0$/, '');
@@ -1398,7 +1465,7 @@ function updateUI() {
         if (isSecret) {
             nextCost = SECRET_UPGRADE_COSTS[selectedTower.type] || 100;
         } else {
-            nextCost = selectedTower.level === 1 ? baseCost * 2 : baseCost * 3;
+            nextCost = selectedTower.level === 1 ? baseCost * 2 : L3_COSTS[selectedTower.type];
         }
         
         const upBtn = document.getElementById('btn-upgrade');
@@ -1859,7 +1926,7 @@ document.getElementById('btn-upgrade').onclick = () => {
     if (isSecret) {
         nextCost = SECRET_UPGRADE_COSTS[selectedTower.type] || 100;
     } else {
-        nextCost = selectedTower.level === 1 ? baseCost * 2 : baseCost * 3;
+        nextCost = selectedTower.level === 1 ? baseCost * 2 : L3_COSTS[selectedTower.type];
     }
     
     if (isFreeMode || credits >= nextCost) {
@@ -1871,11 +1938,11 @@ document.getElementById('btn-upgrade').onclick = () => {
                 selectedTower.damage = 2;
                 selectedTower.range = 2.2;
             } else if (selectedTower.type === 'nuker') {
-                selectedTower.damage = 75;
+                selectedTower.damage = 64;
                 selectedTower.range = 10.2;
             } else if (selectedTower.type === 'inoculator') {
                 selectedTower.range = 2.2;
-                // Perfected Inoculator: 2 HP/s corrosion + 15% slow
+                // Perfected Inoculator: 4 HP/s corrosion + 15% slow
             } else if (selectedTower.type === 'singularity') {
                 // Singularity perfected buff is handled in Tower.update()
             }
@@ -1902,8 +1969,34 @@ document.getElementById('free-mode-btn').onclick = function() {
     isFreeMode = !isFreeMode;
     freeModeSpawnTimer = 0;
     this.classList.toggle('muted', !isFreeMode);
+    this.style.borderColor = isFreeMode ? 'var(--neon-magenta)' : '#666';
+    this.style.color = isFreeMode ? 'var(--neon-magenta)' : '#666';
     updateUI();
 };
+
+function setDifficulty(diff) {
+    gameDifficulty = diff;
+    const easyBtn = document.getElementById('diff-easy-btn');
+    const normalBtn = document.getElementById('diff-normal-btn');
+    const hardBtn = document.getElementById('diff-hard-btn');
+
+    easyBtn.classList.toggle('muted', diff !== 'easy');
+    normalBtn.classList.toggle('muted', diff !== 'normal');
+    hardBtn.classList.toggle('muted', diff !== 'hard');
+
+    easyBtn.style.borderColor = diff === 'easy' ? 'var(--neon-green)' : '#666';
+    easyBtn.style.color = diff === 'easy' ? 'var(--neon-green)' : '#666';
+
+    normalBtn.style.borderColor = diff === 'normal' ? 'var(--neon-orange)' : '#666';
+    normalBtn.style.color = diff === 'normal' ? 'var(--neon-orange)' : '#666';
+
+    hardBtn.style.borderColor = diff === 'hard' ? 'var(--neon-red)' : '#666';
+    hardBtn.style.color = diff === 'hard' ? 'var(--neon-red)' : '#666';
+}
+
+document.getElementById('diff-easy-btn').onclick = () => setDifficulty('easy');
+document.getElementById('diff-normal-btn').onclick = () => setDifficulty('normal');
+document.getElementById('diff-hard-btn').onclick = () => setDifficulty('hard');
 document.getElementById('btn-sell').onclick = () => { if (selectedTower) { let sellPrice = selectedTower.hasFired ? Math.floor(selectedTower.totalSpent * 0.5) : selectedTower.totalSpent; credits += sellPrice; grid.get(hexKey(selectedTower.q, selectedTower.r)).isWall = false; towers = towers.filter(t => t !== selectedTower); selectedTower = null; calculatePath(); updateUI(); } };
 
 window.onload = () => { 
@@ -1913,7 +2006,7 @@ window.onload = () => {
         window.Telegram.WebApp.setHeaderColor('#020205');
         window.Telegram.WebApp.setBackgroundColor('#020205');
     }
-    resizeCanvas(); initGame(); loop(); 
+    resizeCanvas(); initGame(); setDifficulty('normal'); loop(); 
 };
 window.onresize = () => { resizeCanvas(); };
 </script>

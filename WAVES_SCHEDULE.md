@@ -9,9 +9,9 @@ The experience is curated across 5 tiers of increasing difficulty.
 | :--- | :--- | :--- | :--- |
 | **TIER 1** | **BASICS** | | |
 | 1 | SOLDIER | 15x Soldier | - |
-| 2 | MIXED | 20x Soldier, 5x Scout | - |
+| 2 | MIXED | 20x Soldier | - |
 | 3 | CARRIER | 1x Carrier, 15x Soldier | Sniper Cannon |
-| 4 | SCOUT | 25x Scout | - |
+| 4 | SCOUT | 20x Scout | - |
 | 5 | TANK | 10x Tank | - |
 | 6 | CARRIER | 1x Carrier, 5x Tank, 10x Soldier | Flamer |
 | 7 | MIXED | 30x Scout, 5x Tank | - |
@@ -31,9 +31,9 @@ The experience is curated across 5 tiers of increasing difficulty.
 | 20 | BOSS | 1x Boss | - |
 | **TIER 3** | **HEAVY ASSAULT** | | |
 | 21 | CARRIER | 1x Carrier, 40x Tank | Zapper |
-| 22 | SWARM | 100x Fleet, 1x Decoy | - |
-| 23 | DELIVERY | 15x Delivery, 50x Soldier | - |
-| 24 | SPLITTER | 8x Splitter, 20x Tank | - |
+| 22 | SWARM | 80x Fleet, 1x Decoy | - |
+| 23 | DELIVERY | 10x Delivery, 40x Soldier | - |
+| 24 | SPLITTER | 6x Splitter, 15x Tank | - |
 | 25 | GOLDEN | 1x Golden Carrier, 3x Decoy | **Inoculator (Secret)** |
 | 26 | SCOUT | 100x Scout | - |
 | 27 | CARRIER | 1x Carrier, 20x Delivery | Sniper Cannon |
@@ -60,7 +60,7 @@ The experience is curated across 5 tiers of increasing difficulty.
 | 46 | HEAVY | 10x Decoy, 120x Tank | - |
 | 47 | CARRIER | 1x Carrier, 400x Fleet | Zapper |
 | 48 | DELIVERY | 50x Delivery, 15x Splitter | - |
-| 49 | FINAL SWARM | 100x Soldier/Scout/Tank/Fleet | - |
-| 50 | SINGULARITY | 3x Boss, 5x Decoy, 10x Splitter | - |
+| 49 | FINAL SWARM | 100x Soldier/Scout/Tank/Fleet, 10x Splitter | - |
+| 50 | SINGULARITY | 3x Boss, 5x Decoy, 10x Splitter, 10x Delivery | - |
 
 *Note: Secret Weapons are dropped exclusively by the Golden Carrier in specific waves.*
