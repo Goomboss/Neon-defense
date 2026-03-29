@@ -155,6 +155,7 @@
 <div id="top-right" class="floating-panel">
     <button class="btn-main" id="legend-btn">DATABASE</button>
     <div class="sys-buttons">
+        <button class="btn-mini" id="speed-toggle" style="color:var(--neon-green); border-color:var(--neon-green);">1x</button>
         <button class="btn-mini" id="restart-btn">♻️</button>
         <button class="btn-mini" id="audio-toggle">🔊</button>
         <button class="btn-mini" id="vibration-toggle">📳</button>
@@ -198,14 +199,14 @@
         <tr><td class="row-label"><span style="color:#0088ff">Laser</span></td><td>4</td><td>1.2</td><td>1.0s</td><td>5C</td></tr>
         <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fuoco rapido a bersaglio singolo. Lvl 2 (10C): 6 Dmg. Lvl 3 (15C): 12 Dmg.</i></td></tr>
         
-        <tr><td class="row-label"><span style="color:#9c27b0">Sniper</span></td><td>8</td><td>3.2</td><td>2.5s</td><td>10C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Lento ma letale a lungo raggio. Lvl 2 (20C): 12 Dmg. Lvl 3 (30C): 36 Dmg.</i></td></tr>
+        <tr><td class="row-label"><span style="color:#9c27b0">Sniper</span></td><td>8</td><td>3.2</td><td>2.5s</td><td>15C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Lento ma letale a lungo raggio. Lvl 2 (30C): 12 Dmg. Lvl 3 (45C): 36 Dmg.</i></td></tr>
         
-        <tr><td class="row-label"><span style="color:#ff7700">Flamer</span></td><td>2</td><td>1.2</td><td>1.5s</td><td>15C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area a corto raggio. Lvl 2 (30C): 3 Dmg. Lvl 3 (45C): Rate 0.5s.</i></td></tr>
+        <tr><td class="row-label"><span style="color:#ff7700">Flamer</span></td><td>2</td><td>1.2</td><td>1.5s</td><td>20C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area a corto raggio. Lvl 2 (40C): 3 Dmg. Lvl 3 (60C): 2 Dmg, Rate 0.5s.</i></td></tr>
         
-        <tr><td class="row-label"><span style="color:#777777">Zapper</span></td><td>4</td><td>2.2</td><td>2.0s</td><td>15C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fulmine a catena. Lvl 2 (30C): 6 Dmg. Lvl 3 (45C): Catena su 3 bersagli (9, 6, 3 Dmg).</i></td></tr>
+        <tr><td class="row-label"><span style="color:#777777">Zapper</span></td><td>4</td><td>2.2</td><td>2.0s</td><td>25C</td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Fulmine a catena. Lvl 2 (50C): 6 Dmg. Lvl 3 (75C): Catena su 3 bersagli (9, 6, 3 Dmg).</i></td></tr>
     </table>
 
     <h4 style="color:var(--neon-cyan); margin: 15px 0 5px 0;">SISTEMI DIFENSIVI (Secret)</h4>
@@ -222,7 +223,7 @@
         <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area estremo (globale). Lvl 2 (100C): 75 Dmg.</i></td></tr>
 
         <tr><td class="row-label"><span style="color:#ffffff; text-shadow: 0 0 5px #fff;">Singul.</span></td><td>-</td><td>-</td><td>-</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 2 (150C): Buff globale +40% Rate e +50% Dmg.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 1: +40% Rate globale. Lvl 2 (150C): +80% Rate e +50% Dmg globale.</i></td></tr>
     </table>
     
     <button class="btn-mini" style="width:100%; margin-top:20px" id="close-legend">RITORNA AL COMBATTIMENTO</button>
@@ -242,6 +243,17 @@
         <li style="margin-bottom:5px;"><strong>Risorse:</strong> Sconfiggi i nemici per ottenere Crediti (C). Usa i crediti per costruire o potenziare le torrette.</li>
         <li style="margin-bottom:5px;"><strong>Potenziamenti:</strong> Tocca una torretta esistente per potenziarla o venderla.</li>
     </ul>
+
+    <h4 style="color:var(--neon-orange); margin: 15px 0 5px 0;">SCALING DIFFICOLTÀ</h4>
+    <div style="font-size:0.85rem; color:#ddd; line-height:1.4; margin-top:5px;">
+        L'integrità strutturale (HP) dei nemici aumenta in base alla formula: <b>HP Base + (K * Ondata)%</b><br>
+        • <b>Tier 1 (1-10):</b> K = 3%<br>
+        • <b>Tier 2 (11-20):</b> K = 6%<br>
+        • <b>Tier 3 (21-30):</b> K = 9%<br>
+        • <b>Tier 4 (31-40):</b> K = 12%<br>
+        • <b>Tier 5 (41-50):</b> K = 15%<br>
+        <i>Nota: La velocità rimane costante per tipo di unità.</i>
+    </div>
 
     <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">VERSIONE ATTUALE</h4>
     <p style="font-size:0.85rem; line-height:1.4; color:#ddd; margin-top:5px;">
@@ -320,7 +332,7 @@
             <b style="color:var(--neon-cyan)">FLAMER</b><br>
             Dmg: 2 | Costo: 15 C | L2: 30 C | L3: 45 C<br>
             <i>Danno ad area.</i><br>
-            <span style="color:var(--gold)">L3: Fuoco continuo (0.5s).</span>
+            <span style="color:var(--gold)">L3: 2 Dmg, Fuoco continuo (0.5s).</span>
         </div>
     </div>
 
@@ -526,9 +538,9 @@ function getWaveComposition(wave) {
 
         // TIER 3: HEAVY ASSAULT (21-30)
         case 21: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'tank', count: 40 }];
-        case 22: return [{ type: 'fleet', count: 100 }, { type: 'decoy_tank', count: 1 }];
-        case 23: return [{ type: 'delivery', count: 15 }, { type: 'soldier', count: 50 }];
-        case 24: return [{ type: 'splitter', count: 8 }, { type: 'tank', count: 20 }];
+        case 22: return [{ type: 'fleet', count: 80 }, { type: 'decoy_tank', count: 1 }];
+        case 23: return [{ type: 'delivery', count: 10 }, { type: 'soldier', count: 40 }];
+        case 24: return [{ type: 'splitter', count: 6 }, { type: 'tank', count: 15 }];
         case 25: return [{ type: 'golden_carrier', count: 1 }, { type: 'decoy_tank', count: 3 }];
         case 26: return [{ type: 'scout', count: 100 }];
         case 27: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'delivery', count: 20 }];
@@ -596,6 +608,7 @@ const hexKey = (q, r) => `${q},${r}`;
 
 let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats, projectiles;
 let freeModeSpawnTimer = 0;
+let gameSpeed = 1;
 const ALL_ENEMIES = ['soldier', 'scout', 'tank', 'carrier', 'boss', 'decoy_tank', 'fleet', 'delivery', 'splitter', 'split', 'golden_carrier', 'void_scout', 'void_soldier'];
 let globalScale = 1;
 
@@ -617,17 +630,13 @@ function pixelToHex(x, y) {
 function getHexDist(a, b) { return (Math.abs(a.q - b.q) + Math.abs(a.q + a.r - b.q - b.r) + Math.abs(a.r - b.r)) / 2; }
 
 function getDifficultyMultiplier(wave) {
-    let dm = 1;
-    let currentTier = Math.floor((wave - 1) / 10); // 0 per 1-10, 1 per 11-20, ecc.
-    let remainingWaves = wave - 1;
-
-    for (let i = 0; i <= currentTier; i++) {
-        let wavesInTier = (i === currentTier) ? remainingWaves : 10;
-        let tierMultiplier = 1 + (0.05 * (i + 1)); // 1.05, 1.10, 1.15...
-        dm *= Math.pow(tierMultiplier, wavesInTier);
-        remainingWaves -= 10;
-    }
-    return dm;
+    let k = 3;
+    if (wave >= 11 && wave <= 20) k = 6;
+    else if (wave >= 21 && wave <= 30) k = 9;
+    else if (wave >= 31 && wave <= 40) k = 12;
+    else if (wave >= 41) k = 15;
+    
+    return 1 + (k * wave) / 100;
 }
 
 class Enemy {
@@ -1466,7 +1475,7 @@ function loop(timestamp) {
     if (!timestamp) timestamp = performance.now();
     let dt = (timestamp - lastTime) / (1000 / 60);
     lastTime = timestamp;
-    dt = Math.min(dt, 3); // Cap dt to avoid huge jumps if tab is inactive
+    dt = Math.min(dt, 3) * gameSpeed; // Cap dt to avoid huge jumps if tab is inactive, apply game speed
 
     const cX = canvas.width/2, cY = canvas.height/2;
     
@@ -1795,6 +1804,20 @@ canvas.addEventListener('mousedown', handleCanvasInput);
 canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleCanvasInput(e); }, {passive: false});
 
 document.getElementById('btn-start').onclick = () => { ensureAudio(); gameStarted = true; killsInWave = 0; spawnedInWave = 0; spawnTimer = 0; updateUI(); };
+
+document.getElementById('speed-toggle').onclick = (e) => {
+    if (gameSpeed === 1) {
+        gameSpeed = 3;
+        e.target.innerText = '3x';
+        e.target.style.color = 'var(--neon-orange)';
+        e.target.style.borderColor = 'var(--neon-orange)';
+    } else {
+        gameSpeed = 1;
+        e.target.innerText = '1x';
+        e.target.style.color = 'var(--neon-green)';
+        e.target.style.borderColor = 'var(--neon-green)';
+    }
+};
 
 document.getElementById('restart-btn').onclick = () => {
     document.getElementById('confirm-modal').style.display = 'block';
