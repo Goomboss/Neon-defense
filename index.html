@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Neon Defense - Alpha 1.5 Singularity</title>
+    <title>Neon Defense - Beta 1.1.0 Infinity</title>
     <style>
         :root { 
             --neon-blue: #0033aa; --neon-cyan: #00aaff; --neon-magenta: #ff00ff; 
@@ -124,6 +124,7 @@
 
         #legend-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 500px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
         #info-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 400px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
+        #settings-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-cyan); padding: 25px; display: none; z-index: 2000; width: 350px; box-shadow: 0 0 50px rgba(0,0,0,0.9); max-height: 90vh; overflow-y: auto; }
         #confirm-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-orange); padding: 25px; display: none; z-index: 3000; width: 300px; box-shadow: 0 0 50px rgba(0,0,0,0.9); text-align: center; }
         #gameover-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #050510; border: 2px solid var(--neon-red); padding: 30px; display: none; z-index: 2000; text-align: center; width: 300px; }
         #error-overlay { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); background: var(--neon-red); color: white; padding: 8px 15px; font-weight: bold; display: none; z-index: 3000; font-size: 0.75rem; border-radius: 4px; pointer-events: none; }
@@ -157,7 +158,7 @@
         NEON DEFENSE 
         <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
     </h2>
-    <div class="version-label">BETA 1.0.1</div>
+    <div class="version-label">BETA 1.1.0 - INFINITY</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">15</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -167,8 +168,7 @@
     <div class="sys-buttons">
         <button class="btn-mini" id="speed-toggle" style="color:var(--neon-green); border-color:var(--neon-green);">1x</button>
         <button class="btn-mini" id="restart-btn">♻️</button>
-        <button class="btn-mini" id="audio-toggle">🔊</button>
-        <button class="btn-mini" id="vibration-toggle">📳</button>
+        <button class="btn-mini" id="settings-btn">⚙️</button>
     </div>
 </div>
 
@@ -243,20 +243,14 @@
 <div id="info-modal">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">
         <h3 style="color:var(--neon-cyan); margin:0;">NEON DEFENSE - INFO</h3>
-        <div style="display:flex; gap:5px;">
-            <button class="btn-mini" id="diff-easy-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-green); color:var(--neon-green);">EASY</button>
-            <button class="btn-mini" id="diff-normal-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-orange); color:var(--neon-orange);">NORMAL</button>
-            <button class="btn-mini muted" id="diff-hard-btn" style="height:28px; font-size:0.6rem; border-color:var(--neon-red); color:var(--neon-red);">HARD</button>
-            <button class="btn-mini muted" id="free-mode-btn" style="height:28px; font-size:0.6rem; margin-left:10px; border-color:var(--neon-magenta); color:var(--neon-magenta);">FREE MODE</button>
-        </div>
     </div>
     
-    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">BETA 1.0.1 - RIEPILOGO</h4>
+    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">BETA 1.1.0 - INFINITY RIEPILOGO</h4>
     <div style="font-size:0.85rem; color:#ddd; line-height:1.4; margin-top:5px; border: 1px dashed var(--neon-green); padding: 8px; border-radius: 4px;">
-        • <b>Unified Pathfinding:</b> Tutte le unità seguono ora lo stesso percorso ottimizzato.<br>
-        • <b>Code Cleanup:</b> Rimosso codice ridondante per una maggiore fluidità.<br>
-        • <b>Mobile Fix:</b> Risolti problemi di scrolling e touch-gestures su dispositivi mobili.<br>
-        • <b>Beta Release:</b> Prima versione stabile completa di tutte le meccaniche core.
+        • <b>Dynamic Music:</b> Audio adattivo che reagisce all'intensità della battaglia.<br>
+        • <b>Settings Menu:</b> Nuovo menu ⚙️ per gestire audio, vibrazione e difficoltà.<br>
+        • <b>Infinity Mode:</b> Ottimizzata la progressione nella modalità infinita.<br>
+        • <b>Map Refinement:</b> Rimossi ostacoli centrali per strategie più profonde.
     </div>
 
     <h4 style="color:var(--neon-magenta); margin: 15px 0 5px 0;">TUTORIAL RAPIDO</h4>
@@ -318,10 +312,40 @@
                 </tr>
             </tbody>
         </table>
-        <div style="margin-top:8px; font-style:italic; opacity:0.8; font-size:0.7rem;">Nota: La velocità rimane costante per tipo di unità.</div>
+        <div style="margin-top:8px; font-style:italic; opacity:0.8; font-size:0.7rem;">Nota: La velocità rimane costante per tipo di unità. La frequenza di spawn aumenta del 15% ogni 10 ondate.</div>
     </div>
 
     <button class="btn-main" style="width:100%; margin-top:20px;" id="close-info">CHIUDI</button>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settings-modal">
+    <h3 style="color:var(--neon-cyan); margin-top:0; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px;">IMPOSTAZIONI</h3>
+    
+    <h4 style="color:var(--neon-orange); margin: 15px 0 10px 0; font-size: 0.8rem; text-transform: uppercase;">Difficoltà</h4>
+    <div style="display:flex; gap:5px; margin-bottom: 20px;">
+        <button class="btn-mini" id="diff-easy-btn" style="flex:1; border-color:var(--neon-green); color:var(--neon-green);">EASY</button>
+        <button class="btn-mini" id="diff-normal-btn" style="flex:1; border-color:var(--neon-orange); color:var(--neon-orange);">NORMAL</button>
+        <button class="btn-mini muted" id="diff-hard-btn" style="flex:1; border-color:var(--neon-red); color:var(--neon-red);">HARD</button>
+    </div>
+
+    <h4 style="color:var(--neon-cyan); margin: 15px 0 10px 0; font-size: 0.8rem; text-transform: uppercase;">Audio & Feedback</h4>
+    <div style="display:flex; gap:10px; margin-bottom: 20px;">
+        <button class="btn-mini" id="audio-toggle" style="flex:1;">AUDIO: ON</button>
+        <button class="btn-mini" id="vibration-toggle" style="flex:1;">VIBRAZIONE: ON</button>
+    </div>
+
+    <h4 style="color:var(--neon-magenta); margin: 15px 0 10px 0; font-size: 0.8rem; text-transform: uppercase;">Opzioni Avanzate</h4>
+    <div style="display:flex; flex-direction:column; gap:15px;">
+        <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:0.8rem; color:var(--neon-cyan);">
+            <input type="checkbox" id="random-obstacles-toggle" style="accent-color:var(--neon-cyan);">
+            <span>Ostacoli Random (Legacy)</span>
+        </label>
+        
+        <button class="btn-mini muted" id="free-mode-btn" style="width:100%; border-color:var(--neon-magenta); color:var(--neon-magenta);">FREE MODE: OFF</button>
+    </div>
+
+    <button class="btn-main" style="width:100%; margin-top:30px;" id="close-settings">SALVA E CHIUDI</button>
 </div>
 
 <!-- CONFIRM RESET MODAL -->
@@ -338,7 +362,10 @@
     <h3 id="gameover-title" style="color:var(--neon-red); margin-top:0; letter-spacing: 2px;">SISTEMA OFFLINE</h3>
     <p id="gameover-desc" style="font-size: 0.8rem; color:#aaa;">Integrità base compromessa.</p>
     <div style="margin: 15px 0; font-size: 1.1rem;">ONDATA: <b id="final-wave" style="color:var(--neon-cyan)">1</b></div>
-    <button class="btn-mini" style="width:100%; height:45px; border-color:var(--neon-green); color:var(--neon-green);" id="retry-btn">REINIZIALIZZA</button>
+    <div id="gameover-actions" style="display:flex; flex-direction:column; gap:10px;">
+        <button class="btn-mini" style="width:100%; height:45px; border-color:var(--neon-green); color:var(--neon-green);" id="retry-btn">REINIZIALIZZA</button>
+        <button class="btn-mini" style="width:100%; height:45px; border-color:var(--neon-cyan); color:var(--neon-cyan); display:none;" id="endless-btn">MODALITÀ INFINITA</button>
+    </div>
 </div>
 
 <div id="error-overlay">ORDINE NEGATO: BLOCCO ROTTA</div>
@@ -518,11 +545,13 @@ window.onerror = function(msg, url, lineNo, columnNo, error) {
 
 <script>
 /** AUDIO ENGINE **/
-let audioCtx = null, masterGain = null, isMuted = false, step = 0;
+let audioCtx = null, masterGain = null, isMuted = false, musicStep = 0;
 let isVibrationEnabled = true;
 let isFreeMode = false;
 let gameDifficulty = 'normal'; // easy, normal, hard
-const sequence = [55, 55, 65.41, 65.41, 49, 49, 51.91, 51.91];
+const bassSeq = [55, 55, 65.41, 65.41, 49, 49, 51.91, 51.91];
+const leadSeq = [110, 130.81, 98, 103.83, 164.81, 196, 146.83, 155.56];
+const bossSeq = [41.2, 41.2, 41.2, 41.2, 36.71, 36.71, 36.71, 36.71];
 
 function triggerVibration(type) {
     if (!navigator.vibrate || !isVibrationEnabled) return;
@@ -540,15 +569,38 @@ function ensureAudio() {
         masterGain = audioCtx.createGain(); 
         masterGain.gain.value = isMuted ? 0 : 0.06;
         masterGain.connect(audioCtx.destination);
+        
+        const playNote = (freq, type, duration, volume, filterFreq) => {
+            const osc = audioCtx.createOscillator(); const g = audioCtx.createGain(); const f = audioCtx.createBiquadFilter();
+            osc.type = type; osc.frequency.value = freq;
+            f.type = 'lowpass'; f.frequency.value = filterFreq;
+            g.gain.setValueAtTime(volume * 0.1, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(f); f.connect(g); g.connect(masterGain);
+            osc.start(); osc.stop(audioCtx.currentTime + duration);
+        };
+
         setInterval(() => { 
             if (!isGameOver && audioCtx.state === 'running') { 
-                const freq = sequence[step % sequence.length];
-                const osc = audioCtx.createOscillator(); const g = audioCtx.createGain();
-                osc.type = 'sawtooth'; osc.frequency.value = freq;
-                g.gain.setValueAtTime(0.1, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
-                const f = audioCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 500;
-                osc.connect(f); f.connect(g); g.connect(masterGain);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.15); step++;
+                const isBossPresent = enemies && enemies.some(e => e.type === 'boss');
+                const intensity = Math.min(1, (enemies ? enemies.length : 0) / 25 + (isEndlessMode ? 0.3 : 0));
+                
+                // Bass Layer
+                const bFreq = isBossPresent ? bossSeq[musicStep % bossSeq.length] : bassSeq[musicStep % bassSeq.length];
+                playNote(bFreq, 'sawtooth', 0.18, 0.8, isBossPresent ? 300 : 500);
+                
+                // Lead Layer (only if game started)
+                if (gameStarted) {
+                    if (musicStep % 2 === 0 || intensity > 0.6) {
+                        const lFreq = leadSeq[(musicStep * 2) % leadSeq.length] * (isBossPresent ? 0.5 : 1);
+                        playNote(lFreq, 'square', 0.12, 0.2 + (intensity * 0.3), isBossPresent ? 600 : 1000);
+                    }
+                    
+                    // High intensity glitch notes
+                    if (intensity > 0.8 && musicStep % 4 === 0) {
+                        playNote(leadSeq[musicStep % leadSeq.length] * 2, 'sine', 0.08, 0.15, 2000);
+                    }
+                }
+                musicStep++;
             }
         }, 180);
     }
@@ -589,22 +641,22 @@ function getWaveComposition(wave) {
         case 11: return [{ type: 'fleet', count: 30 }];
         case 12: return [{ type: 'soldier', count: 40 }, { type: 'fleet', count: 20 }];
         case 13: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'splitter', count: 2 }];
-        case 14: return [{ type: 'delivery', count: 5 }, { type: 'scout', count: 30 }];
+        case 14: return [{ type: 'delivery', count: 4 }, { type: 'scout', count: 30 }];
         case 15: return [{ type: 'golden_carrier', count: 1 }, { type: 'splitter', count: 3 }];
         case 16: return [{ type: 'decoy_tank', count: 2 }, { type: 'tank', count: 20 }];
         case 17: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'fleet', count: 50 }];
-        case 18: return [{ type: 'delivery', count: 10 }, { type: 'soldier', count: 30 }];
+        case 18: return [{ type: 'delivery', count: 6 }, { type: 'soldier', count: 30 }];
         case 19: return [{ type: 'splitter', count: 5 }, { type: 'scout', count: 40 }];
         case 20: return [{ type: 'boss', count: 1 }];
 
         // TIER 3: HEAVY ASSAULT (21-30)
         case 21: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'tank', count: 40 }];
         case 22: return [{ type: 'fleet', count: 80 }, { type: 'decoy_tank', count: 1 }];
-        case 23: return [{ type: 'delivery', count: 10 }, { type: 'soldier', count: 40 }];
+        case 23: return [{ type: 'delivery', count: 8 }, { type: 'soldier', count: 40 }];
         case 24: return [{ type: 'splitter', count: 6 }, { type: 'tank', count: 15 }];
         case 25: return [{ type: 'golden_carrier', count: 1 }, { type: 'decoy_tank', count: 3 }];
         case 26: return [{ type: 'scout', count: 100 }];
-        case 27: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'delivery', count: 20 }];
+        case 27: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'delivery', count: 12 }];
         case 28: return [{ type: 'fleet', count: 150 }, { type: 'splitter', count: 5 }];
         case 29: return [{ type: 'tank', count: 60 }, { type: 'decoy_tank', count: 2 }];
         case 30: return [{ type: 'boss', count: 1 }];
@@ -612,19 +664,19 @@ function getWaveComposition(wave) {
         // TIER 4: CHAOS (31-40)
         case 31: return [{ type: 'soldier', count: 150 }];
         case 32: return [{ type: 'scout', count: 150 }];
-        case 33: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'delivery', count: 25 }];
+        case 33: return [{ type: 'carrier', count: 1, drop: 'zapper' }, { type: 'delivery', count: 16 }];
         case 34: return [{ type: 'splitter', count: 15 }];
         case 35: return [{ type: 'golden_carrier', count: 1 }, { type: 'fleet', count: 200 }];
         case 36: return [{ type: 'decoy_tank', count: 5 }, { type: 'tank', count: 80 }];
         case 37: return [{ type: 'carrier', count: 1, drop: 'flamer' }, { type: 'soldier', count: 200 }];
-        case 38: return [{ type: 'delivery', count: 30 }, { type: 'scout', count: 100 }];
+        case 38: return [{ type: 'delivery', count: 24 }, { type: 'scout', count: 100 }];
         case 39: return [{ type: 'splitter', count: 20 }, { type: 'fleet', count: 100 }];
         case 40: return [{ type: 'boss', count: 2 }];
 
         // TIER 5: SINGULARITY (41-50)
         case 41: return [{ type: 'carrier', count: 1, drop: 'sniper' }, { type: 'tank', count: 100 }];
         case 42: return [{ type: 'fleet', count: 300 }, { type: 'decoy_tank', count: 3 }];
-        case 43: return [{ type: 'delivery', count: 40 }, { type: 'splitter', count: 10 }];
+        case 43: return [{ type: 'delivery', count: 32 }, { type: 'splitter', count: 10 }];
         case 44: return [{ type: 'scout', count: 250 }, { type: 'soldier', count: 200 }];
         case 45: return [{ type: 'golden_carrier', count: 1 }, { type: 'boss', count: 1 }];
         case 46: return [{ type: 'decoy_tank', count: 10 }, { type: 'tank', count: 120 }];
@@ -668,7 +720,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const hexKey = (q, r) => `${q},${r}`;
 
-let credits, lives, currentWave, gameStarted, isGameOver, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats, projectiles;
+let credits, lives, currentWave, gameStarted, isGameOver, isEndlessMode = false, endlessKills = 0, randomObstaclesEnabled = false, enemies, towers, selectedTower, pendingHex, spawnTimer, spawnedInWave, killsInWave, particles, floatingTexts, bossDefeats, projectiles;
 let freeModeSpawnTimer = 0;
 let gameSpeed = 1;
 const ALL_ENEMIES = ['soldier', 'scout', 'tank', 'carrier', 'boss', 'decoy_tank', 'fleet', 'delivery', 'splitter', 'split', 'golden_carrier', 'void_scout', 'void_soldier'];
@@ -1370,7 +1422,7 @@ function calculatePath() {
 }
 
 function initGame() {
-    credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false; bossDefeats = 0;
+    credits = 15; lives = 10; currentWave = 1; gameStarted = false; isGameOver = false; isEndlessMode = false; endlessKills = 0; bossDefeats = 0;
     enemies = []; towers = []; selectedTower = null; pendingHex = null; spawnedInWave = 0; killsInWave = 0; spawnTimer = 0; freeModeSpawnTimer = 0; particles = []; floatingTexts = []; projectiles = [];
     window.aoeEffects = [];
     MAX_SNIPER = 0; MAX_FLAMER = 0; MAX_ZAPPER = 0; MAX_COOLER = 0; MAX_INOCULATOR = 0; MAX_NUKER = 0; MAX_SINGULARITY = 0;
@@ -1382,7 +1434,25 @@ function initGame() {
             let r1 = Math.max(-MAP_RADIUS, -q-MAP_RADIUS), r2 = Math.min(MAP_RADIUS, -q+MAP_RADIUS);
             for (let r = r1; r <= r2; r++) { grid.set(hexKey(q, r), { q, r, x: HEX_SIZE*(3/2*q), y: HEX_SIZE*(Math.sqrt(3)/2*q+Math.sqrt(3)*r), isWall: false, isNaturalObstacle: false, isEntrance: q===-MAP_RADIUS&&r===0, isExit: q===MAP_RADIUS&&r===0 }); }
         }
-        grid.forEach(h => { if (!h.isEntrance && !h.isExit && Math.random() < 0.13) h.isNaturalObstacle = true; });
+        
+        if (randomObstaclesEnabled) {
+            grid.forEach(h => { if (!h.isEntrance && !h.isExit && Math.random() < 0.13) h.isNaturalObstacle = true; });
+        } else {
+            // Static obstacles: below entrance, above exit, and other corners
+            const staticCoords = [
+                {q: -4, r: 1},  // Below entrance (-4, 0)
+                {q: 4, r: -1},  // Above exit (4, 0)
+                {q: 0, r: 4},   // Corner
+                {q: -4, r: 4},  // Corner
+                {q: 0, r: -4},  // Corner
+                {q: 4, r: -4}   // Corner
+            ];
+            staticCoords.forEach(c => {
+                const h = grid.get(hexKey(c.q, c.r));
+                if (h && !h.isEntrance && !h.isExit) h.isNaturalObstacle = true;
+            });
+        }
+
         if (calculatePath()) valid = true;
     }
     updateUI();
@@ -1392,15 +1462,34 @@ function updateUI() {
     document.getElementById('credits').innerText = isFreeMode ? "∞" : credits;
     document.getElementById('lives').innerText = isFreeMode ? "∞" : Math.max(0, lives);
     
+    // Update Settings Buttons
+    document.getElementById('audio-toggle').innerText = isMuted ? "AUDIO: OFF" : "AUDIO: ON";
+    document.getElementById('audio-toggle').classList.toggle('muted', isMuted);
+    
+    document.getElementById('vibration-toggle').innerText = isVibrationEnabled ? "VIBRAZIONE: ON" : "VIBRAZIONE: OFF";
+    document.getElementById('vibration-toggle').classList.toggle('muted', !isVibrationEnabled);
+    
+    document.getElementById('free-mode-btn').innerText = isFreeMode ? "FREE MODE: ON" : "FREE MODE: OFF";
+    document.getElementById('free-mode-btn').classList.toggle('muted', !isFreeMode);
+    document.getElementById('free-mode-btn').style.borderColor = isFreeMode ? 'var(--neon-magenta)' : '#666';
+    document.getElementById('free-mode-btn').style.color = isFreeMode ? 'var(--neon-magenta)' : '#666';
+    
+    document.getElementById('random-obstacles-toggle').checked = randomObstaclesEnabled;
+
     let waveTypeStr = 'UNKNOWN';
-    if (currentWave <= 10) waveTypeStr = 'TIER 1: BASICS';
+    if (isEndlessMode) waveTypeStr = 'MODALITÀ INFINITA';
+    else if (currentWave <= 10) waveTypeStr = 'TIER 1: BASICS';
     else if (currentWave <= 20) waveTypeStr = 'TIER 2: SWARMS & SPLITS';
     else if (currentWave <= 30) waveTypeStr = 'TIER 3: HEAVY ASSAULT';
     else if (currentWave <= 40) waveTypeStr = 'TIER 4: CHAOS';
     else if (currentWave <= 50) waveTypeStr = 'TIER 5: SINGULARITY';
     
-    if (currentWave % 10 === 0) waveTypeStr += ' (BOSS)';
-    else if ([15, 25, 35, 45].includes(currentWave)) waveTypeStr += ' (GOLDEN)';
+    if (!isEndlessMode) {
+        if (currentWave % 10 === 0) waveTypeStr += ' (BOSS)';
+        else if ([15, 25, 35, 45].includes(currentWave)) waveTypeStr += ' (GOLDEN)';
+    } else {
+        waveTypeStr += ` (${endlessKills}/100)`;
+    }
     
     document.getElementById('wave-info').innerHTML = `<b>ONDA:</b> ${currentWave} | <b>UNITÀ:</b> ${waveTypeStr}`;
     
@@ -1433,8 +1522,10 @@ function updateUI() {
     document.getElementById('singularity-option').style.display = (MAX_SINGULARITY > 0 || isFreeMode) ? 'flex' : 'none';
     document.getElementById('secret-tier-header').style.display = (MAX_COOLER > 0 || MAX_INOCULATOR > 0 || MAX_NUKER > 0 || MAX_SINGULARITY > 0 || isFreeMode) ? 'block' : 'none';
     
-    document.getElementById('btn-start').disabled = gameStarted;
-    if (gameStarted) {
+    document.getElementById('btn-start').disabled = gameStarted || isEndlessMode;
+    if (isEndlessMode) {
+        document.getElementById('btn-start').innerText = "MODALITÀ INFINITA ATTIVA";
+    } else if (gameStarted) {
         document.getElementById('btn-start').innerText = `AVVIA ONDATA ${currentWave}`;
     } else {
         let comp = getWaveComposition(currentWave);
@@ -1584,34 +1675,68 @@ function loop(timestamp) {
 
     if (gameStarted) {
         spawnTimer += dt; const wt = (currentWave-1)%3+1;
-        if (currentWave % 10 === 0) {
+        if (currentWave % 10 === 0 && !isEndlessMode) {
             if (spawnedInWave < 1) { enemies.push(new Enemy('boss')); spawnedInWave = 1; }
             if (spawnedInWave >= 1 && enemies.length === 0) { 
                 bossDefeats++;
                 const notif = document.getElementById('notify-overlay');
-                notif.innerHTML = `FORZE NEMICHE RIORGANIZZATE!<br><span style="font-size:1rem; color:#ff003c;">SPAWN RATE +30%</span>`;
+                notif.innerHTML = `FORZE NEMICHE RIORGANIZZATE!<br><span style="font-size:1rem; color:#ff003c;">SPAWN RATE +15%</span>`;
                 notif.style.display = 'block';
                 setTimeout(() => notif.style.display = 'none', 4000);
                 playSFX(200, 'sawtooth', 0.3);
                 setTimeout(() => playSFX(150, 'sawtooth', 0.3), 200);
 
                 gameStarted = false; 
-                if (currentWave === 50) {
+                if (currentWave === 50 && !isEndlessMode) {
                     isGameOver = true;
                     document.getElementById('gameover-title').innerText = "VITTORIA";
                     document.getElementById('gameover-title').style.color = "var(--neon-green)";
                     document.getElementById('gameover-desc').innerText = "Minaccia neutralizzata. Sistema sicuro.";
                     document.getElementById('gameover-modal').style.borderColor = "var(--neon-green)";
                     document.getElementById('gameover-modal').style.display = 'block';
+                    document.getElementById('endless-btn').style.display = 'block';
                     document.getElementById('final-wave').innerText = currentWave;
                 } else {
                     currentWave++; updateUI(); 
                 }
             }
+        } else if (isEndlessMode) {
+            let spawnMult = 1 / Math.pow(1.15, bossDefeats);
+            let iv = 45; // Base interval for endless mode
+            
+            if (spawnTimer >= iv * spawnMult) {
+                let r = Math.random();
+                let enemyToSpawn = 'soldier';
+                if (r < 0.85) {
+                    const bases = ['soldier', 'scout', 'fleet'];
+                    enemyToSpawn = bases[Math.floor(Math.random() * bases.length)];
+                } else if (r < 0.95) {
+                    const elites = ['tank', 'decoy_tank', 'delivery'];
+                    enemyToSpawn = elites[Math.floor(Math.random() * elites.length)];
+                } else {
+                    const uniques = ['splitter', 'carrier'];
+                    enemyToSpawn = uniques[Math.floor(Math.random() * uniques.length)];
+                }
+                
+                let dropToSpawn = null;
+                if (enemyToSpawn === 'carrier') {
+                    const drops = ['sniper', 'flamer', 'zapper'];
+                    dropToSpawn = drops[Math.floor(Math.random() * drops.length)];
+                }
+
+                if (enemyToSpawn === 'fleet') {
+                    for (let i = 0; i < 4; i++) {
+                        enemies.push(new Enemy('fleet', (canvas.width/2 + grid.get(hexKey(-MAP_RADIUS, 0)).x) - i*15, null));
+                    }
+                } else {
+                    enemies.push(new Enemy(enemyToSpawn, null, null, dropToSpawn));
+                }
+                spawnTimer = 0;
+            }
         } else {
             let totalEnemies = getWaveTotal(currentWave);
             let enemyToSpawn = null;
-            let spawnMult = 1 / Math.pow(1.3, bossDefeats);
+            let spawnMult = 1 / Math.pow(1.15, bossDefeats);
             
             let comp = getWaveComposition(currentWave);
             let currentCount = 0;
@@ -1739,7 +1864,22 @@ function loop(timestamp) {
                 enemies.push(new Enemy('scout', enemies[i].px - 10, enemies[i].py + 10));
                 enemies.push(new Enemy('scout', enemies[i].px + 10, enemies[i].py + 10));
             }
-            if(!enemies[i].isMinion) killsInWave++; 
+            if(!enemies[i].isMinion) {
+                killsInWave++; 
+                if (isEndlessMode) {
+                    endlessKills++;
+                    if (endlessKills >= 100) {
+                        endlessKills = 0;
+                        currentWave++;
+                        const notif = document.getElementById('notify-overlay');
+                        notif.innerHTML = `LIVELLO SUPERATO!<br><span style="font-size:1rem; color:#00ffff;">ONDATA ${currentWave}</span>`;
+                        notif.style.display = 'block';
+                        setTimeout(() => notif.style.display = 'none', 3000);
+                        playSFX(600, 'sine', 0.2);
+                        updateUI();
+                    }
+                }
+            }
             enemies.splice(i,1); updateUI(); 
         }
         else if (enemies[i].escaped) { 
@@ -1900,20 +2040,36 @@ document.getElementById('confirm-reset-no').onclick = () => {
 };
 
 document.getElementById('retry-btn').onclick = () => initGame();
+document.getElementById('endless-btn').onclick = () => {
+    document.getElementById('gameover-modal').style.display = 'none';
+    document.getElementById('endless-btn').style.display = 'none';
+    isGameOver = false;
+    isEndlessMode = true;
+    gameStarted = true;
+    currentWave++;
+    updateUI();
+    requestAnimationFrame(loop);
+};
+document.getElementById('random-obstacles-toggle').onchange = function() {
+    randomObstaclesEnabled = this.checked;
+    if (!gameStarted && enemies.length === 0 && towers.length === 0) {
+        initGame();
+    }
+};
 document.getElementById('legend-btn').onclick = () => document.getElementById('legend-modal').style.display = 'block';
 document.getElementById('close-legend').onclick = () => document.getElementById('legend-modal').style.display = 'none';
+document.getElementById('settings-btn').onclick = () => document.getElementById('settings-modal').style.display = 'block';
+document.getElementById('close-settings').onclick = () => document.getElementById('settings-modal').style.display = 'none';
 document.getElementById('info-btn').onclick = () => document.getElementById('info-modal').style.display = 'block';
 document.getElementById('close-info').onclick = () => document.getElementById('info-modal').style.display = 'none';
 document.getElementById('audio-toggle').onclick = function() { 
     isMuted = !isMuted; 
-    this.innerText = isMuted ? "🔇" : "🔊"; 
-    this.classList.toggle('muted', isMuted);
     if (masterGain) masterGain.gain.value = isMuted ? 0 : 0.06;
+    updateUI();
 };
 document.getElementById('vibration-toggle').onclick = function() {
     isVibrationEnabled = !isVibrationEnabled;
-    this.innerText = isVibrationEnabled ? "📳" : "📴";
-    this.classList.toggle('muted', !isVibrationEnabled);
+    updateUI();
 };
 document.getElementById('btn-upgrade').onclick = () => { 
     if (!selectedTower) return;
@@ -1968,9 +2124,6 @@ document.getElementById('btn-upgrade').onclick = () => {
 document.getElementById('free-mode-btn').onclick = function() {
     isFreeMode = !isFreeMode;
     freeModeSpawnTimer = 0;
-    this.classList.toggle('muted', !isFreeMode);
-    this.style.borderColor = isFreeMode ? 'var(--neon-magenta)' : '#666';
-    this.style.color = isFreeMode ? 'var(--neon-magenta)' : '#666';
     updateUI();
 };
 
