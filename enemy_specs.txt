@@ -1,0 +1,112 @@
+# Neon Defense - Specifiche Tecniche Nemici (Beta 1.2.0 - Skills)
+
+Tutti i valori di HP (Punti Salute) indicati sono i valori BASE. 
+Durante il gioco, gli HP vengono moltiplicati per un coefficiente di difficoltà che cresce in base all'ondata corrente e alla difficoltà selezionata.
+Il tempo di spawn è indicato in frame (a 60 FPS, 60 frame = 1 secondo). Questo valore base viene poi diviso per lo "Spawn Rate Multiplier" che aumenta del 15% ogni 10 ondate.
+
+## Unità Standard
+- **Soldier** (Soldato)
+  - HP Base: 12
+  - Velocità: 1.2
+  - Danno Integrità: 1
+  - Ricompensa: 1 Credito
+  - Intervallo di Spawn: 60 frame (1.0s)
+  - Note: L'unità base del gioco.
+
+- **Scout** (Esploratore)
+  - HP Base: 6
+  - Velocità: 1.6
+  - Danno Integrità: 1
+  - Ricompensa: 1 Credito
+  - Intervallo di Spawn: 30 frame (0.5s)
+  - Note: Veloce ma fragile. Spesso spawna in grandi gruppi.
+
+- **Tank** (Corazzato)
+  - HP Base: 24
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 1 Credito
+  - Intervallo di Spawn: 72 frame (1.2s)
+  - Note: Lento ma resistente.
+
+## Unità Speciali
+- **Carrier** (Trasportatore)
+  - HP Base: 32
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 3 Crediti (0 in Modalità Infinita)
+  - Intervallo di Spawn: 120 frame (2.0s)
+  - Note: Rilascia sblocchi per nuove torrette (Sniper, Flamer, Zapper) quando distrutto.
+
+- **Golden Carrier** (Trasportatore Dorato)
+  - HP Base: 32
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 1 Credito
+  - Intervallo di Spawn: 120 frame (2.0s)
+  - Note: Rilascia sblocchi per le Tecnologie Segrete (Cooler, Inoculator, Nuker, Singularity).
+
+- **Decoy Tank** (Falso Corazzato)
+  - HP Base: 24
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 5 Crediti
+  - Intervallo di Spawn: 90 frame (1.5s)
+  - Note: Se presente sulla mappa, rende tutti gli altri nemici (tranne i Boss) trasparenti e non bersagliabili dalle torrette.
+
+- **Fleet** (Flotta)
+  - HP Base: 2
+  - Velocità: 2.0
+  - Danno Integrità: 1
+  - Ricompensa: 0 Crediti
+  - Intervallo di Spawn: 30 frame (0.5s)
+  - Note: Estremamente veloce e fragile, non fornisce crediti.
+
+- **Delivery** (Consegna)
+  - HP Base: 12
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 2 Crediti
+  - Intervallo di Spawn: 90 frame (1.5s)
+  - Note: Quando distrutto, genera immediatamente 2 Scout sul posto.
+
+- **Splitter** (Divisore)
+  - HP Base: 32
+  - Velocità: 0.8
+  - Danno Integrità: 1
+  - Ricompensa: 0 Crediti
+  - Intervallo di Spawn: 90 frame (1.5s)
+  - Note: Quando distrutto, si divide in 2 unità "Split".
+
+- **Split** (Frammento)
+  - HP Base: 16
+  - Velocità: 1.2
+  - Danno Integrità: 1
+  - Ricompensa: 1 Credito
+  - Intervallo di Spawn: 60 frame (1.0s)
+  - Note: Unità generata dalla distruzione di uno Splitter.
+
+## Boss e Minion
+- **Boss** (Boss)
+  - HP Base: 120
+  - Velocità: 0.8
+  - Danno Integrità: 5
+  - Ricompensa: 5 Crediti
+  - Intervallo di Spawn: 120 frame (2.0s)
+  - Note: Genera periodicamente Void Scout o Void Soldier. Infligge danni massicci se raggiunge la fine.
+
+- **Void Scout** (Esploratore del Vuoto)
+  - HP Base: 10
+  - Velocità: 1.8
+  - Danno Integrità: 1
+  - Ricompensa: 0 Crediti
+  - Intervallo di Spawn: 60 frame (1.0s)
+  - Note: Minion generato dal Boss. Non conta per l'avanzamento dell'ondata.
+
+- **Void Soldier** (Soldato del Vuoto)
+  - HP Base: 20
+  - Velocità: 1.2
+  - Danno Integrità: 1
+  - Ricompensa: 0 Crediti
+  - Intervallo di Spawn: 60 frame (1.0s)
+  - Note: Minion generato dal Boss. Non conta per l'avanzamento dell'ondata.
