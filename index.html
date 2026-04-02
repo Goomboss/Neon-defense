@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Neon Defense - Beta 1.2.0 Skills</title>
+    <title>Neon Defense - Beta 1.2.1 - skills & VFX</title>
     <style>
         :root { 
             --neon-blue: #0033aa; --neon-cyan: #00aaff; --neon-magenta: #ff00ff; 
@@ -222,7 +222,7 @@
         NEON DEFENSE 
         <button id="info-btn" style="background:var(--neon-cyan); color:black; border:none; border-radius:50%; width:16px; height:16px; font-weight:bold; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; box-shadow: 0 0 5px var(--neon-cyan);">i</button>
     </h2>
-    <div class="version-label">BETA 1.2.0 - SKILLS</div>
+    <div class="version-label">BETA 1.2.1 - SKILLS & VFX</div>
     <div class="stat">CREDITI: <b id="credits" style="color:var(--neon-green)">20</b></div>
     <div class="stat">INTEGRITÀ: <b id="lives">10</b></div>
 </div>
@@ -298,7 +298,7 @@
         <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Danno ad area estremo (globale). Lvl 2 (400C): 64 Dmg.</i></td></tr>
 
         <tr><td class="row-label"><span style="color:#ffffff; text-shadow: 0 0 5px #fff;">Singul.</span></td><td>-</td><td>-</td><td>-</td><td>0C</td></tr>
-        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 1: +20% Rate globale. Lvl 2 (600C): +40% Rate e +20% Dmg globale.</i></td></tr>
+        <tr><td colspan="5" style="font-size:0.75rem; color:#aaa; padding-bottom:5px;"><i>Distorsione dati. Lvl 1: +20% Rate entro 3 esagoni. Lvl 2 (600C): +40% Rate e +20% Dmg entro 3 esagoni.</i></td></tr>
     </table>
     
     <button class="btn-mini" style="width:100%; margin-top:20px" id="close-legend">RITORNA AL COMBATTIMENTO</button>
@@ -310,7 +310,7 @@
         <h3 style="color:var(--neon-cyan); margin:0;">NEON DEFENSE - INFO</h3>
     </div>
     
-    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">BETA 1.2.0 - SKILLS RIEPILOGO</h4>
+    <h4 style="color:var(--neon-green); margin: 15px 0 5px 0;">BETA 1.2.1 - SKILLS & VFX RIEPILOGO</h4>
     <div style="font-size:0.85rem; color:#ddd; line-height:1.4; margin-top:5px; border: 1px dashed var(--neon-green); padding: 8px; border-radius: 4px;">
         • <b>Skill Tree:</b> Aggiunto un albero delle abilità con 6 potenziamenti unici.<br>
         • <b>Endless Mode:</b> Bilanciamento dello spawn rate e rimozione ricompense Carrier.<br>
@@ -586,8 +586,8 @@
         <div class="tower-tooltip">
             <b style="color:var(--neon-cyan)">SINGULARITY</b><br>
             Dmg: 0 | Costo: 0 C | Upgrade: 600 C<br>
-            <i>+20% Fire Rate a tutte le torrette.</i><br>
-            <span style="color:var(--gold)">L2: +40% Fire Rate, +20% Danno Globale.</span>
+            <i>+20% Fire Rate alle torrette entro 3 esagoni.</i><br>
+            <span style="color:var(--gold)">L2: +40% Fire Rate, +20% Danno.</span>
         </div>
     </div>
 
@@ -801,11 +801,11 @@ let MAX_SNIPER = 0, MAX_FLAMER = 0, MAX_ZAPPER = 0, MAX_COOLER = 0, MAX_INOCULAT
 
 // SKILL TREE DATA
 const SKILLS = {
-    0: { id: 0, name: "Laser Tuning", icon: "⚡", cost: 40, desc: "Torrette Laser: +40% Danno e velocità fuoco.", effect: () => {}, parents: [] },
-    1: { id: 1, name: "Sniper Focus", icon: "🎯", cost: 60, desc: "Torrette Sniper: +60% Velocità fuoco, +1 esagono range.", effect: () => {}, parents: [0] },
+    0: { id: 0, name: "Laser Tuning", icon: "⚡", cost: 40, desc: "Torrette Laser: +25% Danno e velocità fuoco.", effect: () => {}, parents: [] },
+    1: { id: 1, name: "Sniper Focus", icon: "🎯", cost: 60, desc: "Torrette Sniper: +40% Velocità fuoco, +1 esagono range.", effect: () => {}, parents: [0] },
     2: { id: 2, name: "Bounty Protocol", icon: "💰", cost: 40, desc: "Bonus crediti ogni 5 uccisioni.", effect: () => {}, parents: [0] },
-    3: { id: 3, name: "Napalm Mix", icon: "🔥", cost: 120, desc: "Torrette Flamer: +100% Danno.", effect: () => {}, parents: [1] },
-    4: { id: 4, name: "Overcharge", icon: "⚡", cost: 120, desc: "Torrette Zapper: +40% Velocità fuoco, +10% rallentamento (3s).", effect: () => {}, parents: [1] },
+    3: { id: 3, name: "Napalm Mix", icon: "🔥", cost: 120, desc: "Torrette Flamer: +50% Danno.", effect: () => {}, parents: [1] },
+    4: { id: 4, name: "Overcharge", icon: "⚡", cost: 120, desc: "Torrette Zapper: +30% Velocità fuoco, +10% rallentamento (3s).", effect: () => {}, parents: [1] },
     5: { id: 5, name: "Cryo Field", icon: "❄️", cost: 80, desc: "Rallenta tutti i nemici del 15%.", effect: () => {}, parents: [2] },
     6: { id: 6, name: "Weak Points", icon: "🎯", cost: 80, desc: "Nemici: -15% HP allo spawn.", effect: () => {}, parents: [2] }
 };
@@ -902,7 +902,11 @@ class Enemy {
         else if (type === 'splitter') { this.hp = 32 * dm; this.speed = 0.8; this.color = "#ff0000"; }
         else if (type === 'split') { this.hp = 16 * dm; this.speed = 1.2; this.color = "#ff0000"; }
         this.baseSpeed = this.speed;
-        this.slowEffect = { multiplier: 1, duration: 0 };
+        this.slowEffects = {
+            zapper: { multiplier: 1, duration: 0 },
+            cooler: { multiplier: 1, duration: 0 },
+            inoculator: { multiplier: 1, duration: 0 }
+        };
         this.corroded = false;
         this.corrosionTimer = 0;
         this.maxHp = this.hp; this.escaped = false;
@@ -920,12 +924,23 @@ class Enemy {
     
     update(dt) {
         let globalSlow = unlockedSkills.has(5) ? 0.85 : 1;
-        if (this.slowEffect.duration > 0) {
-            this.slowEffect.duration -= dt;
-            this.speed = this.baseSpeed * this.slowEffect.multiplier * globalSlow;
-        } else {
-            this.speed = this.baseSpeed * globalSlow;
+        
+        let currentMultiplier = 1;
+        
+        if (this.slowEffects.zapper.duration > 0) {
+            this.slowEffects.zapper.duration -= dt;
+            currentMultiplier *= this.slowEffects.zapper.multiplier;
         }
+        if (this.slowEffects.cooler.duration > 0) {
+            this.slowEffects.cooler.duration -= dt;
+            currentMultiplier *= this.slowEffects.cooler.multiplier;
+        }
+        if (this.slowEffects.inoculator.duration > 0) {
+            this.slowEffects.inoculator.duration -= dt;
+            currentMultiplier *= this.slowEffects.inoculator.multiplier;
+        }
+        
+        this.speed = this.baseSpeed * currentMultiplier * globalSlow;
         
         if (this.corroded) {
             this.corrosionTimer += dt;
@@ -1032,13 +1047,15 @@ class Enemy {
         ctx.fillStyle = "rgba(0,0,0,0.5)"; ctx.fillRect(this.px-10, this.py-25, 20, 3);
         ctx.fillStyle = "#00ff66"; ctx.fillRect(this.px-10, this.py-25, Math.max(0,(this.hp/this.maxHp)*20), 3);
         
-        if (this.slowEffect.duration > 0) {
+        let isSlowed = this.slowEffects.zapper.duration > 0 || this.slowEffects.cooler.duration > 0 || this.slowEffects.inoculator.duration > 0;
+        if (isSlowed) {
             ctx.fillStyle = "rgba(0, 255, 255, 0.15)";
             ctx.shadowBlur = 5;
             ctx.shadowColor = "rgba(0, 255, 255, 0.5)";
             ctx.beginPath();
             ctx.arc(this.px, this.py, 12, 0, Math.PI*2);
             ctx.fill();
+            ctx.shadowBlur = 0;
         }
         
         if (this.corroded) {
@@ -1074,6 +1091,8 @@ class Tower {
         this.fireRate = s.fr;
         this.cooldown = 0; this.lastShot = null; this.hasFired = (type === 'singularity');
         this.calcTimer = 0;
+        this.bubbles = [];
+        this.nukerAngle = 0;
     }
     update(dt) {
         if (this.type === 'singularity') {
@@ -1084,19 +1103,52 @@ class Tower {
                 const offsetX = (Math.random() - 0.5) * 20;
                 const offsetY = (Math.random() - 0.5) * 20;
                 floatingTexts.push(new FloatingText(canvas.width/2 + this.x + offsetX, canvas.height/2 + this.y + offsetY, bit, "#00ff66", 16));
+                
+                // Visual connection to nearby towers
+                const nearbyTowers = towers.filter(t => t !== this && getHexDistFractional(this, t) <= 3);
+                if (nearbyTowers.length > 0 && Math.random() < 0.3) {
+                    const targetTower = nearbyTowers[Math.floor(Math.random() * nearbyTowers.length)];
+                    this.lastShot = {
+                        tx: canvas.width/2 + targetTower.x,
+                        ty: canvas.height/2 + targetTower.y,
+                        time: 15
+                    };
+                }
+            }
+            if (this.lastShot) {
+                this.lastShot.time -= dt;
+                if (this.lastShot.time <= 0) this.lastShot = null;
             }
             return;
+        } else if (this.type === 'inoculator') {
+            if (Math.random() < 0.1) {
+                this.bubbles.push({
+                    x: (Math.random() - 0.5) * 20,
+                    y: (Math.random() - 0.5) * 20,
+                    size: Math.random() * 3 + 1,
+                    life: 60 + Math.random() * 30
+                });
+            }
+            for (let i = this.bubbles.length - 1; i >= 0; i--) {
+                let b = this.bubbles[i];
+                b.y -= 0.5 * dt;
+                b.x += Math.sin(b.life * 0.1) * 0.5 * dt;
+                b.life -= dt;
+                if (b.life <= 0) this.bubbles.splice(i, 1);
+            }
+        } else if (this.type === 'nuker') {
+            this.nukerAngle += 0.05 * dt;
         }
         
         let fireRateMult = 1;
         let damageMult = 1;
 
         // Skill Tree Modifiers
-        if (this.type === 'laser' && unlockedSkills.has(0)) fireRateMult *= 1.4;
-        if (this.type === 'sniper' && unlockedSkills.has(1)) fireRateMult *= 1.6;
-        if (this.type === 'zapper' && unlockedSkills.has(4)) fireRateMult *= 1.4;
+        if (this.type === 'laser' && unlockedSkills.has(0)) fireRateMult *= 1.25;
+        if (this.type === 'sniper' && unlockedSkills.has(1)) fireRateMult *= 1.4;
+        if (this.type === 'zapper' && unlockedSkills.has(4)) fireRateMult *= 1.3;
 
-        const singularities = towers.filter(t => t.type === 'singularity');
+        const singularities = towers.filter(t => t.type === 'singularity' && getHexDistFractional(this, t) <= 3);
         if (singularities.length > 0) {
             const maxLevel = Math.max(...singularities.map(t => t.level));
             if (maxLevel === 2) {
@@ -1105,14 +1157,21 @@ class Tower {
             } else {
                 fireRateMult *= 1.2;
             }
+            
+            if (Math.random() < 0.02) {
+                const bit = Math.random() > 0.5 ? "1" : "0";
+                const offsetX = (Math.random() - 0.5) * 15;
+                const offsetY = (Math.random() - 0.5) * 15;
+                floatingTexts.push(new FloatingText(canvas.width/2 + this.x + offsetX, canvas.height/2 + this.y + offsetY, bit, "#00ff66", 10));
+            }
         }
 
         let currentRange = this.range;
         if (this.type === 'sniper' && unlockedSkills.has(1)) currentRange += 1.0;
 
         let currentDamage = this.damage;
-        if (this.type === 'laser' && unlockedSkills.has(0)) currentDamage *= 1.4;
-        if (this.type === 'flamer' && unlockedSkills.has(3)) currentDamage *= 2.0;
+        if (this.type === 'laser' && unlockedSkills.has(0)) currentDamage *= 1.25;
+        if (this.type === 'flamer' && unlockedSkills.has(3)) currentDamage *= 1.5;
 
         this.cooldown -= dt;
         const maxShotsPerFrame = 10;
@@ -1150,7 +1209,7 @@ class Tower {
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     target.hp -= (currentDamage * damageMult); 
-                    if (unlockedSkills.has(4) && (target.slowEffect.duration <= 0 || target.slowEffect.multiplier > 0.9)) target.slowEffect = { multiplier: 0.9, duration: 180 };
+                    if (unlockedSkills.has(4) && (target.slowEffects.zapper.duration <= 0 || target.slowEffects.zapper.multiplier > 0.9)) target.slowEffects.zapper = { multiplier: 0.9, duration: 180 };
                     this.cooldown += (this.fireRate / fireRateMult);
                     
                     let chainTarget = null;
@@ -1159,14 +1218,14 @@ class Tower {
                     if (possibleChainTargets.length > 0) {
                         chainTarget = possibleChainTargets[0];
                         chainTarget.hp -= (this.level === 3 ? 6 * damageMult : (currentDamage / 2) * damageMult);
-                        if (unlockedSkills.has(4) && (chainTarget.slowEffect.duration <= 0 || chainTarget.slowEffect.multiplier > 0.9)) chainTarget.slowEffect = { multiplier: 0.9, duration: 180 };
+                        if (unlockedSkills.has(4) && (chainTarget.slowEffects.zapper.duration <= 0 || chainTarget.slowEffects.zapper.multiplier > 0.9)) chainTarget.slowEffects.zapper = { multiplier: 0.9, duration: 180 };
                         
                         if (this.level === 3) {
                             let possibleChainTargets2 = enemies.filter(en => en.hp > 0 && en !== target && en !== chainTarget && getHexDistFractional(chainTarget, en) <= 1.2);
                             if (possibleChainTargets2.length > 0) {
                                 chainTarget2 = possibleChainTargets2[0];
                                 chainTarget2.hp -= 3 * damageMult;
-                                if (unlockedSkills.has(4) && (chainTarget2.slowEffect.duration <= 0 || chainTarget2.slowEffect.multiplier > 0.9)) chainTarget2.slowEffect = { multiplier: 0.9, duration: 180 };
+                                if (unlockedSkills.has(4) && (chainTarget2.slowEffects.zapper.duration <= 0 || chainTarget2.slowEffects.zapper.multiplier > 0.9)) chainTarget2.slowEffects.zapper = { multiplier: 0.9, duration: 180 };
                             }
                         }
                     }
@@ -1211,7 +1270,7 @@ class Tower {
                 if (target) {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     this.cooldown += (this.fireRate / fireRateMult);
-                    projectiles.push(new Projectile(canvas.width/2 + this.x, canvas.height/2 + this.y, target, 'inoculator', 0, this.level));
+                    projectiles.push(new Projectile(canvas.width/2 + this.x, canvas.height/2 + this.y, target, 'inoculator', 0, this.level, damageMult));
                 } else {
                     break;
                 }
@@ -1227,7 +1286,7 @@ class Tower {
                     if (!this.hasFired) { this.hasFired = true; if (selectedTower === this) updateUI(); }
                     targets.forEach(target => {
                         target.hp -= (currentDamage * damageMult);
-                        target.slowEffect = {
+                        target.slowEffects.cooler = {
                             multiplier: this.level === 2 ? 0.65 : 0.8,
                             duration: 180
                         };
@@ -1274,6 +1333,17 @@ class Tower {
     }
     draw(cX, cY, isSelected) {
         ctx.save();
+        
+        if (this.type === 'cooler') {
+            ctx.beginPath();
+            ctx.arc(cX + this.x, cY + this.y, this.range * HEX_SIZE, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(150, 220, 255, 0.05)";
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "rgba(150, 220, 255, 0.3)";
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
         const isSecret = this.type === 'cooler' || this.type === 'nuker' || this.type === 'inoculator' || this.type === 'singularity';
         const colors = this.type === 'flamer' ? ["#cc5500", "#ff7700", "#ffaa00"] : (this.type === 'zapper' ? ["#555555", "#777777", "#999999"] : (this.type === 'laser' ? ["#0033cc", "#0088ff", "#00ccff"] : (this.type === 'cooler' ? ["#0066cc", "#0099ff", "#00ffff"] : (this.type === 'nuker' ? ["#cc0000", "#ff0000", "#ff3333"] : (this.type === 'inoculator' ? ["#009900", "#00cc00", "#00ff00"] : (this.type === 'singularity' ? ["#000000", "#000000", "#ffffff"] : ["#7b1fa2", "#9c27b0", "#d500f9"]))))));
         const colorIndex = isSecret && this.level === 2 ? 2 : this.level - 1;
@@ -1294,17 +1364,44 @@ class Tower {
         else if (this.level === 3 || (isSecret && this.level === 2)) { ctx.beginPath(); for(let i=0;i<5;i++){const a=(Math.PI*2/5)*i-Math.PI/2; ctx.lineTo(cX+this.x+8*Math.cos(a),cY+this.y+8*Math.sin(a)); const a2=a+Math.PI/5; ctx.lineTo(cX+this.x+4*Math.cos(a2),cY+this.y+4*Math.sin(a2));} ctx.closePath(); ctx.stroke(); }
         if (this.lastShot && this.lastShot.time > 0) {
             ctx.beginPath(); ctx.shadowBlur = 15;
-            if (this.type === 'flamer') {
+            if (this.type === 'singularity') {
+                ctx.strokeStyle = `rgba(0, 255, 102, ${this.lastShot.time / 15 * 0.5})`;
+                ctx.shadowColor = "#00ff66";
+                ctx.shadowBlur = 5;
+                ctx.lineWidth = 1;
+                
+                // Draw curved line
+                const startX = cX + this.x;
+                const startY = cY + this.y;
+                const endX = this.lastShot.tx;
+                const endY = this.lastShot.ty;
+                const midX = (startX + endX) / 2;
+                const midY = (startY + endY) / 2;
+                const dist = Math.hypot(endX - startX, endY - startY);
+                const angle = Math.atan2(endY - startY, endX - startX);
+                
+                // Offset control point perpendicular to the line
+                const offset = dist * 0.2;
+                const cpX = midX + Math.cos(angle + Math.PI/2) * offset;
+                const cpY = midY + Math.sin(angle + Math.PI/2) * offset;
+                
+                ctx.moveTo(startX, startY);
+                ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            } else if (this.type === 'flamer') {
                 const radius = HEX_SIZE * 1.5 * (1 - this.lastShot.time/15) + 20;
                 if (this.level === 3) {
-                    ctx.fillStyle = `rgba(255, 0, 0, ${this.lastShot.time / 15 * 0.5})`;
-                    ctx.shadowColor = "#ff0000";
+                    const timeMs = Date.now();
+                    const isYellow = Math.floor(timeMs / 100) % 2 === 0;
+                    ctx.fillStyle = isYellow ? `rgba(255, 200, 0, ${this.lastShot.time / 15 * 0.7})` : `rgba(255, 100, 0, ${this.lastShot.time / 15 * 0.7})`;
+                    ctx.shadowColor = isYellow ? "#ffcc00" : "#ff6600";
                     ctx.arc(cX+this.x, cY+this.y, radius, 0, Math.PI*2);
                     ctx.fill();
                     ctx.beginPath();
-                    ctx.fillStyle = `rgba(255, 170, 0, ${this.lastShot.time / 15 * 0.7})`;
-                    ctx.shadowColor = "#ffaa00";
-                    ctx.arc(cX+this.x, cY+this.y, radius * 0.7, 0, Math.PI*2);
+                    ctx.fillStyle = isYellow ? `rgba(255, 100, 0, ${this.lastShot.time / 15 * 0.9})` : `rgba(255, 200, 0, ${this.lastShot.time / 15 * 0.9})`;
+                    ctx.shadowColor = isYellow ? "#ff6600" : "#ffcc00";
+                    ctx.arc(cX+this.x, cY+this.y, radius * 0.6, 0, Math.PI*2);
                     ctx.fill();
                 } else {
                     ctx.fillStyle = `rgba(255, 80, 0, ${this.lastShot.time / 15 * 0.6})`;
@@ -1313,11 +1410,15 @@ class Tower {
                     ctx.fill();
                 }
             } else if (this.type === 'cooler') {
-                const radius = HEX_SIZE * 1.5 * (1 - this.lastShot.time/20) + 20;
-                ctx.fillStyle = `rgba(0, 153, 255, ${this.lastShot.time / 20 * 0.5})`;
-                ctx.shadowColor = "#0099ff";
+                const progress = 1 - (this.lastShot.time / 20);
+                const radius = this.range * HEX_SIZE * progress;
+                ctx.beginPath();
                 ctx.arc(cX+this.x, cY+this.y, radius, 0, Math.PI*2);
-                ctx.fill();
+                ctx.strokeStyle = `rgba(200, 240, 255, ${this.lastShot.time / 20 * 0.8})`;
+                ctx.lineWidth = 3;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#c8f0ff";
+                ctx.stroke();
             } else if (this.type === 'zapper') {
                 ctx.strokeStyle = this.level === 3 ? "#ffff00" : "#00ffff"; 
                 ctx.shadowColor = this.level === 3 ? "#ffff00" : "#00ffff"; 
@@ -1376,12 +1477,38 @@ class Tower {
                 }
                 ctx.stroke();
             }
-        } ctx.restore();
+        }
+        
+        if (this.type === 'inoculator') {
+            ctx.fillStyle = "rgba(150, 255, 0, 0.6)";
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = "#96ff00";
+            for (let b of this.bubbles) {
+                ctx.beginPath();
+                ctx.arc(cX + this.x + b.x, cY + this.y + b.y, b.size, 0, Math.PI*2);
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+        } else if (this.type === 'nuker') {
+            ctx.fillStyle = "#ffff00";
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#ffff00";
+            const orbDist = 12;
+            for (let i = 0; i < 2; i++) {
+                const a = this.nukerAngle + i * Math.PI;
+                ctx.beginPath();
+                ctx.arc(cX + this.x + Math.cos(a) * orbDist, cY + this.y + Math.sin(a) * orbDist, 3, 0, Math.PI*2);
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+        }
+        
+        ctx.restore();
     }
 }
 
 class Projectile {
-    constructor(x, y, target, type, damage, level) {
+    constructor(x, y, target, type, damage, level, damageMult = 1) {
         this.relX = x - canvas.width/2;
         this.relY = y - canvas.height/2;
         this.target = target;
@@ -1390,6 +1517,7 @@ class Projectile {
         this.type = type;
         this.damage = damage;
         this.level = level;
+        this.damageMult = damageMult;
         this.speed = type === 'nuker' ? 12 : 20;
         this.active = true;
     }
@@ -1467,14 +1595,11 @@ class Projectile {
             
         } else if (this.type === 'inoculator') {
             if (this.target) {
-                let damageMult = 1;
-                const singularities = towers.filter(t => t.type === 'singularity');
-                if (singularities.length > 0) {
-                    const maxLevel = Math.max(...singularities.map(t => t.level));
-                    if (maxLevel === 2) damageMult = 1.2;
-                }
                 this.target.corroded = true;
-                this.target.corrosionDamage = (this.level * 2) * damageMult;
+                this.target.corrosionDamage = (this.level * 2) * this.damageMult;
+                if (this.level === 2) {
+                    this.target.slowEffects.inoculator = { multiplier: 0.85, duration: 180 };
+                }
             }
             playSFX(200, 'square', 0.4);
             for(let i=0; i<5; i++) particles.push(new Particle(this.x, this.y, "#00ff00"));
@@ -1696,7 +1821,7 @@ function updateUI() {
     if (selectedTower) {
         panel.style.display = 'block'; 
         let damageMult = 1;
-        const singularities = towers.filter(t => t.type === 'singularity');
+        const singularities = towers.filter(t => t.type === 'singularity' && getHexDistFractional(selectedTower, t) <= 3);
         if (singularities.length > 0) {
             const maxLevel = Math.max(...singularities.map(t => t.level));
             if (maxLevel === 2) damageMult = 1.2;
